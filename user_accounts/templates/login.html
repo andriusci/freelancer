@@ -1,12 +1,16 @@
 {%extends 'base.html'%}
 
+{%block title%}
+User log in
+{%endblock%}
+
 {%block content%}
     <h1>user login</h1>
 
-
+<a href="{%url 'signup'%}">registration</a>
     <form method="POST">
         {% csrf_token %}
-        {{loginForm}}
+        {{loginForm.as_p}}
         <button type="submit">log in</button>
     </form>
 

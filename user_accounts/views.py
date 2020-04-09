@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from user_accounts.forms import LoginForm
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 def index(request):
     #Return the index.html file
@@ -18,7 +19,7 @@ def user_account(request):
     #Return user_account.html file
      return render(request, 'user_account.html')
 
-def login(request):
+def user_login(request):
     #Return a log in page
     if request.method == "POST":
         loginForm = LoginForm(request.POST)
@@ -33,9 +34,26 @@ def login(request):
                 auth.login(user=user, request=request)
                 return redirect(reverse ('user_account'))
             else:
-               loginForm.add_error(None, "Your username or password is incorrect")
+                loginForm.add_error(None, "Your username or password is incorrect")
 
 
     else:
        loginForm = LoginForm()
     return render(request, 'login.html', {"loginForm": loginForm})
+
+
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect(reverse('user_account'))
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})

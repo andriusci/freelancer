@@ -1,6 +1,7 @@
 from django import forms
 
 class LoginForm(forms.Form):
-#Defines user login form containing two fields, namely username (email address) and password.
+    """Form to be used to log users in"""
+
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
