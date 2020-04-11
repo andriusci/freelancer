@@ -14,9 +14,9 @@ def quote(request):
         data = request.POST.copy()
         count = int(data.get('word_count'))
         if count > 1000:
-          price = round((count - 1000) / 100 + 15)
+          price = round(count / 100)
         else:
-          price = 15
+          price = 10
         context = { "price": price,"form": form }
         return render(request, 'quote.html', context)
     else:
