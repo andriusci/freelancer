@@ -19,6 +19,8 @@ from user_accounts.views import user_login, logout, user_account, signup
 from freelancer_website.views import index
 from quote.views import quote
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', user_login, name="login"),
@@ -26,6 +28,5 @@ urlpatterns = [
     path('user_account/', user_account, name="user_account"),
     path('', index, name="index"),
     path('registration/', signup, name="signup"),
-    path('quote/', quote )
+    path('quote/', quote, name="quote" )
 ]
- 
