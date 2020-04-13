@@ -22,8 +22,11 @@ def quote(request):
       if request.POST['form'] == "Upload":
         form = QuoteUploadForm(request.POST, request.FILES)
         if form.is_valid:
-          upFile = request.FILES["document"].read()
-          count = len(upFile.split())
+           files = request.FILES.getlist('document')
+           count = 0
+           for eachFile in files: 
+               raw = eachFile.read()
+               count = count + len(raw.split())
       if count > 1000:
          price = round(count / 100)
       else:

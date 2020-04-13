@@ -7,7 +7,5 @@ class QuoteManualForm(forms.Form):
     categoriess = forms.ChoiceField(choices = categories, label="")
     word_count = forms.DecimalField()
 
-class QuoteUploadForm(forms.ModelForm):
-    class Meta:
-        model = Document
-        fields = ('description', 'document', )
+class QuoteUploadForm(forms.Form):
+          document = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
