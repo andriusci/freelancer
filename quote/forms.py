@@ -1,5 +1,5 @@
 from django import forms
-from quote.models import Document
+from quote.models import Upload
 
 categories  =[("1", "Academic"), ("2", "General")]
 class QuoteManualForm(forms.Form):
@@ -9,3 +9,4 @@ class QuoteManualForm(forms.Form):
 
 class QuoteUploadForm(forms.Form):
           document = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+             

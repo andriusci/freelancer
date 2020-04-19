@@ -19,4 +19,13 @@ upload your document
 </form>
 <br>
     {{ price}}
+
+   {{file}}
+
+   <form action="/test/" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="test" id="myfile" name="document" value="{{file}}"><br><br>
+    <input type="submit" value="go" name="form">
+
+</form>
 {%endblock%}

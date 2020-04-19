@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div>basket</div>
+
+
+<br>
+{%if files%}
+{%for eachFile in files%}
+   <div> {{eachFile}}&nbsp</div>
+  
+{%endfor%}
+
+{%endif%}
+{%endblock%}

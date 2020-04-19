@@ -3,6 +3,7 @@ from django.contrib import auth, messages
 from user_accounts.forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
 
 def index(request):
     #Return the index.html file
@@ -32,7 +33,7 @@ def user_login(request):
 
             if user:
                 auth.login(user=user, request=request)
-                return redirect(reverse ('user_account'))
+                return HttpResponseRedirect(request.GET['next'])
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
 

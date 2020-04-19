@@ -18,7 +18,7 @@ from django.urls import path
 from user_accounts.views import user_login, logout, user_account, signup
 from freelancer_website.views import index
 from quote.views import quote
-
+from basket.views import basket
 
 
 urlpatterns = [
@@ -28,5 +28,6 @@ urlpatterns = [
     path('user_account/', user_account, name="user_account"),
     path('', index, name="index"),
     path('registration/', signup, name="signup"),
-    path('quote/', quote, name="quote" )
+    path('quote/', quote, name="quote" ),
+    path('basket/', basket)
 ]
