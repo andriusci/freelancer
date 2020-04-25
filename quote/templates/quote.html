@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 
 {%block content%}
-<body>
+get your quote
     <form action="/quote/" method="post">
         {% csrf_token %}
         {{ manual_form }}
@@ -18,14 +18,22 @@ upload your document
 
 </form>
 <br>
-    {{ price}}
+    {{ price}}<br>
 
-   {{file}}
 
-   <form action="/test/" method="post"  enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="test" id="myfile" name="document" value="{{file}}"><br><br>
-    <input type="submit" value="go" name="form">
+    <form action="/add_to_basket/" method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ add_to_basket_form }}
+        <input type="submit" value="Add to basket" name="form">
+    
+    </form>
+{% if messages%}
 
-</form>
+    {% for message in messages %}
+       Your quote has been added to your shopping cart
+    {%endfor%}
+{%else%}
+no theres  no
+
+{%endif%}
 {%endblock%}

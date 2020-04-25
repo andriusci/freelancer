@@ -4,6 +4,9 @@ from user_accounts.forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 def index(request):
     #Return the index.html file
@@ -13,12 +16,16 @@ def index(request):
 def logout(request):
     #Logout
     auth.logout(request)
-    return redirect(reverse('login'))
+    messages.add_message(request, messages.INFO, 'logout')
+    return render(request, 'index.html')
 
 
+@login_required(login_url='/login/')
 def user_account(request):
     #Return user_account.html file
      return render(request, 'user_account.html')
+
+
 
 def user_login(request):
     #Return a log in page
@@ -33,6 +40,7 @@ def user_login(request):
 
             if user:
                 auth.login(user=user, request=request)
+               
                 return HttpResponseRedirect(request.GET['next'])
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
