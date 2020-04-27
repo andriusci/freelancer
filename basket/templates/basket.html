@@ -5,11 +5,13 @@
 
 
 <br>
-{%if files%}
-{%for eachFile in files%}
-   <div> {{eachFile}}&nbsp</div>
-  
-{%endfor%}
 
-{%endif%}
+
+
+{%for eachItem in list%}
+
+   {{eachItem.price}}
+   {{eachItem.quote_ref}}<br>
+
+{%endfor%}
 {%endblock%}

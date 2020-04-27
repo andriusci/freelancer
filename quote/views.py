@@ -11,7 +11,6 @@ from datetime import datetime
 
 
 def quote(request):
-    #Return quote page. Incase of quote form submit return quote.
     manual_form = QuoteManualForm
     upload_form = QuoteUploadForm
     context = { "price": "",
@@ -21,9 +20,7 @@ def quote(request):
     
 
     if request.method == "POST":
-
       time = datetime.now()
-
       if request.POST['form'] == "Submit":
         data = request.POST.copy()
         count = int(data.get('word_count'))
@@ -35,6 +32,7 @@ def quote(request):
         if form.is_valid:
            files = request.FILES.getlist('document')
            category = request.POST.get('categories')
+           title = request.POST.get('name')
            count = 0
            for eachFile in files: 
                raw = eachFile.read()
@@ -52,17 +50,20 @@ def quote(request):
          price = price * 1.1
       price = round(price)
      
-   
+      context = { "price": price,
+                "manual_form": manual_form, 
+                "upload_form": upload_form, 
+                "add_to_basket_form": AddToBasketForm }
                    
       #populate quote model intance fields:
      
       quote_instance = Quote(category = category,
                              word_count = count,
                              uploaded_on = time,
-                             price = price,)
+                             price = price,
+                             title= title)
 
       quote_instance.save()
-      
       quote_ref = quote_instance.pk
       if request.POST['form'] == "Upload":
         for eachFile in files:
@@ -77,17 +78,16 @@ def quote(request):
             upload_file.save()
 
 
-      current_user = request.user
+            current_user = request.user
       
-      initial = {
+            initial = {
                  'user': current_user.username,
-                 'quote_ref': 3 
-}
+                 'quote_ref': quote_ref  }
      
-      context = { "price": price, 
-                  "manual_form": manual_form,
-                  "upload_form" : upload_form,  
-                  "add_to_basket_form": AddToBasketForm(initial=initial)
+            context = { "price": price, 
+                        "manual_form": manual_form,
+                        "upload_form" : upload_form,  
+                        "add_to_basket_form": AddToBasketForm(initial=initial)
                    }
       
 

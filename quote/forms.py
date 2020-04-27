@@ -10,4 +10,4 @@ class QuoteManualForm(forms.Form):
 class QuoteUploadForm(forms.Form):
           categories = forms.ChoiceField(choices = categories, label="")
           document = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
-             
+          name = forms.CharField()

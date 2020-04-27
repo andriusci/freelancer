@@ -12,14 +12,16 @@
    <div style="border: solid 1px; width:100%">
 
     <a href="{%url 'index'%}">home</a>
+
     {%if user.is_authenticated%}
       Hi {{user}}  
       <a href="{% url 'logout' %}">log out</a>
-      
+      {%else%}
+      <a href="{% url 'user_account' %}">login</a>
       {%endif%}
 
 
-        <a href="{% url 'user_account' %}">account</a> 
+        
        
         
    

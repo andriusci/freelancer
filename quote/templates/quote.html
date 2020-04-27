@@ -8,7 +8,13 @@ get your quote
         <input type="submit" value="Submit" name="form">
     </form>
 <br>
-or
+
+{{price}}
+{%if user.is_authenticated%}
+
+
+
+
 <br>
 upload your document 
 <form action="/quote/" method="post"  enctype="multipart/form-data">
@@ -27,13 +33,7 @@ upload your document
         <input type="submit" value="Add to basket" name="form">
     
     </form>
-{% if messages%}
 
-    {% for message in messages %}
-       Your quote has been added to your shopping cart
-    {%endfor%}
-{%else%}
-no theres  no
+    {%endif%}
 
-{%endif%}
 {%endblock%}

@@ -23,7 +23,7 @@ class Quote(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     purchased = models.BooleanField(default=False)
     submitted_by = models.CharField(max_length=100)
-
+    title = models.CharField(max_length=100)
 
 class QuoteFiles(models.Model):
 
