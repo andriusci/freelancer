@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
-from .models import AddToBasket 
+from .models import AddToBasket
 from django.contrib import messages
 from quote.models import Quote
 
 
 @login_required(login_url='/login/')
 def basket(request):
+
+        form = MakePaymentForm
         current_user = request.user
         user = current_user.username
 
@@ -33,7 +35,7 @@ def basket(request):
                  basket_item_list.append({"quote_ref": quote_ref, "price": price, "title": title})
               #add those too list of dict
         
-        context = {"list": basket_item_list }
+        context = {"form": form }
 
         return render(request, 'basket.html', context)
 

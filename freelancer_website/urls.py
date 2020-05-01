@@ -19,6 +19,7 @@ from user_accounts.views import user_login, logout, user_account, signup
 from freelancer_website.views import index
 from quote.views import quote
 from basket.views import basket, add_to_basket
+from checkout.views import checkout
 
 
 urlpatterns = [
@@ -30,5 +31,6 @@ urlpatterns = [
     path('registration/', signup, name="signup"),
     path('quote/', quote, name="quote" ),
     path('basket/', basket, name="basket"),
-    path('add_to_basket/', add_to_basket, name="add_to_basket")
+    path('add_to_basket/', add_to_basket, name="add_to_basket"),
+    path('checkout/', checkout, name="checkout")
 ]

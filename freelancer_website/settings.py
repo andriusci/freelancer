@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'user_accounts',
     'quote',
     'basket',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -102,8 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
