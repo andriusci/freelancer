@@ -12,7 +12,7 @@ CATEGORY_CHOICES = [("ACADEMIC", 'Academic'),
 
 
 class Quote(models.Model):
-    
+    id = models.BigIntegerField(primary_key = True)
     category = models.CharField(max_length=8,
                                 choices=CATEGORY_CHOICES,
                                 default="ACADEMIC")
