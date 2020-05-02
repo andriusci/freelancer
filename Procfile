@@ -1,1 +1,1 @@
-web: gunicorn freelancer_website.wsgi:applicationgit 
+web: gunicorn freelancer_website.wsgi:application
