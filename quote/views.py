@@ -57,7 +57,8 @@ def quote(request):
                    
       #populate quote model intance fields:
      
-      quote_instance = Quote(category = category,
+      quote_instance = Quote(
+                             category = category,
                              word_count = count,
                              uploaded_on = time,
                              price = price,

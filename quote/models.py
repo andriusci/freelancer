@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime 
 
 class Upload(models.Model):
    #
@@ -12,18 +12,18 @@ CATEGORY_CHOICES = [("ACADEMIC", 'Academic'),
 
 
 class Quote(models.Model):
-    id = models.BigIntegerField(primary_key = True)
+    #id = models.BigIntegerField(primary_key=True,default=0)
     category = models.CharField(max_length=8,
                                 choices=CATEGORY_CHOICES,
                                 default="ACADEMIC")
-    word_count = models.IntegerField()
-    uploaded_on = models.DateTimeField()
+    word_count = models.IntegerField(default=0)
+    uploaded_on = models.DateTimeField(default=datetime.now, blank=True)
     added_to_basket = models.BooleanField(default=False)
     removed_from_basket = models.BooleanField(default=False)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=2)
     purchased = models.BooleanField(default=False)
-    submitted_by = models.CharField(max_length=100)
-    title = models.CharField(max_length=100)
+    submitted_by = models.CharField(max_length=100,default="a")
+    title = models.CharField(max_length=100,default="a")
 
 class QuoteFiles(models.Model):
 
