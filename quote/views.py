@@ -79,13 +79,16 @@ def quote(request):
             upload_file.save()
 
 
-            current_user = request.user
-      
-            initial = {
-                 'user': current_user.username,
+        current_user = request.user
+        #################################################################
+        file1 = Upload.objects.get(id=2)
+        file1 = file1.document
+        initial = {
+                  'user': file1,
+                # 'user': current_user.username,
                  'quote_ref': quote_ref  }
      
-            context = { "price": price, 
+        context = { "price": price, 
                         "manual_form": manual_form,
                         "upload_form" : upload_form,  
                         "add_to_basket_form": AddToBasketForm(initial=initial)

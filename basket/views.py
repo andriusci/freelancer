@@ -9,7 +9,7 @@ from quote.models import Quote
 @login_required(login_url='/login/')
 def basket(request):
 
-        form = MakePaymentForm
+        #MakePaymentForm
         current_user = request.user
         user = current_user.username
 
@@ -22,49 +22,54 @@ def basket(request):
               quote_ref_list.append(eachItem.quote_ref)
 
         basket_item_list = []
+        price_list = []
         for eachQuote in quote_ref_list:
              #from the quote object return each quotes price, ref and title 
               quote = Quote.objects.all().filter(id=eachQuote)
 
-          
+              total_price = 0
               for eachQuote in quote:
                  quote_ref = eachQuote.id
+                 total_price = total_price + quote_ref
                  price = eachQuote.price
                  title = eachQuote.title
-
+                 
+                 price_list.append(price)
                  basket_item_list.append({"quote_ref": quote_ref, "price": price, "title": title})
               #add those too list of dict
-        
-        context = {"form": form }
+        total = sum(price_list)
+        context = {"list": basket_item_list, "total" : total}
 
         return render(request, 'basket.html', context)
 
 
 
 def add_to_basket(request):
+    
     if request.user.is_authenticated:
-      current_user = request.user
-      user = current_user.username
       if request.method == "POST":
            current_user = request.user
            user = current_user.username
-          
-           
+
            data = request.POST.copy()
            quote_ref = data.get('quote_ref')
-          
+           
+           quote = Quote.objects.get(id=quote_ref)
+           quote.added_to_basket = True
+           quote.save()
+
            add_to_basket = AddToBasket(user=user,
                                        quote_ref = quote_ref)
            add_to_basket.save()
 
-           context = {"username": user }
+           context = {"username": user, "quote": quote.id }
 
 
            return redirect(reverse('basket'))
       else:
 
 
-           context = {"username": user, "quote": quotes}
+           context = {"username": user, "quote": quote.id}
    
       return render(request, 'basket.html', context)
         

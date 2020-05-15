@@ -10,8 +10,10 @@
 
 {%for eachItem in list%}
 
-   {{eachItem.price}}
-   {{eachItem.quote_ref}}<br>
-
+  € {{eachItem.price}},
+  Quote number  {{eachItem.quote_ref}}
+   <button>remove</button><br>
+  
 {%endfor%}
+total: € {{total}}
 {%endblock%}
