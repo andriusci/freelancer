@@ -4,7 +4,7 @@
 
 <br>
 
-<div id="price">€</div>
+
 <form>
 <select id="category">
     <option value="academic">Academic</option>
@@ -15,6 +15,11 @@
 </form>
 <button onclick="quote()">Get quote</button>
 <br>
+<div id="price"></div>
+
+You need to login in order to upload documents for a quote<br>
+<a href="{% url 'quote_logged' %}">login</a>
+
 <script>
     function quote(){
       category = document.getElementById("category").value;
@@ -25,35 +30,9 @@
            {price = 10}
       if (category != "general") {price = price * 1.1}
       price = Math.round(price);
-      document.getElementById("price").innerHTML = "€" + price;
+      document.getElementById("price").innerHTML = "Total price is €" + price;
     }
 </script>
 
-{{price}}
-{%if user.is_authenticated%}
-
-
-
-
-<br>
-upload your document 
-<form action="/quote/" method="post"  enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ upload_form }}
-    <input type="submit" value="Upload" name="form">
-
-</form>
-<br>
-    {{ price}}<br>
-
-
-    <form action="/add_to_basket/" method="post"  enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ add_to_basket_form }}
-        <input type="submit" value="Add to basket" name="form">
-    
-    </form>
-
-    {%endif%}
 
 {%endblock%}

@@ -14,15 +14,17 @@
     <a href="{%url 'index'%}">home</a>
 
     {%if user.is_authenticated%}
-      Hi {{user}}  
-      <a href="{% url 'user_account' %}">account</a>
-      <a href="{% url 'logout' %}">log out</a>
-      {%else%}
-      <a href="{% url 'user_account' %}">login</a>
-      {%endif%}
+        Hi {{user}}  
+         <a href="{% url 'user_account' %}">account</a>
+         <a href="{% url 'logout' %}">log out</a>
+    {%else%}
+         
+         <a href="{% url 'user_account' %}">Log in</a>
+         
+    {%endif%}
+  
 
-
-        
+ 
        
         
    
@@ -32,6 +34,11 @@
 
     <a href="{% url 'quote' %}">Instant Quote</a>
     </div>
+
+
+  
+
+
     {%block content%}
     {%endblock%}
 </body>

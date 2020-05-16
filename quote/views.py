@@ -1,20 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-
-from quote.forms import QuoteManualForm, QuoteUploadForm
+from django.contrib.auth.decorators import login_required
+from quote.forms import  QuoteUploadForm
 from quote.models import Upload, Quote, QuoteFiles
 from basket.forms import AddToBasketForm
 from django.core.files import File 
 from datetime import datetime
 
-
-
-
 def quote(request):
-   # manual_form = QuoteManualForm
+     return render(request, 'quote.html')
+
+@login_required(login_url='/login/')
+def quote_logged(request):
+ 
     upload_form = QuoteUploadForm
     context = { "price": "",
-               # "manual_form": manual_form, 
                 "upload_form": upload_form, 
                 "add_to_basket_form": AddToBasketForm }
     
@@ -28,7 +28,7 @@ def quote(request):
         if form.is_valid:
            files = request.FILES.getlist('document')
            category = request.POST.get('categories')
-           title = request.POST.get('name')
+           title = request.POST.get('description')
            count = 0
            for eachFile in files: 
                raw = eachFile.read()
@@ -47,7 +47,6 @@ def quote(request):
       price = round(price)
      
       context = { "price": price,
-               # "manual_form": manual_form, 
                 "upload_form": upload_form, 
                 "add_to_basket_form": AddToBasketForm }
                    
@@ -77,7 +76,7 @@ def quote(request):
 
         current_user = request.user
         #################################################################
-        file1 = Upload.objects.get(id=2)
+        file1 = Upload.objects.get(id=8)
         file1 = file1.document
         initial = {
                   'user': file1,
@@ -90,8 +89,8 @@ def quote(request):
                    }
       
 
-      return render(request, 'quote.html', context)
+      return render(request, 'quote_logged.html', context)
     else:
-        return render(request, 'quote.html', context)
+        return render(request, 'quote_logged.html', context)
 
 

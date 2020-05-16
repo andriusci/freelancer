@@ -40,7 +40,6 @@ def user_login(request):
 
             if user:
                 auth.login(user=user, request=request)
-               
                 return HttpResponseRedirect(request.GET['next'])
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
