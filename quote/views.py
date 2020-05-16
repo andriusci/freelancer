@@ -11,21 +11,17 @@ from datetime import datetime
 
 
 def quote(request):
-    manual_form = QuoteManualForm
+   # manual_form = QuoteManualForm
     upload_form = QuoteUploadForm
     context = { "price": "",
-                "manual_form": manual_form, 
+               # "manual_form": manual_form, 
                 "upload_form": upload_form, 
                 "add_to_basket_form": AddToBasketForm }
     
 
     if request.method == "POST":
       time = datetime.now()
-      if request.POST['form'] == "Submit":
-        data = request.POST.copy()
-        count = int(data.get('word_count'))
-        category = data.get('categories')
-        
+      
 
       if request.POST['form'] == "Upload":
         form = QuoteUploadForm(request.POST, request.FILES)
@@ -51,7 +47,7 @@ def quote(request):
       price = round(price)
      
       context = { "price": price,
-                "manual_form": manual_form, 
+               # "manual_form": manual_form, 
                 "upload_form": upload_form, 
                 "add_to_basket_form": AddToBasketForm }
                    
@@ -88,10 +84,9 @@ def quote(request):
                 # 'user': current_user.username,
                  'quote_ref': quote_ref  }
      
-        context = { "price": price, 
-                        "manual_form": manual_form,
-                        "upload_form" : upload_form,  
-                        "add_to_basket_form": AddToBasketForm(initial=initial)
+        context = {  "price": price, 
+                     "upload_form" : upload_form,  
+                     "add_to_basket_form": AddToBasketForm(initial=initial)
                    }
       
 

@@ -1,13 +1,33 @@
 {%extends 'base.html'%}
 
 {%block content%}
-get your quote
-    <form action="/quote/" method="post">
-        {% csrf_token %}
-        {{ manual_form }}
-        <input type="submit" value="Submit" name="form">
-    </form>
+
 <br>
+
+<div id="price">€</div>
+<form>
+<select id="category">
+    <option value="academic">Academic</option>
+    <option value="general">General</option>
+</select>
+
+<input type="number" min="1" id="count">
+</form>
+<button onclick="quote()">Get quote</button>
+<br>
+<script>
+    function quote(){
+      category = document.getElementById("category").value;
+      count = document.getElementById("count").value;
+      if (count > 1000) 
+           { price = count / 100}
+      else 
+           {price = 10}
+      if (category != "general") {price = price * 1.1}
+      price = Math.round(price);
+      document.getElementById("price").innerHTML = "€" + price;
+    }
+</script>
 
 {{price}}
 {%if user.is_authenticated%}
