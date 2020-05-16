@@ -31,8 +31,13 @@
        
       
       
+    {%if user.is_authenticated%}
+       <a href="{% url 'quote_logged' %}">Instant Quote</a>
+     {%else%}
+       <a href="{% url 'quote' %}">Instant Quote</a>
+     {%endif%}
 
-    <a href="{% url 'quote' %}">Instant Quote</a>
+
     </div>
 
 

@@ -8,7 +8,8 @@ from django.core.files import File
 from datetime import datetime
 
 def quote(request):
-     return render(request, 'quote.html')
+      return render(request, 'quote.html')
+
 
 @login_required(login_url='/login/')
 def quote_logged(request):
@@ -91,6 +92,6 @@ def quote_logged(request):
 
       return render(request, 'quote_logged.html', context)
     else:
-        return render(request, 'quote_logged.html', context)
+      return render(request, 'quote_logged.html', context)
 
 
