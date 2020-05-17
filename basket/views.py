@@ -38,8 +38,8 @@ def basket(request):
                  basket_item_list.append({"quote_ref": quote_ref, "price": price, "title": title})
               #add those too list of dict
         total = sum(price_list)
-       
-        context = {"list": basket_item_list, "total" : total}
+        str_of_refs = str(quote_ref_list)
+        context = {"list": basket_item_list, "total" : total,"str_of_refs": str_of_refs}
 
         return render(request, 'basket.html', context)
 

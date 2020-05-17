@@ -16,12 +16,25 @@
    <form action="/remove_from_basket/" method="post"  enctype="multipart/form-data">
     {% csrf_token %}
    
-    <input type="number" value={{eachItem.quote_ref}} name="quote_ref">
+    <input type="hidden" value={{eachItem.quote_ref}} name="quote_ref">
     <input type="submit" value="remove" name="remove_form">
 
 </form>
   
 {%endfor%}
 
-total: € {{total}}
+total: € {{total}}<br>
+
+<form action="/checkout" method="post"  enctype="multipart/form-data">
+
+
+    {% csrf_token %}
+    
+    
+    <input type="text" value={{str_of_refs}}>
+    <input type="number" value={{total}}><br>
+    <input type="submit" value="Checkout">
+</form>
+
+
 {%endblock%}

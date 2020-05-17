@@ -41,7 +41,7 @@ upload your document
     </form>
 {%else%}
 Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your documents for a quote<br><br>
-   Don't have an account? <a href="{%url 'signup'%}?next={{request.path }}">Sign up!</a>
+   Don't have an account? <a href="{%url 'signup'%}?next={{quote_logged}}">Sign up!</a>
     {%endif%}
 
 <script>
