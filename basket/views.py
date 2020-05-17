@@ -38,6 +38,7 @@ def basket(request):
                  basket_item_list.append({"quote_ref": quote_ref, "price": price, "title": title})
               #add those too list of dict
         total = sum(price_list)
+       
         context = {"list": basket_item_list, "total" : total}
 
         return render(request, 'basket.html', context)
@@ -64,7 +65,6 @@ def add_to_basket(request):
 
            context = {"username": user, "quote": quote.id }
 
-
            return redirect(reverse('basket'))
       else:
 
@@ -73,4 +73,22 @@ def add_to_basket(request):
    
       return render(request, 'basket.html', context)
         
-   
+        
+        
+def remove_from_basket(request):
+    if request.user.is_authenticated:
+      if request.method == "POST":
+           current_user = request.user
+           user = current_user.username
+
+           data = request.POST.copy()
+           quote_ref = data.get('quote_ref')
+           
+           quote = Quote.objects.get(id=quote_ref)
+           quote.added_to_basket = False
+           quote.save()
+      
+           remove = AddToBasket.objects.get(quote_ref=quote_ref)
+           remove.delete()
+
+    return redirect(reverse('basket'))

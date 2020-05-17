@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<br>
+
+
+<form>
+<select id="category">
+    <option value="academic">Academic</option>
+    <option value="general">General</option>
+</select>
+
+<input type="number" min="1" id="count">
+</form>
+<button onclick="quote()">Get quote</button>
+<br>
+<div id="price"></div>
+<br>
+
+   
+   {%if user.is_authenticated%}
+<br>
+upload your document 
+<form action="/quote_logged/" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ upload_form }}
+    <input type="submit" value="Upload" name="form">
+
+</form>
+<br>
+{%if price != ""%}
+    The total price is €{{ price}}<br>
+{%endif%}
+
+    <form action="/add_to_basket/" method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ add_to_basket_form }}
+        <input type="submit" value="Add to basket" name="form">
+    
+    </form>
+{%else%}
+Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your documents for a quote<br><br>
+   Don't have an account? <a href="{%url 'signup'%}?next={{request.path }}">Sign up!</a>
+    {%endif%}
+
+<script>
+    function quote(){
+      category = document.getElementById("category").value;
+      count = document.getElementById("count").value;
+      if (count > 1000) 
+           { price = count / 100}
+      else 
+           {price = 10}
+      if (category != "general") {price = price * 1.1}
+      price = Math.round(price);
+      document.getElementById("price").innerHTML = "An estimated price is €" + price;
+    }
+</script>
+
+
+{%endblock%}

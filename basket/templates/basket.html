@@ -10,10 +10,18 @@
 
 {%for eachItem in list%}
 
-  € {{eachItem.price}},
-  Quote number  {{eachItem.quote_ref}}
-   <button>remove</button><br>
+   € {{eachItem.price}},
+   Quote number  {{eachItem.quote_ref}}
+
+   <form action="/remove_from_basket/" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+   
+    <input type="number" value={{eachItem.quote_ref}} name="quote_ref">
+    <input type="submit" value="remove" name="remove_form">
+
+</form>
   
 {%endfor%}
+
 total: € {{total}}
 {%endblock%}
