@@ -24,17 +24,16 @@
 {%endfor%}
 
 total: € {{total}}<br>
+{{str_of_refs}}
 
-<form action="/checkout" method="post"  enctype="multipart/form-data">
-
-
+<form action="/checkout/" method="post"  enctype="multipart/form-data">
     {% csrf_token %}
-    
-    
-    <input type="text" value={{str_of_refs}}>
-    <input type="number" value={{total}}><br>
+    <input type="text" value="{{str_of_refs}}" name="str_of_refs">
+    <input type="text" value="{{total}}" name="total">
+   
     <input type="submit" value="Checkout">
 </form>
+
 
 
 {%endblock%}

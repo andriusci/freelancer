@@ -6,16 +6,21 @@
 <h1 style="margin-left: 40vw;margin-top: 50vh">checkout</h1>
 
 
-<h2>Buy for €5.00</h2>
+<h2>Buy for €{{total}}</h2>
 
+{{str_of_refs}}
+{{total}}
+{{total2}}
+<form action="{% url 'payment' %}" method="post">
 
-
-<form action="{% url 'checkout' %}" method="post">
     {% csrf_token %}
+
+    <input type="hidden" value="{{total2}}" name="total2">
+    <input type="hidden" value="{{str_of_refs}}" name="str_of_refs">
+
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="pk_test_FcTy4xQKWoX1SICMgjWEu6VL00F2f4bL1f"
-            data-description="quote references here"
-            data-amount="600"
+            data-amount="{{total2}}"
             data-locale="auto"></script>
   </form>
 

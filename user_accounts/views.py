@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from quote.models import Quote
 
 
 def index(request):
@@ -23,7 +24,14 @@ def logout(request):
 @login_required(login_url='/login/')
 def user_account(request):
     #Return user_account.html file
-     return render(request, 'user_account.html')
+    current_user = request.user
+    user = current_user.username
+    orders = Quote.objects.all().filter(submitted_by=user, purchased = True)
+    context = {  "orders": orders,   
+                 #"add_to_basket_form": AddToBasketForm(initial=initial)
+                   }
+      
+    return render(request, 'user_account.html', context=context)
 
 
 
@@ -65,4 +73,7 @@ def signup(request):
          #   return redirect(reverse('user_account'))
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+        return render(request, 'signup.html', {'form': form})  
+
+
+

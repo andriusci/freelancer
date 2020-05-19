@@ -13,7 +13,9 @@ def quote(request):
 
 @login_required(login_url='/login/')
 def quote_logged(request):
- 
+    current_user = request.user
+    user = current_user.username
+
     upload_form = QuoteUploadForm
     context = { "price": "",
                 "upload_form": upload_form, 
@@ -58,7 +60,8 @@ def quote_logged(request):
                              word_count = count,
                              uploaded_on = time,
                              price = price,
-                             title= title)
+                             title= title,
+                             submitted_by = user )
 
       quote_instance.save()
       quote_ref = quote_instance.pk

@@ -9,7 +9,6 @@ from quote.models import Quote
 @login_required(login_url='/login/')
 def basket(request):
 
-        #MakePaymentForm
         current_user = request.user
         user = current_user.username
 
@@ -38,7 +37,7 @@ def basket(request):
                  basket_item_list.append({"quote_ref": quote_ref, "price": price, "title": title})
               #add those too list of dict
         total = sum(price_list)
-        str_of_refs = str(quote_ref_list)
+        str_of_refs = quote_ref_list
         context = {"list": basket_item_list, "total" : total,"str_of_refs": str_of_refs}
 
         return render(request, 'basket.html', context)
