@@ -23,17 +23,19 @@
   
 {%endfor%}
 
+{%if total != 0%}
 total: € {{total}}<br>
-{{str_of_refs}}
+
 
 <form action="/checkout/" method="post"  enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="text" value="{{str_of_refs}}" name="str_of_refs">
-    <input type="text" value="{{total}}" name="total">
+    <input type="hidden" value="{{str_of_refs}}" name="str_of_refs">
+    <input type="hidden" value="{{total}}" name="total">
    
     <input type="submit" value="Checkout">
 </form>
-
-
+{%else%}
+ Your basket is empty
+{%endif%}
 
 {%endblock%}

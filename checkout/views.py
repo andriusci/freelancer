@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from basket.models import AddToBasket
 import stripe
+from quote.models import Quote
 import os
 
 stripe.api_key = os.getenv('STRIPE_SECRET')
@@ -20,17 +22,39 @@ def checkout(request):
 
 def payment(request):
        if request.method == 'POST':
+        current_user = request.user
+        user = current_user.username
         total = request.POST.get('total2')
         str_of_refs = request.POST.get('str_of_refs')
-      
+        str_of_refs = str_of_refs.replace(" ", "")
+        str_of_refs = str_of_refs + "," 
         charge = stripe.Charge.create(
             amount=total,
             currency='eur',
             description=str_of_refs,
             source=request.POST['stripeToken']
         )
-        current_user = request.user
-        user = current_user.username
-     #   orders = Quote.objects.all().filter(submitted_by=user)
-        context = {"token" : total}
+
+        list_of_refs = []
+        ref = ""
+        for eachChar in str_of_refs:
+             if eachChar != ",":
+                 ref = ref + eachChar
+             else: 
+                 list_of_refs.append(ref)
+                 ref = ""
+
+        remove_basket_items = AddToBasket.objects.filter(user=user)
+        remove_basket_items.delete()
+
+
+        quote_instance = Quote.objects.filter(submitted_by=user)
+        for eachQuote in list_of_refs:
+
+            eachQuote = eachQuote.replace("[","").replace("]","")
+            instance = quote_instance.get(id=eachQuote)
+            instance.purchased = True
+            instance.save()
+          
+        context = {"token" : total, "str_of_refs": str_of_refs}
         return render(request, 'checkout_success.html', context = context)

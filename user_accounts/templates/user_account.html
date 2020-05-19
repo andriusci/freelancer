@@ -2,6 +2,7 @@
 
 {% block content%}
 
+
 <div class="container">
     <h2>{{user}} account</h2>
     
@@ -17,13 +18,26 @@
       </div>
       <div id="orders" class="tab-pane fade">
         <h3>My orders</h3>
-        {%for eachOrder in orders%}
+      
 
-        <p>{{eachOrder.title}}</p>
+    
+  
+   
+ 
+        {%if count != 0%}
+          {%for eachOrder in orders%}
+         
+           <p>{{eachOrder.title}}</p>
 
-        {%endfor%}
+          {%endfor%}
+        {%else%}
+          You have no orders
+        {%endif%}
       </div>
     </div>
   </div>
+
+     
+
 
 {%endblock%}

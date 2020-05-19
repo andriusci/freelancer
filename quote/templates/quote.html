@@ -18,31 +18,10 @@
 <div id="price"></div>
 <br>
 
-   
-   {%if user.is_authenticated%}
-<br>
-upload your document 
-<form action="/quote_logged/" method="post"  enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ upload_form }}
-    <input type="submit" value="Upload" name="form">
 
-</form>
-<br>
-{%if price != ""%}
-    The total price is €{{ price}}<br>
-{%endif%}
-
-    <form action="/add_to_basket/" method="post"  enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ add_to_basket_form }}
-        <input type="submit" value="Add to basket" name="form">
-    
-    </form>
-{%else%}
 Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your documents for a quote<br><br>
    Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/">Sign up!</a>
-    {%endif%}
+    
 
 <script>
     function quote(){

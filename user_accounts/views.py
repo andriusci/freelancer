@@ -26,12 +26,12 @@ def user_account(request):
     #Return user_account.html file
     current_user = request.user
     user = current_user.username
-    orders = Quote.objects.all().filter(submitted_by=user, purchased = True)
-    context = {  "orders": orders,   
-                 #"add_to_basket_form": AddToBasketForm(initial=initial)
+    orders = Quote.objects.all().filter(submitted_by=user)
+    num_of_orders = len(orders)#check if there's any orders
+    context = { "orders": orders, "count" : num_of_orders
                    }
       
-    return render(request, 'user_account.html', context=context)
+    return render(request, 'user_account.html', context = context)
 
 
 
@@ -70,7 +70,7 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return HttpResponseRedirect(request.GET['next'])
-         #   return redirect(reverse('user_account'))
+          
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})  
