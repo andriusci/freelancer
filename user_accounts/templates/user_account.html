@@ -3,6 +3,9 @@
 {% block content%}
 
 
+   
+
+
 <div class="container">
     <h2>{{user}} account</h2>
     
@@ -19,17 +22,26 @@
       <div id="orders" class="tab-pane fade">
         <h3>My orders</h3>
       
+      
+        {% load account_extras %}
 
-    
-  
+        {%for eachList in orders%}
+        <div>
+             {{eachList.0}}
+             {% for each in eachList|index:1%}
+              <a href=""> {{each}} </a>
+             {%endfor%}
+         </div>
+        {%endfor%}
+
+
+     
    
  
         {%if count != 0%}
-          {%for eachOrder in orders%}
          
-           <p>{{eachOrder.title}}</p>
-
-          {%endfor%}
+       
+          
         {%else%}
           You have no orders
         {%endif%}

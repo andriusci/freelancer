@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from quote.models import Quote
+from quote.models import Quote, QuoteFiles
 
 
 def index(request):
@@ -26,10 +26,24 @@ def user_account(request):
     #Return user_account.html file
     current_user = request.user
     user = current_user.username
-    orders = Quote.objects.all().filter(submitted_by=user)
-    num_of_orders = len(orders)#check if there's any orders
-    context = { "orders": orders, "count" : num_of_orders
-                   }
+
+    orders = Quote.objects.all().filter(submitted_by=user, purchased = True)
+    num_of_orders = len(orders) #check later in the template if there's any orders
+
+    
+    list_of_orders = []
+    for eachOrder in orders:
+        files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
+        list_of_files = []
+        list_of_files.append(eachOrder.id)
+        for eachFile in files:
+           list_of_files.append(eachFile.file_name)
+        
+        list_of_orders.append(list_of_files)
+
+
+
+    context = { "orders": list_of_orders, "count" : num_of_orders}
       
     return render(request, 'user_account.html', context = context)
 

@@ -36,6 +36,7 @@ def quote_logged(request):
            for eachFile in files: 
                raw = eachFile.read()
                count = count + len(raw.split())
+              
             
       
 
@@ -64,30 +65,34 @@ def quote_logged(request):
                              submitted_by = user )
 
       quote_instance.save()
+      
       quote_ref = quote_instance.pk
-      if request.POST['form'] == "Upload":
-        for eachFile in files:
-            file_name = str(quote_ref) + eachFile.name
-        
-            quote_file_instance = QuoteFiles(name = file_name,
-                                             quote_ref = quote_ref)
-            quote_file_instance.save()  
 
-            eachFile.name =file_name          
+      if request.POST['form'] == "Upload":
+      
+        for eachFile in files:
+            quote_file_instance = QuoteFiles(file_name = eachFile.name, quote_ref = quote_ref)
+            quote_file_instance.save()
+
+            file_name = str(quote_ref) +"_"+ eachFile.name
+             
+            eachFile.name = file_name          
             upload_file = Upload( document = eachFile )
             upload_file.save()
 
+       
+       
+     
+      
+      
 
-        current_user = request.user
-        #################################################################
-        file1 = Upload.objects.get(id=8)
-        file1 = file1.document
-        initial = {
-                  'user': file1,
-                # 'user': current_user.username,
+       
+      
+      initial = {
+                 
                  'quote_ref': quote_ref  }
      
-        context = {  "price": price, 
+      context = {  "price": price, 
                      "upload_form" : upload_form,  
                      "add_to_basket_form": AddToBasketForm(initial=initial)
                    }

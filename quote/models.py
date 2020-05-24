@@ -24,9 +24,11 @@ class Quote(models.Model):
     purchased = models.BooleanField(default=False)
     submitted_by = models.CharField(max_length=100,default="a")
     title = models.CharField(max_length=100,default="a")
+    
+
+
 
 class QuoteFiles(models.Model):
-
-    name = models.CharField(max_length=100)
+    file_name = models.CharField(default="",max_length=120)
     quote_ref = models.IntegerField(default=0)
    
