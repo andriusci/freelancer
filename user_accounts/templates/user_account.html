@@ -29,14 +29,17 @@
         <div>
              {{eachList.0}}
              {% for each in eachList|index:1%}
-              <a href=""> {{each}} </a>
+              <a href="https://freelancer2020.s3-eu-west-1.amazonaws.com/media/documents/81_test.txt" download> {{each}} </a>
              {%endfor%}
          </div>
         {%endfor%}
 
+       {%for each in test%}
+        {{each.document.url}}<br>
+       {%endfor%}
+      
 
-     
-   
+
  
         {%if count != 0%}
          

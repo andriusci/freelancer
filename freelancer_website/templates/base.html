@@ -1,56 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <title>{%block title%}{%endblock%}</title>
+<html lang="en">
+    {% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+  <link 
+  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'>
+  <script src="https://kit.fontawesome.com/67abfedbba.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Rajdhani&display=swap" rel="stylesheet">
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+  <title>{%block title%}{%endblock%}</title>
 </head>
 <body>
-
-
-   <div style="border: solid 1px; width:100%">
-
-    <a href="{%url 'index'%}">home</a>
-
-    {%if user.is_authenticated%}
-        Hi {{user}}  
-         <a href="{% url 'user_account' %}">account</a>
-         <a href="{% url 'logout' %}">log out</a>
-    {%else%}
-       
-         <a href="{% url 'quote_logged' %}">log in</a>
-    
-    {%endif%}
   
-
- 
-       
-        
-   
-       
+  <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
       
-
-    {%if user.is_authenticated%}
-       <a href="{% url 'quote_logged' %}">Instant Quote</a>
-       <a href="{% url 'basket' %}">basket</a>
-     {%else%}
-       <a href="{% url 'quote' %}">Instant Quote</a>
-     {%endif%}
+          <a class="navbar-brand logo" href="{%url 'index'%}" >Proofreading</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav ml-auto">
+                {%if user.is_authenticated%}
+                <li class="nav-item">
+                    <a href="{% url 'basket' %}" >basket &nbsp<i class="fas fa-shopping-cart"></i></a>&nbsp
+                </li>
+              <li class="nav-item">
+                  <a href="{% url 'user_account' %}" >account &nbsp<i class="fas fa-user"></i></a>&nbsp
+              </li>
+              <li class="nav-item">
+                  <a href="{% url 'logout' %}">log out &nbsp<i class="fas fa-sign-out-alt"></i></a>
+              </li>
+              {%else%}
+              <li class="nav-item">
+                  <a href="{% url 'quote_logged' %}"> log in <i class="fas fa-sign-in-alt"></i></a>
+              </li>
+            {%endif%}
+            </ul>
+            {%if user.is_authenticated%}
+            <a href="{% url 'quote_logged' %}" id="quote">
+                <button class="btn btn-secondary btn-sm" >Instant Quote</button>
+            </a>
+    
+       {%else%}
+          <a href="{% url 'quote' %}" id="quote">
+              <button class="btn btn-secondary btn-sm" name="nav-btn">Instant Quote</button>
+          </a>
+       {%endif%}
+    
+            </nav>
   
 
-    </div>
+</header>
 
-
-  
-
-
+<div class="container-fluid main-content">
     {%block content%}
     {%endblock%}
+</div>
+
+
+
+    {%if request.build_absolute_uri == "http://127.0.0.1:8000/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote_logged/" or request.build_absolute_uri == "http://127.0.0.1:8000/logout/"%}
+    <script>
+        document.getElementById("quote").style.display = "none"
+      </script>
+
+    {%endif%}
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>

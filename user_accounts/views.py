@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from quote.models import Quote, QuoteFiles
+from quote.models import Quote, QuoteFiles, Upload
 
 
 def index(request):
@@ -41,9 +41,14 @@ def user_account(request):
         
         list_of_orders.append(list_of_files)
 
+    test = Upload.objects.all()
 
 
-    context = { "orders": list_of_orders, "count" : num_of_orders}
+
+
+
+
+    context = { "orders": list_of_orders, "count" : num_of_orders,"test": test}
       
     return render(request, 'user_account.html', context = context)
 
