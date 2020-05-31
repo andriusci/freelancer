@@ -71,21 +71,48 @@
 }
 .quote_btn{
     text-align: center;
+    width: 80%;
+    margin: auto
     
 }
 .get-quote-btn{
     background-color: #393D3F;
     color: white;
     border: solid #393D3F;
+    height: 3em;
+    border-radius: 3px;
+    width: 80%;
+    margin: auto;
+    display: block;
 }
-#category{
-    border: none;
+input{
+    margin: 1em;
+}
+#category, #count{
+    
     background-color: white;
     font-family: 'Rajdhani', sans-serif;
-    height:30px
+    width: 80%;
+    margin: auto;
+    font-size: 1.5em;
+    border: solid 1px #dee2e6;
+    margin-bottom: 1em;
+    border-radius: 3px;
+    padding: 0.1em;
+    height: 2em;
+
 }
-  .form-inline{
-      display:inline-flex
+
+::-webkit-input-placeholder { /* Edge */
+    color: rgb(59, 55, 55);
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    color: rgb(59, 55, 55);;
+  }
+  
+  ::placeholder {
+    color: rgb(59, 55, 55);;
   }
 
   input:focus, select:focus{
@@ -257,4 +284,19 @@
     to {
         opacity:1;
     }
+}
+
+
+
+
+.fill-error {
+    position: relative;
+    animation: error .1s linear;
+    animation-iteration-count: 4;
+   
+}
+
+@keyframes error {
+    0% { right: -6px; }
+    100% { left: -6px; }
 }

@@ -6,12 +6,15 @@
 
 <div class="quote_form">
 <form class="form-inline">
-<select id="category">
+  
+     
+<select id="category" required>
+    <option value="choose" disabled selected>Choose category</option>
     <option value="academic">Academic</option>
     <option value="general">General</option>
 </select>
-
-<input type="number" min="1" id="count" placeholder="1">
+<br>
+<input type="number" min="0" id="count" placeholder=" number of words" required>
 
 </form>
 <button class="get-quote-btn" onclick="quote()">Get quote</button>
@@ -27,23 +30,53 @@
 
 Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your documents for a quote<br><br>
    Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/">Sign up!</a>
-    
-
+ 
 <script>
     function quote(){
       document.getElementById("total").innerHTML = "";
-      category = document.getElementById("category").value;
-      count = document.getElementById("count").value;
-      if (count > 1000) 
-           { price = count / 100}
+
+      categoryValue = document.getElementById("category").value;
+      countValue = document.getElementById("count").value;
+
+      if (countValue > 1000) 
+           { price = countValue / 100}
       else 
            {price = 10}
-      if (category != "general") {price = price * 1.1}
+      if (categoryValue != "general") {price = price * 1.1}
       price = Math.round(price).toFixed(2);
       discount = (price / 100 * 80).toFixed(2);
-      document.getElementById("total").innerHTML = "An estimated price is " + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> €" + discount + "</span>";
+
+      /*document.getElementById("total").innerHTML = "An estimated price is " + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> €" + discount + "</span>";*/
       
+    
+    
+      category = document.getElementById("category")
+   
+
+      count = document.getElementById("count")
+      
+      
+
+      /*form validation */
+      if (countValue == 0)
+           {count.style.borderColor= "red"; count.classList.add('fill-error');}
+      else
+           {count.style.borderColor = "rgb(59, 55, 55)"};
+      
+      if (categoryValue == "choose")
+           {category.style.borderColor= "red"; category.classList.add('fill-error');}
+      else
+           {category.style.borderColor = "rgb(59, 55, 55)"};
+
+      setTimeout(function() {
+                count.classList.remove('fill-error');
+                category.classList.remove('fill-error')
+            }, 400);
+          
+            document.getElementById("total").innerHTML = price  + discount;    
     }
+
+      
 </script>
 
 
