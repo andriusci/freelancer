@@ -35,7 +35,7 @@
 
 
 .main-content{
-    margin-top: 4em;
+    margin-top: 2em;
    
 }
 /*index page*/
@@ -188,7 +188,27 @@ input{
         opacity: 1;
     }
 }
-
+/*quote page*/
+.login, .singup{
+    background-color: #393d3f;
+    border: solid 1px #393d3f;
+    color: white;
+    border-radius: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.login:hover, .singup:hover{
+    border: solid 2px #393d3f;
+    color:white
+}
+.login-singup{
+    width:80%;
+    margin: auto;
+}
+#total{
+    text-align: center;
+    font-size: 2em;
+}
 /* Strikethrough   modified code from //codepen.io/EdenSG/pen/jPENoE*/
 
 .strikethrough {

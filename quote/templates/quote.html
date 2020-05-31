@@ -27,10 +27,10 @@
 </div>
 <br>
 
-
-Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your documents for a quote<br><br>
-   Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/">Sign up!</a>
- 
+<div class="login-singup">
+Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to upload your documents for a quote<br><br>
+   Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/" class="singup">Sign up!</a>
+ <div>
 <script>
     function quote(){
       document.getElementById("total").innerHTML = "";
@@ -46,8 +46,7 @@ Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your docu
       price = Math.round(price).toFixed(2);
       discount = (price / 100 * 80).toFixed(2);
 
-      /*document.getElementById("total").innerHTML = "An estimated price is " + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> €" + discount + "</span>";*/
-      
+
     
     
       category = document.getElementById("category")
@@ -55,13 +54,13 @@ Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your docu
 
       count = document.getElementById("count")
       
-      
+    
 
       /*form validation */
       if (countValue == 0)
            {count.style.borderColor= "red"; count.classList.add('fill-error');}
       else
-           {count.style.borderColor = "rgb(59, 55, 55)"};
+           {count.style.borderColor = "rgb(59, 55, 55)"; }
       
       if (categoryValue == "choose")
            {category.style.borderColor= "red"; category.classList.add('fill-error');}
@@ -72,8 +71,9 @@ Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your docu
                 count.classList.remove('fill-error');
                 category.classList.remove('fill-error')
             }, 400);
+        if (countValue != 0 && categoryValue != "choose")  
+           {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> Now only €" + discount + "</span>";}
           
-            document.getElementById("total").innerHTML = price  + discount;    
     }
 
       
