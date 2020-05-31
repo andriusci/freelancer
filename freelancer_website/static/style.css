@@ -17,7 +17,7 @@
 
 .logo{
     font-family: 'Indie Flower', cursive; 
-    font-size: 2em;
+    font-size: 1.4em;
     color: #393D3F;
 }
 .logo:hover, .main-nav-item:hover{
@@ -36,34 +36,225 @@
 
 .main-content{
     margin-top: 4em;
-    width: 80%;
-    margin: auto
+   
 }
 /*index page*/
 .headline{
-    width: 60%;
+    
     margin: auto;
-    margin-top: 40vh;
+    margin-top: 30vh;
     text-align: center;
     font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5em;
 }
+
+
+
 #crossed{
     text-decoration: line-through;
     text-decoration-color: #E3170A;
     display: inline;
-}
-#handwrite{
+  
+  }
+  
+
+
+
+.handwrite{
     font-family: 'Indie Flower', cursive;
-    font-size: 1.5em;
+    font-size: 1em;
     color: #E3170A;
-    display: inline;
+    display: inline-block;
+  
 
 
 }
 .quote_btn{
-    text-align: center
+    text-align: center;
+    
+}
+.get-quote-btn{
+    background-color: #393D3F;
+    color: white;
+    border: solid #393D3F;
+}
+#category{
+    border: none;
+    background-color: white;
+    font-family: 'Rajdhani', sans-serif;
+    height:30px
+}
+  .form-inline{
+      display:inline-flex
+  }
+
+  input:focus, select:focus{
+    outline: none !important;
+    border:1px solid rgb(255, 255, 255);
+    box-shadow: 0 0 10px #393D3F;
+  }
+
+  a, button{
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+  }
+
+
+#price{
+
+  animation-name: example;
+  animation-duration: 1s;
+  animation-fill-mode : forwards
+}
+
+@keyframes example {
+  0% {transform-origin: 0% 23%;}
+  25% {transform-origin: 0% 0%;}
+  50% {transform-origin: 0% 23%;}
+  100% {transform-origin: 0% 0%;}
+}
+
+
+/*fade in */
+.fadein{
+    transform: rotate(-5deg);
+    display: inline-block;
+    
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    opacity: 0 ;
+    animation-delay: 5.6s;
+    animation-fill-mode : forwards;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Strikethrough   modified code from //codepen.io/EdenSG/pen/jPENoE*/
+
+.strikethrough {
+	display: inline-block;
+	position: relative;
+	
+	
+}
+
+.strikethrough:after {
+	content: '';
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 2px;
+	
+	margin-top: -0.7em;
+	background: transparent;
+	transform-origin: center left;
+	
+	animation: strikethrough 1s 0s cubic-bezier(.55, 0, .1, 1) 1;
+	animation-delay:4.6s;
+	animation-fill-mode: forwards;
+	
+}
+
+
+/* Little hover effect */
+
+.strikethrough:hover {
+	color: rgba(200,0,0,1);
+	background: rgba(255, 189, 182, 0.3);
+}
+
+.strikethrough:hover:after {
+	transform: scaleX(0);
+	transform-origin: center right;
 }
 
 
 
-  
+
+/* Keyframes for initial animation */
+
+@keyframes strikethrough {
+	from {
+		transform: scaleX(0); background: red;
+	}
+	to {
+		transform: scaleX(1); background: red;
+	}
+}
+
+/*Typewriter modified code from https://codepen.io/geoffgraham/pen/jrWwWM*/
+.typewriter {
+
+	display: inline-block;
+}
+
+.typewriter-text{
+    display: inline-block;
+  	overflow: hidden;
+  	letter-spacing: 2px;
+    animation: typing 3s steps(30, end), blink .75s step-end infinite;
+    
+    white-space: nowrap;
+    border-right: 4px solid rgb(51, 51, 50);
+    box-sizing: border-box;
+}
+
+
+@keyframes typing {
+    from { 
+        width: 0% 
+    }
+    to { 
+        width: 100% 
+    }
+}
+
+@keyframes blink {
+    from, to { 
+        border-color: transparent 
+    }
+    50% { 
+        border-color: rgb(87, 82, 82); 
+    }
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
