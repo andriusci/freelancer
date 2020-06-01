@@ -5,29 +5,58 @@
 <br>
 
 
-<form>
-<select id="category">
-    <option value="academic">Academic</option>
-    <option value="general">General</option>
-</select>
+<!--<div class="quote_form">
+    <h3>Preliminary <span class="handwrite">Quote:</span></h3>
+    <hr>
+    <form class="form-inline">         
+    <select id="category" class="form-input" required>
+        <option value="choose" disabled selected>Choose category</option>
+        <option value="academic">Academic</option>
+        <option value="general">General</option>
+    </select>
+    <br>
+    <input type="number" min="1" id="count" class="form-input" placeholder=" number of words" required>
+    
+    </form>
+    <button class="get-quote-btn" onclick="quote()">Get quote</button>
+    </div>
+<br>-->
 
-<input type="number" min="1" id="count">
-</form>
-<button onclick="quote()">Get quote</button>
-<br>
-<div id="price"></div>
-<br>
+<div id="total">
+ 
+</div>
 
    
    {%if user.is_authenticated%}
 <br>
-upload your document 
-<form action="/quote_logged/" method="post"  enctype="multipart/form-data">
+<div class="quote_form">
+        <h3>Get your <span class="handwrite">Quote:</span></h3>
+        <hr>
+<form action="/quote_logged/" method="post"  enctype="multipart/form-data" class="form-inline"> 
     {% csrf_token %}
+    <select id="category" class="form-input" required>
+            <option value="choose" disabled selected>Choose category</option>
+            <option value="academic">Academic</option>
+            <option value="general">General</option>
+        </select>
     {{ upload_form }}
-    <input type="submit" value="Upload" name="form">
 
+    <br>
+<div class="custom-upload">
+    <!-- custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/-->
+    <label id="file_label" for="file"><strong>Choose a file</strong></label>
+    <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+     <br>
+    <!----------------------------------------------------------------------------------------------------------------->
+     <input type="submit" class="hidden">
+  <div>
+
+<br>
+    
+     
 </form>
+<button class="get-quote-btn" onclick="quote2()" type="button">Get quote</button>
+
 <br>
 {%if price != ""%}
     The total price is €{{ price}}<br>
@@ -43,20 +72,31 @@ upload your document
 Please <a href="{% url 'quote_logged' %}">login</a> in order to upload your documents for a quote<br><br>
    Don't have an account? <a href="{%url 'signup'%}?next={{quote_logged}}">Sign up!</a>
     {%endif%}
+</div>
 
 <script>
-    function quote(){
-      category = document.getElementById("category").value;
-      count = document.getElementById("count").value;
-      if (count > 1000) 
-           { price = count / 100}
-      else 
-           {price = 10}
-      if (category != "general") {price = price * 1.1}
-      price = Math.round(price);
-      document.getElementById("price").innerHTML = "An estimated price is €" + price;
-    }
-</script>
+    /*script enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
+var inputs = document.querySelectorAll( '.inputfile' );
+Array.prototype.forEach.call( inputs, function( input )
+{
+	var label	 = input.nextElementSibling,
+		labelVal = label.innerHTML;
 
+	input.addEventListener( 'change', function( e )
+	{
+		var fileName = "";
+		if( this.files && this.files.length > 1 )
+			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+		else
+			fileName = e.target.value.split( '\\' ).pop();
+
+		if( fileName )
+			document.getElementById("file_label").innerHTML = fileName;
+		else
+			label.innerHTML = labelVal;
+	});
+});
+/*#######################################################*/
+</script>
 
 {%endblock%}

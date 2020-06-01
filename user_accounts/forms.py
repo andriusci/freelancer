@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class LoginForm(forms.Form):
     """Form to be used to log users in"""
 
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class' : 'myfieldclass'}))
 
 
 

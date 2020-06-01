@@ -3,18 +3,18 @@
 {%block content%}
 
 <br>
-
+<h3>Prelimenary Quote</h3>
 <div class="quote_form">
 <form class="form-inline">
   
      
-<select id="category" required>
+<select id="category" class="form-input" required>
     <option value="choose" disabled selected>Choose category</option>
     <option value="academic">Academic</option>
     <option value="general">General</option>
 </select>
 <br>
-<input type="number" min="0" id="count" placeholder=" number of words" required>
+<input type="number" min="1" class="form-input" id="count" placeholder=" number of words" required>
 
 </form>
 <button class="get-quote-btn" onclick="quote()">Get quote</button>
@@ -28,8 +28,8 @@
 <br>
 
 <div class="login-singup">
-Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to upload your documents for a quote<br><br>
-   Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/" class="singup">Sign up!</a>
+Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to upload your documents for a <span class="handwrite">real </span> quote<br><br>
+   Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/" class="singup">Sign up!</a> 
  <div>
 <script>
     function quote(){
@@ -57,7 +57,7 @@ Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to up
     
 
       /*form validation */
-      if (countValue == 0)
+      if (countValue <= 0)
            {count.style.borderColor= "red"; count.classList.add('fill-error');}
       else
            {count.style.borderColor = "rgb(59, 55, 55)"; }
