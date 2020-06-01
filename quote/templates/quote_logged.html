@@ -5,22 +5,7 @@
 <br>
 
 
-<!--<div class="quote_form">
-    <h3>Preliminary <span class="handwrite">Quote:</span></h3>
-    <hr>
-    <form class="form-inline">         
-    <select id="category" class="form-input" required>
-        <option value="choose" disabled selected>Choose category</option>
-        <option value="academic">Academic</option>
-        <option value="general">General</option>
-    </select>
-    <br>
-    <input type="number" min="1" id="count" class="form-input" placeholder=" number of words" required>
-    
-    </form>
-    <button class="get-quote-btn" onclick="quote()">Get quote</button>
-    </div>
-<br>-->
+
 
 <div id="total">
  
@@ -32,9 +17,11 @@
 <div class="quote_form">
         <h3>Get your <span class="handwrite">Quote:</span></h3>
         <hr>
-<form action="/quote_logged/" method="post"  enctype="multipart/form-data" class="form-inline"> 
+<form action="/quote_logged/" method="post"  enctype="multipart/form-data" class="form-inline" id="quoteForm" name="quoteForm"> 
     {% csrf_token %}
-    <select id="category" class="form-input" required>
+
+    
+    <select id="category" class="form-input" required name="category">
             <option value="choose" disabled selected>Choose category</option>
             <option value="academic">Academic</option>
             <option value="general">General</option>
@@ -42,20 +29,22 @@
     {{ upload_form }}
 
     <br>
+
+   
 <div class="custom-upload">
     <!-- custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/-->
     <label id="file_label" for="file"><strong>Choose a file</strong></label>
-    <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+    <input type="file" name="document" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
      <br>
     <!----------------------------------------------------------------------------------------------------------------->
-     <input type="submit" class="hidden">
-  <div>
+     <input type="submit" class="hidden" name="form" value="Upload" id="upload">
+ 
 
-<br>
+
     
      
 </form>
-<button class="get-quote-btn" onclick="quote2()" type="button">Get quote</button>
+<button class="get-quote-btn" onclick="quote2()" type="button" name="form">Get quote</button>
 
 <br>
 {%if price != ""%}

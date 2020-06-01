@@ -35,8 +35,7 @@ function quote(){
 
     setTimeout(function() {
               count.classList.remove('fill-error');
-              category.classList.remove('fill-error')
-          }, 400);
+              category.classList.remove('fill-error')}, 400);
       if (countValue != 0 && categoryValue != "choose")  
          {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> Now only €" + discount + "</span>";}
         
@@ -44,31 +43,34 @@ function quote(){
   function quote2(){
        category = document.getElementById("category");
        description = document.getElementById("id_description");
-       count = document.getElementById("id_number");
+       file = document.getElementById("file_label");
 
        categoryValue = document.getElementById("category").value;
        descriptionValue = document.getElementById("id_description").value;
-       countValue = document.getElementById("id_number").value;
+       fileValue = document.getElementById("file").value;
 
        if (categoryValue == "choose")
-       {category.style.borderColor= "red"; category.classList.add('fill-error');}
-       else
-       {category.style.borderColor = "rgb(59, 55, 55)"};
+            {category.style.borderColor= "red"; category.classList.add('fill-error');}
+          else
+            {category.style.borderColor = "rgb(59, 55, 55)"};
 
-       if (descriptionValue == "")
-       {description.style.borderColor= "red"; description.classList.add('fill-error');}
-       else
-       {description.style.borderColor = "rgb(59, 55, 55)"};
-     
-       if (countValue <= 0)
-       {count.style.borderColor= "red"; count.classList.add('fill-error');}
-       else
-       {count.style.borderColor = "rgb(59, 55, 55)"};
+       if (fileValue == "")
+              {file.style.borderColor= "red"; file.classList.add('fill-error');}
+           else
+               {file.style.borderColor = "rgb(59, 55, 55)"};
 
-
+        if (descriptionValue == "")
+               {description.style.borderColor= "red"; description.classList.add('fill-error');}
+            else
+                {description.style.borderColor = "rgb(59, 55, 55)"};      
+      
        setTimeout(function() {
-          description.classList.remove('fill-error');
           category.classList.remove('fill-error')
-          count.classList.remove('fill-error')
-      }, 400);
-  }
+          description.classList.remove('fill-error')
+          file.classList.remove('fill-error')}, 400);
+
+
+       if (categoryValue != "choose" && descriptionValue != "" && fileValue != ""){
+          document.getElementById("upload").click();
+       };
+  };

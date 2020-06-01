@@ -29,24 +29,19 @@ def quote_logged(request):
       if request.POST['form'] == "Upload":
         form = QuoteUploadForm(request.POST, request.FILES)
         if form.is_valid:
-           files = request.FILES.getlist('document')
-           category = request.POST.get('categories')
+           files = request.FILES.getlist('file')
+           category = request.POST.get('category')
            title = request.POST.get('description')
            count = 0
            for eachFile in files: 
                raw = eachFile.read()
                count = count + len(raw.split())
               
-            
-      
-
-         
-           
       if count > 1000:
          price = count / 100
       else:
          price = 10
-      if category != "General":
+      if category != "general":
          price = price * 1.1
       price = round(price)
      
