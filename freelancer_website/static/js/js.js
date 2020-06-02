@@ -40,6 +40,11 @@ function quote(){
          {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> Now only €" + discount + "</span>";}
         
   }
+
+
+
+
+  
   function quote2(){
        category = document.getElementById("category");
        description = document.getElementById("id_description");

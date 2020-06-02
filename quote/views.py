@@ -75,21 +75,14 @@ def quote_logged(request):
             upload_file = Upload( document = eachFile )
             upload_file.save()
 
-       
-       
-     
-      
-      
-
-       
       
       initial = {
                  
                  'quote_ref': quote_ref  }
      
       context = {  "price": price, 
-                     "upload_form" : upload_form,  
-                     "add_to_basket_form": AddToBasketForm(initial=initial)
+                   "upload_form" : upload_form,  
+                   "add_to_basket_form": AddToBasketForm(initial=initial)
                    }
       
 

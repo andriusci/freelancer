@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from .models import AddToBasket
 from django.contrib import messages
-from quote.models import Quote
+from quote.forms import  QuoteUploadForm
+from quote.models import Upload, Quote, QuoteFiles
+from basket.forms import AddToBasketForm
 
 
 @login_required(login_url='/login/')
@@ -43,34 +45,47 @@ def basket(request):
         return render(request, 'basket.html', context)
 
 
-
+@login_required(login_url='/login/')
 def add_to_basket(request):
     
-    if request.user.is_authenticated:
       if request.method == "POST":
            current_user = request.user
            user = current_user.username
 
            data = request.POST.copy()
            quote_ref = data.get('quote_ref')
+
            
            quote = Quote.objects.get(id=quote_ref)
-           quote.added_to_basket = True
-           quote.save()
+           if quote.added_to_basket != True:
+              quote.added_to_basket = True
+              quote.save()
 
-           add_to_basket = AddToBasket(user=user,
+
+              add_to_basket = AddToBasket(user=user,
                                        quote_ref = quote_ref)
-           add_to_basket.save()
+              add_to_basket.save()
 
-           context = {"username": user, "quote": quote.id }
+              upload_form = QuoteUploadForm
+              context = { "price": "",
+                          "upload_form": upload_form, 
+                          "add_to_basket_form": AddToBasketForm,
+                          "message": True }
 
-           return redirect(reverse('basket'))
+              return render(request, 'quote_logged.html', context)
+           else:
+              upload_form = QuoteUploadForm
+              context = { "price": "",
+                          "upload_form": upload_form, 
+                          "add_to_basket_form": AddToBasketForm,
+                          "message": True,
+                          "warning": True }
+              return render(request, 'quote_logged.html', context)
       else:
-
 
            context = {"username": user, "quote": quote.id}
    
-      return render(request, 'basket.html', context)
+           return render(request, 'quote_logged.html', context)
         
         
         
