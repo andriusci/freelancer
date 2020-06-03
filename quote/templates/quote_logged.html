@@ -1,13 +1,49 @@
 {%extends 'base.html'%}
 
 {%block content%}
+{% if messages %}
 
-<br>
+    {% for message in messages %}
+    
+      {%if "login success" == message.message%}
+      <div class="message">
+        Logged in!
+      </div>
+      {%elif "added" == message.message%}
+      <div class="message">
+       Your quote has been added to your basket!
+      </div>
+       {%elif "quote" in message.tags%}
+       <div id="quote_ref">
+        
+          {{message.message}}
 
-
-{%if message == True%}
-aaaaaaeeee
+       </div>
+      {%endif%}
+    {% endfor %}
 {%endif%}
+
+
+{% if messages %}
+
+    {% for message in messages %}
+    
+     
+       {%if "price" in message.tags%}
+       <div id="price">
+          {{ message.tags}}
+          {{message.message}}
+
+       </div>
+      {%endif%}
+    {% endfor %}
+{%endif%}
+
+  
+
+
+
+
 
 <div id="total">
  
@@ -32,39 +68,53 @@ aaaaaaeeee
 
     <br>
 
-   
+  
 <div class="custom-upload">
     <!-- custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/-->
     <label id="file_label" for="file">Choose a file</label>
     <input type="file" name="document" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
      <br>
     <!----------------------------------------------------------------------------------------------------------------->
-     <input type="submit" class="hidden" name="form" value="Upload" id="upload">
+     <input type="submit"  class="hidden" name="form" value="Upload" id="upload">  
  
-
-
     
      
 </form>
 <button class="get-quote-btn" onclick="quote2()" type="button" name="form">Get quote</button>
 
 <br>
-{%if price != ""%}
-Was  <span id="crossed"> € {{price}} </span><span class="handwrite"> Now only € www</span><br>
+{% if messages %}
+
+    {% for message in messages %}
+    
+     
+       {%if "price" in message.tags%}
+       <div id="price">
+        
+            Was  <span id="crossed">€ {{message.message}} </span><span class="handwrite"> Now only € www</span><br>
+
+       </div>
+      {%endif%}
+    {% endfor %}
+{%endif%}
 
 
     <form action="/add_to_basket/" method="post"  enctype="multipart/form-data" id="add_to_basket_form" >
         {% csrf_token %}
-        {{ add_to_basket_form }}
+        {{ add_to_basket_form}}
+       
+   
         <input type="submit" value="Add to basket" name="form">
     
     </form>
-    {%endif%}
+    
 {%endif%}
-{%if warning == True%}
-   this quote is alredy in your basket
-{%endif%}
+
 <script>
+
+if (document.getElementById("quote_ref") ){
+quote_ref = document.getElementById("quote_ref").innerText;
+document.getElementById("id_quote_ref").value = quote_ref}
 document.getElementById("total").innerHTML = "";
 
 
@@ -90,6 +140,8 @@ Array.prototype.forEach.call( inputs, function( input )
 	});
 });
 /*#######################################################*/
+
+
 </script>
 
 {%endblock%}

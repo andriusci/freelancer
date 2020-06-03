@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from quote.forms import  QuoteUploadForm
@@ -6,6 +6,9 @@ from quote.models import Upload, Quote, QuoteFiles
 from basket.forms import AddToBasketForm
 from django.core.files import File 
 from datetime import datetime
+
+from django.contrib import messages
+
 
 def quote(request):
       return render(request, 'quote.html')
@@ -19,17 +22,17 @@ def quote_logged(request):
     upload_form = QuoteUploadForm
     context = { "price": "",
                 "upload_form": upload_form, 
-                "add_to_basket_form": AddToBasketForm }
-    
+                "add_to_basket_form": AddToBasketForm,
+    }
 
     if request.method == "POST":
       time = datetime.now()
       
 
-      if request.POST['form'] == "Upload":
-        form = QuoteUploadForm(request.POST, request.FILES)
-        if form.is_valid:
-           files = request.FILES.getlist('file')
+     # if request.POST['form'] == "Upload":
+      form = QuoteUploadForm(request.POST, request.FILES)
+      if form.is_valid:
+           files = request.FILES.getlist('document')
            category = request.POST.get('category')
            title = request.POST.get('description')
            count = 0
@@ -45,9 +48,9 @@ def quote_logged(request):
          price = price * 1.1
       price = round(price)
      
-      context = { "price": price,
-                "upload_form": upload_form, 
-                "add_to_basket_form": AddToBasketForm }
+     # context = { "price": price,
+                #  "upload_form": upload_form, 
+                 # "add_to_basket_form": AddToBasketForm }
                    
       #populate quote model intance fields:
      
@@ -63,9 +66,9 @@ def quote_logged(request):
       
       quote_ref = quote_instance.pk
 
-      if request.POST['form'] == "Upload":
+     # if request.POST['form'] == "Upload":
       
-        for eachFile in files:
+      for eachFile in files:
             quote_file_instance = QuoteFiles(file_name = eachFile.name, quote_ref = quote_ref)
             quote_file_instance.save()
 
@@ -76,17 +79,11 @@ def quote_logged(request):
             upload_file.save()
 
       
-      initial = {
-                 
-                 'quote_ref': quote_ref  }
-     
-      context = {  "price": price, 
-                   "upload_form" : upload_form,  
-                   "add_to_basket_form": AddToBasketForm(initial=initial)
-                   }
-      
+         
+            messages.add_message(request, messages.INFO, quote_ref,extra_tags='quote')
+            messages.add_message(request, messages.INFO, price,extra_tags='price')
 
-      return render(request, 'quote_logged.html', context)
+      return redirect(reverse('quote_logged'))
     else:
       return render(request, 'quote_logged.html', context)
 

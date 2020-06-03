@@ -24,12 +24,12 @@ function quote(){
 
     /*form validation */
     if (countValue <= 0)
-         {count.style.borderColor= "red"; count.classList.add('fill-error');}
+         {count.classList.add('fill-error');}
     else
          {count.style.borderColor = "rgb(59, 55, 55)"; }
     
     if (categoryValue == "choose")
-         {category.style.borderColor= "red"; category.classList.add('fill-error');}
+         { category.classList.add('fill-error');}
     else
          {category.style.borderColor = "rgb(59, 55, 55)"};
 
@@ -55,17 +55,17 @@ function quote(){
        fileValue = document.getElementById("file").value;
 
        if (categoryValue == "choose")
-            {category.style.borderColor= "red"; category.classList.add('fill-error');}
+            { category.classList.add('fill-error'); category.style.borderColor = "red"}
           else
             {category.style.borderColor = "rgb(59, 55, 55)"};
 
        if (fileValue == "")
-              {file.style.borderColor= "red"; file.classList.add('fill-error');}
+              { file.classList.add('fill-error'); file.style.borderColor = "red"}
            else
                {file.style.borderColor = "rgb(59, 55, 55)"};
 
         if (descriptionValue == "")
-               {description.style.borderColor= "red"; description.classList.add('fill-error');}
+               { description.classList.add('fill-error'); description.style.borderColor = "red"}
             else
                 {description.style.borderColor = "rgb(59, 55, 55)"};      
       
@@ -77,5 +77,6 @@ function quote(){
 
        if (categoryValue != "choose" && descriptionValue != "" && fileValue != ""){
           document.getElementById("upload").click();
+          
        };
   };

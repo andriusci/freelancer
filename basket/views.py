@@ -67,18 +67,16 @@ def add_to_basket(request):
               add_to_basket.save()
 
               upload_form = QuoteUploadForm
-              context = { "price": "",
-                          "upload_form": upload_form, 
-                          "add_to_basket_form": AddToBasketForm,
-                          "message": True }
+            
 
-              return render(request, 'quote_logged.html', context)
+              messages.add_message(request, messages.INFO, "added")
+
+              return redirect(reverse('quote_logged'))
            else:
               upload_form = QuoteUploadForm
               context = { "price": "",
                           "upload_form": upload_form, 
                           "add_to_basket_form": AddToBasketForm,
-                          "message": True,
                           "warning": True }
               return render(request, 'quote_logged.html', context)
       else:

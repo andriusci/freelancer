@@ -237,7 +237,7 @@ input{
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
     opacity: 0 ;
-    animation-delay: 5.6s;
+    animation-delay: 5s;
     animation-fill-mode : forwards;
 }
 
@@ -299,7 +299,7 @@ input{
 .strikethrough {
 	display: inline-block;
 	position: relative;
-	
+
 	
 }
 
@@ -309,31 +309,14 @@ input{
 	display: block;
 	width: 100%;
 	height: 2px;
-	
 	margin-top: -0.7em;
 	background: transparent;
 	transform-origin: center left;
-	
 	animation: strikethrough 1s 0s cubic-bezier(.55, 0, .1, 1) 1;
-	animation-delay:4.6s;
+	animation-delay:3.7s;
 	animation-fill-mode: forwards;
-	
+   
 }
-
-
-/* Little hover effect */
-
-.strikethrough:hover {
-	color: rgba(200,0,0,1);
-	background: rgba(255, 189, 182, 0.3);
-}
-
-.strikethrough:hover:after {
-	transform: scaleX(0);
-	transform-origin: center right;
-}
-
-
 
 
 /* Keyframes for initial animation */
@@ -366,12 +349,12 @@ input{
 
 
 @keyframes typing {
-    from { 
-        width: 0% 
-    }
-    to { 
-        width: 100% 
-    }
+    0% {  width: 0% }
+    10% {width: 10%}
+    20% {width:10%}
+    50% {width:40%}
+    60% {width:40%}
+    100% { width: 100%}
 }
 
 @keyframes blink {
@@ -398,10 +381,25 @@ input{
     position: relative;
     animation: error .1s linear;
     animation-iteration-count: 4;
-   
+    border-color: red;
 }
 
 @keyframes error {
     0% { right: -6px; }
     100% { left: -6px; }
+}
+
+.message{
+    text-align: center;
+    margin:auto;
+    width:80%;
+    color:red;
+    animation: message;
+    animation-duration: 6s;
+    animation-fill-mode: forwards; 
+}
+@keyframes message{
+    0% {opacity: 1}
+    25% {opacity:1}
+    100% {opacity: 0}
 }
