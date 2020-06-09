@@ -9,7 +9,7 @@ User log in
     <h1>user login</h1>
 
 {%if request.build_absolute_uri != "http://127.0.0.1:8000/login/?next=/quote_logged/"%}
-<a href="{%url 'signup'%}?next=/user_account/">Sign up!</a>
+<a href="{%url 'signup'%}?next=/quote_logged/">Sign up!</a>
 {%else%}
 <a href="{%url 'signup'%}?next=/user_account/">Sign up!</a>
 {%endif%}

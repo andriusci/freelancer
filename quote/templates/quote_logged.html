@@ -1,19 +1,18 @@
 {%extends 'base.html'%}
 
 {%block content%}
+
+
 {% if messages %}
 
     {% for message in messages %}
     
       {%if "login success" == message.message%}
       <div class="message">
-        Logged in!
+       Welcome in {{user}}
       </div>
-      {%elif "added" == message.message%}
-      <div class="message">
-       Your quote has been added to your basket!
-      </div>
-       {%elif "quote" in message.tags%}
+      {%endif%}
+       {%if "quote" in message.tags%}
        <div id="quote_ref">
           
           {{message.message}}
@@ -121,7 +120,15 @@
     {% endfor %}
 {%endif%}
 
-
+{%if messages%}
+   {%for message in messages%}
+     {%if "added" == message.message%}
+       <div class="message">
+           Your quote has been added to you basket!
+       </div>
+     {%endif%}
+   {%endfor%}
+{%endif%}
     <form action="/add_to_basket/" method="post"  enctype="multipart/form-data" id="add_to_basket_form" >
         {% csrf_token %}
         {{ add_to_basket_form}}
@@ -133,8 +140,12 @@
     
 {%endif%}
 
-<script>
 
+
+
+<script>
+/*if quote reference and price is given by django in <div id="price"> and <div id="price"> 
+then get values and enable addToBasket button  */
 if (document.getElementById("quote_ref") ){
 
 quote_ref = document.getElementById("quote_ref").innerText;
@@ -142,7 +153,7 @@ document.getElementById("id_quote_ref").value = quote_ref;
 document.getElementById("add_to_basket_btn").style.visibility = "visible";
 window.scrollTo(0,document.body.scrollHeight);
 }
-
+/*--------------------------------------------------------------------------*/
 
 document.getElementById("total").innerHTML = "";
 

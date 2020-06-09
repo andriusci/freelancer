@@ -61,39 +61,36 @@ def user_account(request):
      
      
        
-       orders = Quote.objects.all().filter(purchased = True, status= "SUBMITTED")
-       num_of_orders = len(orders) #check later in the template if there's any orders
+        orders = Quote.objects.all().filter(purchased = True, status= "SUBMITTED")
+    
+        list_of_orderLists = []
+      
+    
+        for eachOrder in orders:
+            orderList = []
+            orderList.append(eachOrder.id)
+            orderList.append(eachOrder.title)
+            orderList.append(eachOrder.status)
 
+            list_of_files_n_urls = []
+            
+            files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
+            for eachFile in files:
+                list_of_files = []
+                list_of_files.append(eachFile.file_name)
+
+                url_str = "media/documents/" + str(eachOrder.id) + "_" + eachFile.file_name
+                url = create_presigned_url('freelancer2020', url_str)
+                list_of_files.append(url)
+
+                list_of_files_n_urls.append(list_of_files)
+            orderList.append(list_of_files_n_urls)
+
+            list_of_orderLists.append(orderList)
        
-       
-           
-
-  
-
-
-             #  url_str = "media/documents/"+ str(eachFile.quote_ref) + "_" + eachFile.file_name
-            #   url = create_presigned_url('freelancer2020', url_str)
-              
-
-
-      # for eachOrder in orders:
-         # files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
-
-       #   list_of_files = []
-       #   list_of_files.append(eachOrder.id)
-
-       #   files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
-       #   for eachFile in files:
-        #     list_of_files.append(eachFile.file_name)
         
-      #    list_of_orders.append(list_of_files)
-
-      # test = Upload.objects.all()
-       #url = create_presigned_url('freelancer2020', 'media/documents/323_test1.txt')
-      # if url is not None:
-          #  response = requests.get(url)
        
-       context = { "orders": orders }
+            context = { "orders": list_of_orderLists }
       
     else: 
         current_user = request.user
@@ -140,10 +137,11 @@ def user_login(request):
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
-            messages.success(request, "login success")
+            
 
             if user:
                 auth.login(user=user, request=request)
+                messages.success(request, "login success")
                 return HttpResponseRedirect(request.GET['next'])
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")

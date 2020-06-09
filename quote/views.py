@@ -80,8 +80,8 @@ def quote_logged(request):
 
       
          
-            messages.add_message(request, messages.INFO, quote_ref,extra_tags='quote')
-            messages.add_message(request, messages.INFO, price,extra_tags='price')
+            messages.add_message(request, messages.INFO, quote_ref, extra_tags='quote')
+            messages.add_message(request, messages.INFO, price, extra_tags='price')
 
       return redirect(reverse('quote_logged'))
     else:
