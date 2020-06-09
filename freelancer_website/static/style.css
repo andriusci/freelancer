@@ -38,7 +38,7 @@ body{
 
 .main-content{
     margin-top: 2em;
-   
+    text-align: center;
 }
 /*index page*/
 .headline{
@@ -147,19 +147,7 @@ input{
     width:100%
 }
 
-#file_label{
-    width: 80%;
-    border: solid 1px #dee2e6;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin:auto;
-    margin-bottom: 1em;
-    border-radius: 3px;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.5em;
-    text-align: left;
-    padding-left: 0.3em;
-}
+
 
 #id_description{
     padding-left: 0.3em;
@@ -173,8 +161,8 @@ input{
 #id_document{
 
 }
-.form-input{
-    
+.form-input, .myfieldclass{
+    display: inline-block;
     background-color: white;
     font-family: 'Rajdhani', sans-serif;
     width: 80%;
@@ -232,12 +220,13 @@ input{
     transform: rotate(-5deg);
     display: inline-block;
     
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+    animation: fadein ;
+    -moz-animation: fadein; /* Firefox */
+    -webkit-animation: fadein ; /* Safari and Chrome */
+    -o-animation: fadein; /* Opera */
     opacity: 0 ;
-    animation-delay: 5s;
+    animation-duration: 3s;
+    animation-delay: 4.8s;
     animation-fill-mode : forwards;
 }
 
@@ -274,7 +263,7 @@ input{
     }
 }
 /*quote page*/
-.login, .singup{
+.login, .signup{
     background-color: #393d3f;
     border: solid 1px #393d3f;
     color: white;
@@ -282,11 +271,11 @@ input{
     padding-left: 2px;
     padding-right: 2px;
 }
-.login:hover, .singup:hover{
+.login:hover, .signup:hover{
     border: solid 2px #393d3f;
     color:white
 }
-.login-singup{
+.login-signup{
     width:80%;
     margin: auto;
 }
@@ -313,7 +302,7 @@ input{
 	background: transparent;
 	transform-origin: center left;
 	animation: strikethrough 1s 0s cubic-bezier(.55, 0, .1, 1) 1;
-	animation-delay:3.7s;
+	animation-delay:3.3s;
 	animation-fill-mode: forwards;
    
 }
@@ -348,12 +337,21 @@ input{
 }
 
 
-@keyframes typing {
+/*@keyframes typing {
     0% {  width: 0% }
     10% {width: 10%}
     20% {width:10%}
-    50% {width:40%}
-    60% {width:40%}
+    50% {width:37%}
+    60% {width:37%}
+    100% { width: 100%}
+}
+*/
+@keyframes typing {
+    0% {  width: 0% }
+    20% {width: 14%}
+    30% {width:14%}
+    50% {width:37%}
+    60% {width:37%}
     100% { width: 100%}
 }
 
@@ -403,3 +401,64 @@ input{
     25% {opacity:1}
     100% {opacity: 0}
 }
+
+#get-quote-btn{
+    position: relative;
+    top:-70px;
+    animation-name: quote_btn;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards; 
+    animation-delay: 4.3s
+}
+
+@keyframes quote_btn{
+    0%   { top:-70px;}
+    100% {top:-10px;}
+}
+
+
+/*tooltips from https://www.w3schools.com/css/css_tooltip.asp*/
+.tooltips {
+    position: relative;
+    display: inline-block;
+    top:-10px
+    
+  }
+  
+  .tooltips .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #393d3f;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-weight: bold;
+ 
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 105%;
+  }
+  
+  .tooltips:hover .tooltip-text {
+    visibility: visible;
+    animation-name: tooltip;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; 
+  }
+
+
+  @keyframes tooltip{
+    0%   { opacity: 0;}
+    100% {opacity: 1;}
+}
+
+#add_to_basket_btn{
+    visibility: hidden
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+

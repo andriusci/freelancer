@@ -7,6 +7,39 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from quote.models import Quote, QuoteFiles, Upload
+from django.http import HttpResponseNotFound
+
+#####################################################
+import logging
+import boto3
+from botocore.exceptions import ClientError
+import requests    # To install: pip install requests
+################################################
+
+def create_presigned_url(bucket_name, object_name, expiration=3600):
+    """Generate a presigned URL to share an S3 object
+
+    :param bucket_name: string
+    :param object_name: string
+    :param expiration: Time in seconds for the presigned URL to remain valid
+    :return: Presigned URL as string. If error, returns None.
+    """
+
+    # Generate a presigned URL for the S3 object
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.generate_presigned_url('get_object',
+                                                    Params={'Bucket': bucket_name,
+                                                            'Key': object_name},
+                                                    ExpiresIn=expiration)
+    except ClientError as e:
+        logging.error(e)
+        return None
+
+    # The response contains the presigned URL
+    return response
+    #############################################################################
+
 
 
 def index(request):
@@ -23,37 +56,81 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def user_account(request):
-    #Return user_account.html file
-    current_user = request.user
-    user = current_user.username
 
-    orders = Quote.objects.all().filter(submitted_by=user, purchased = True)
-    num_of_orders = len(orders) #check later in the template if there's any orders
+    if request.user.is_superuser: 
+     
+     
+       
+       orders = Quote.objects.all().filter(purchased = True, status= "SUBMITTED")
+       num_of_orders = len(orders) #check later in the template if there's any orders
 
-    
-    list_of_orders = []
-    for eachOrder in orders:
-        files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
-        list_of_files = []
-        list_of_files.append(eachOrder.id)
-        for eachFile in files:
-           list_of_files.append(eachFile.file_name)
+       
+       
+           
+
+  
+
+
+             #  url_str = "media/documents/"+ str(eachFile.quote_ref) + "_" + eachFile.file_name
+            #   url = create_presigned_url('freelancer2020', url_str)
+              
+
+
+      # for eachOrder in orders:
+         # files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
+
+       #   list_of_files = []
+       #   list_of_files.append(eachOrder.id)
+
+       #   files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
+       #   for eachFile in files:
+        #     list_of_files.append(eachFile.file_name)
         
-        list_of_orders.append(list_of_files)
+      #    list_of_orders.append(list_of_files)
 
-    test = Upload.objects.all()
-
-
-
-
-
-
-    context = { "orders": list_of_orders, "count" : num_of_orders,"test": test}
+      # test = Upload.objects.all()
+       #url = create_presigned_url('freelancer2020', 'media/documents/323_test1.txt')
+      # if url is not None:
+          #  response = requests.get(url)
+       
+       context = { "orders": orders }
       
+    else: 
+        current_user = request.user
+        user = current_user.username
+        
+        list_of_orderLists = []
+      
+        orders = Quote.objects.all().filter(purchased = True, submitted_by = user)
+
+        for eachOrder in orders:
+            orderList = []
+            orderList.append(eachOrder.id)
+            orderList.append(eachOrder.title)
+            orderList.append(eachOrder.status)
+
+            list_of_files_n_urls = []
+            
+            files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
+            for eachFile in files:
+                list_of_files = []
+                list_of_files.append(eachFile.file_name)
+
+                url_str = "media/documents/" + str(eachOrder.id) + "_" + eachFile.file_name
+                url = create_presigned_url('freelancer2020', url_str)
+                list_of_files.append(url)
+
+                list_of_files_n_urls.append(list_of_files)
+            orderList.append(list_of_files_n_urls)
+
+            list_of_orderLists.append(orderList)
+
+        context = {  "orders" : list_of_orderLists }
     return render(request, 'user_account.html', context = context)
 
 
-
+  
+ 
 def user_login(request):
     #Return a log in page
     if request.method == "POST":
@@ -70,7 +147,7 @@ def user_login(request):
                 return HttpResponseRedirect(request.GET['next'])
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
-
+                
 
     else:
        loginForm = LoginForm()
@@ -89,10 +166,12 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return HttpResponseRedirect(request.GET['next'])
-          
+        else:
+            form.add_error(None, "Your username or password is incorrect")
+         
     else:
         form = UserCreationForm()
-        return render(request, 'signup.html', {'form': form})  
+    return render(request, 'signup.html', {'form': form})  
 
 
 

@@ -7,40 +7,79 @@
 
 
 <div class="container">
-    <h2>{{user}} account</h2>
-    
-    <ul class="nav nav-pills">
-      <li class="active"><a data-toggle="pill" href="#profile">Profile</a></li>
-      <li><a data-toggle="pill" href="#orders">Orders</a></li>
-    </ul>
-    
-    <div class="tab-content">
-      <div id="profile" class="tab-pane fade in active">
-        <h3>profile</h3>
-        <p></p>
-      </div>
-      <div id="orders" class="tab-pane fade">
-        <h3>My orders</h3>
-      
-      
-        {% load account_extras %}
+  {%if not user.is_superuser%}
 
-        {%for eachList in orders%}
-        <div>
-             {{eachList.0}}
-             {% for each in eachList|index:1%}
-              <a href="https://freelancer2020.s3-eu-west-1.amazonaws.com/media/documents/81_test.txt" download> {{each}} </a>
-             {%endfor%}
-         </div>
-        {%endfor%}
+  <h3>My orders</h3>
 
-       {%for each in test%}
-        {{each.document.url}}<br>
-       {%endfor%}
-      
+  <table style="width:80%">
+    <tr>
+        <th>Quote #</th>
+        <th>Title</th> 
+        <th>Files</th>
+        <th>Status</th>
+      </tr>
+ {%for eachOrder in orders%}
+
+ <tr>
+   
+   <td>{{eachOrder.0}}</a></td>
+   <td>{{eachOrder.1}}</td>
+  
+   <td> 
+    {%for eachFile in eachOrder.3%}
+        {%if eachOrder.2 == "SUBMITTED"%}
+          <a href="{{eachFile.1}}" download class="download">  {{eachFile.0}} <i class="fas fa-file-download"></i></a>
+          <br>
+        {%else%}
+          <span id="crossed">{{eachFile.0}}</span> <span class="handwrite"><a href="{{eachFile.1}}" download class="download handwrite">{{eachFile.0}} <i class="fas fa-file-download"></i> </a></span>
+        <br>
+          {%endif%}
+   {%endfor%}
+
+   </td>
+
+   <td>{%if eachOrder.2 == "SUBMITTED"%}Pending...{%endif%}</td>
+ </tr>
+
+   
+ {%endfor%}
+
+ {%else%}
+superuser
+<table style="width:80%">
+  <tr>
+      <th>Quote #</th>
+      <th>Title</th> 
+      <th>Files</th>
+      <th>Status</th>
+    </tr>
 
 
+<tr>
  
+ <td></a></td>
+ <td></td>
+
+ <td> 
+ 
+
+ </td>
+
+ <td></td>
+</tr>
+</table>
+{%for eachOrder in orders%}
+   {{eachOrder.status}}
+{%endfor%}
+
+  {%endif%} 
+       
+         
+     
+      
+
+
+        
         {%if count != 0%}
          
        
@@ -48,6 +87,7 @@
         {%else%}
           You have no orders
         {%endif%}
+        
       </div>
     </div>
   </div>

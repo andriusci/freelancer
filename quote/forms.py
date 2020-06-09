@@ -10,3 +10,7 @@ class QuoteUploadForm(forms.Form):
          # document = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True, 'class' : 'form-input'}))
           description = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-input', 'placeholder': 'Description'}), label="")
 
+
+class OpenDocument(forms.Form):
+
+    quote_ref = forms.IntegerField(widget=forms.HiddenInput())

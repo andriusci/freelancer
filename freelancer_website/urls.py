@@ -22,6 +22,7 @@ from basket.views import basket, add_to_basket, remove_from_basket
 from checkout.views import checkout, payment
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', user_login, name="login"),
@@ -35,5 +36,5 @@ urlpatterns = [
     path('add_to_basket/', add_to_basket, name="add_to_basket"),
     path('remove_from_basket/', remove_from_basket, name="remove_from_basket" ),
     path('checkout/', checkout, name="checkout"),
-    path('payment/', payment, name="payment")
+    path('payment/', payment, name="payment"),
 ]

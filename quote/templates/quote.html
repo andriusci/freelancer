@@ -3,7 +3,9 @@
 {%block content%}
 
 <br>
-<h3>Prelimenary Quote</h3>
+<h3 >
+          Preliminary <span class="handwrite"> Quote:</span>
+</h3>
 <div class="quote_form">
 <form class="form-inline">
   
@@ -13,9 +15,23 @@
     <option value="academic">Academic</option>
     <option value="general">General</option>
 </select>
+
+<div class="tooltips">
+
+     <i class="fas fa-question-circle"></i>
+    <span class="tooltip-text">
+         Please choose category
+    </span>
+</div>
 <br>
 <input type="number" min="1" class="form-input" id="count" placeholder=" number of words" required>
+<div class="tooltips">
 
+          <i class="fas fa-question-circle"></i>
+         <span class="tooltip-text">
+              Here you should enter the number of words in your document that needs proofreading.
+         </span>
+     </div>
 </form>
 <button class="get-quote-btn" onclick="quote()">Get quote</button>
 </div>
@@ -27,9 +43,9 @@
 </div>
 <br>
 
-<div class="login-singup">
+<div class="login-signup">
 Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to upload your documents for a <span class="handwrite">real </span> quote<br><br>
-   Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/" class="singup">Sign up!</a> 
+   Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/" class="signup">Sign up!</a> 
  <div>
 <script>
     function quote(){
