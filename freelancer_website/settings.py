@@ -161,3 +161,7 @@ STATIC_URL = '/static/'
 AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'freelancer_website.storage_backends.MediaStorage'
+
+AWS_S3_OBJECT_PARAMETERS =  Metadata={
+        'ContentType': 'text/rtf'
+    }

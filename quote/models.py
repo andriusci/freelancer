@@ -2,7 +2,6 @@ from django.db import models
 from datetime import datetime 
 
 class Upload(models.Model):
-   #
     document = models.FileField(upload_to='documents/')
 
 

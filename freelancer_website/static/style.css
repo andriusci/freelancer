@@ -83,7 +83,8 @@ body{
     border: solid #393D3F;
     height: 3em;
     border-radius: 3px;
-    width: 80%;
+    padding-left: 2em;
+    padding-right: 2em;
     margin: auto;
     display: block;
 }
@@ -156,11 +157,11 @@ input{
 
   
 .quote_form{
-    text-align: center
+    text-align: center;
+    max-width: 20em;
+    margin:auto;
 }
-#id_document{
 
-}
 .form-input, .myfieldclass{
     display: inline-block;
     background-color: white;
@@ -278,6 +279,7 @@ input{
 .login-signup{
     width:80%;
     margin: auto;
+    text-align: center
 }
 #total{
     text-align: center;
@@ -462,3 +464,17 @@ input{
 tr:nth-child(even) {background-color: #f2f2f2;}
 
 
+@media only screen and (min-width: 500px) {
+   .headline{
+       font-size: 2em;
+   }
+   .login-signup{
+       font-size: 1.2em;
+   }
+  }
+
+  @media only screen and (min-width: 650px) {
+    .headline{
+        font-size: 2.6em;
+    }
+   }

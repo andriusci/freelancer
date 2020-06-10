@@ -20,7 +20,7 @@
 
      <i class="fas fa-question-circle"></i>
     <span class="tooltip-text">
-         Please choose category
+         Please choose category. Non-academic proofreading is 10% cheaaper.
     </span>
 </div>
 <br>
@@ -29,7 +29,7 @@
 
           <i class="fas fa-question-circle"></i>
          <span class="tooltip-text">
-              Here you should enter the number of words in your document that needs proofreading.
+             How many words your document contains?
          </span>
      </div>
 </form>
@@ -88,7 +88,7 @@ Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to up
                 category.classList.remove('fill-error')
             }, 400);
         if (countValue != 0 && categoryValue != "choose")  
-           {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> Now only €" + discount + "</span>";}
+           {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> € " + price + " </span>" + "<span class=\"handwrite\">  &nbspNow only €" + discount + "</span>";}
           
     }
 

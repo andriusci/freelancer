@@ -10,6 +10,10 @@ from datetime import datetime
 from django.contrib import messages
 
 
+
+
+
+
 def quote(request):
       return render(request, 'quote.html')
 
@@ -77,9 +81,8 @@ def quote_logged(request):
             eachFile.name = file_name          
             upload_file = Upload( document = eachFile )
             upload_file.save()
-
-      
-         
+           
+                                                                
             messages.add_message(request, messages.INFO, quote_ref, extra_tags='quote')
             messages.add_message(request, messages.INFO, price, extra_tags='price')
 

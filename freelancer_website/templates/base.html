@@ -49,7 +49,11 @@
               </li>
               {%else%}
               <li class="nav-item">
+                  {%if request.build_absolute_uri == "http://127.0.0.1:8000/quote/"%}
                   <a href="{% url 'quote_logged' %}"> log in <i class="fas fa-sign-in-alt"></i></a>
+                  {%else%}
+                  <a href="{% url 'user_account' %}"> log in <i class="fas fa-sign-in-alt"></i></a>
+                  {%endif%}
               </li>
             {%endif%}
             </ul>

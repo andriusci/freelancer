@@ -16,6 +16,8 @@ from botocore.exceptions import ClientError
 import requests    # To install: pip install requests
 ################################################
 
+
+
 def create_presigned_url(bucket_name, object_name, expiration=3600):
     """Generate a presigned URL to share an S3 object
 

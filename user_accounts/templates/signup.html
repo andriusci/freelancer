@@ -11,7 +11,7 @@ User Registration{% endblock %}
         <a href="{%url 'login'%}?next=/quote_logged/" class="login">Log-in!</a>
         {%endif%}  
 
-<form method="POST">
+<form method="POST" class="quote_form">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Sign up</button>
