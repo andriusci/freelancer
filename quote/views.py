@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from quote.forms import  QuoteUploadForm
+from quote.forms import  QuoteUploadForm, UploadFileForm
+from chat.forms import ChatForm
 from quote.models import Upload, Quote, QuoteFiles
 from basket.forms import AddToBasketForm
 from django.core.files import File 
@@ -46,15 +47,13 @@ def quote_logged(request):
               
       if count > 1000:
          price = count / 100
+         discount = price * 0.9
       else:
          price = 10
       if category != "general":
          price = price * 1.1
       price = round(price)
      
-     # context = { "price": price,
-                #  "upload_form": upload_form, 
-                 # "add_to_basket_form": AddToBasketForm }
                    
       #populate quote model intance fields:
      
@@ -86,8 +85,27 @@ def quote_logged(request):
             messages.add_message(request, messages.INFO, quote_ref, extra_tags='quote')
             messages.add_message(request, messages.INFO, price, extra_tags='price')
 
+
       return redirect(reverse('quote_logged'))
     else:
       return render(request, 'quote_logged.html', context)
 
 
+def reupload(request, quote_ref, file_name):
+    uploadForm = UploadFileForm
+    chatForm = ChatForm
+    context = {"quote_ref": quote_ref,"file_name": file_name, "file": "nothing", "uploadForm": uploadForm, "chatForm": chatForm }
+    if request.method =="POST":
+       form = UploadFileForm(request.POST, request.FILES)
+       files = request.FILES.get('files')
+
+       fileName = str(quote_ref) +"_"+ files.name
+       files.name = fileName
+       upload_file = Upload( document = files)
+       upload_file.save()
+
+       context = {"quote_ref": quote_ref,"file_name": file_name, "file": files, "uploadForm": uploadForm, "chatForm": chatForm }
+       messages.add_message(request, messages.INFO, "upload", extra_tags='upload')
+       return render(request, 'reupload.html', context = context)
+    else:
+       return render(request, 'reupload.html', context = context)

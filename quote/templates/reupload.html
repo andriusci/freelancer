@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+{{file}}
+{{quote_ref}}
+<span id="original_name">
+{{file_name}}
+</span>
+<form action="/reupload/{{quote_ref}}/{{file_name}}/" method="post"  enctype="multipart/form-data">
+      {%csrf_token %}
+     
+
+    <label>
+        <span id="custom_upload_name" class="form-input">Select file</span>
+        {{uploadForm}}
+      </label>
+      <input type="submit" id="custom_submit" >
+</form>
+<div class="message" id="name_match" style="display: none">
+   Your chosen file name does not match the original file name.
+</div>
+
+ {%if messages%}
+   {%for message in messages%}
+     {%if "upload" in message.tags%}
+       You have successfully uploaded {{file_name}}
+     {%endif%}
+   {%endfor%}
+ {%endif%}
+
+ <div class="chat_box">
+   <div class="chat_area">
+
+   </div>
+   <div class="chat">
+     <form action="/chat/">
+       {%csrf_token %}
+       {{chatForm}}
+       <input type="submit" value="send">
+   </form>
+  </div>
+</div>
+
+
+<script>
+  
+ function customUpload() {
+   document.getElementById('name_match').style.display = "None";
+   original = document.getElementById('original_name').innerText;
+   file_name = document.getElementById('id_files').value;
+   file_name = file_name.split("\\").pop();
+
+
+   if(original == file_name){
+      document.getElementById('custom_upload_name').innerText = file_name
+      document.getElementById('custom_submit').style.display = "inline-block"}
+   else{
+    document.getElementById('name_match').style.display = "block";
+   
+    document.getElementById('custom_submit').style.display = "none"}
+   }
+ 
+
+</script>
+
+{%endblock%}

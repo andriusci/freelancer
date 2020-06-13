@@ -60,49 +60,15 @@ def logout(request):
 def user_account(request):
 
     if request.user.is_superuser: 
-     
-     
-       
         orders = Quote.objects.all().filter(purchased = True, status= "SUBMITTED")
-    
-        list_of_orderLists = []
-      
-    
-        for eachOrder in orders:
-            orderList = []
-            orderList.append(eachOrder.id)
-            orderList.append(eachOrder.title)
-            orderList.append(eachOrder.status)
-
-            list_of_files_n_urls = []
-            
-            files = QuoteFiles.objects.all().filter(quote_ref=eachOrder.id)
-            for eachFile in files:
-                list_of_files = []
-                list_of_files.append(eachFile.file_name)
-
-                url_str = "media/documents/" + str(eachOrder.id) + "_" + eachFile.file_name
-                url = create_presigned_url('freelancer2020', url_str)
-                list_of_files.append(url)
-
-                list_of_files_n_urls.append(list_of_files)
-            orderList.append(list_of_files_n_urls)
-
-            list_of_orderLists.append(orderList)
-       
-        
-       
-            context = { "orders": list_of_orderLists }
-      
     else: 
         current_user = request.user
         user = current_user.username
-        
-        list_of_orderLists = []
-      
         orders = Quote.objects.all().filter(purchased = True, submitted_by = user)
 
-        for eachOrder in orders:
+    list_of_orderLists = []
+      
+    for eachOrder in orders:
             orderList = []
             orderList.append(eachOrder.id)
             orderList.append(eachOrder.title)
@@ -123,8 +89,9 @@ def user_account(request):
             orderList.append(list_of_files_n_urls)
 
             list_of_orderLists.append(orderList)
-
-        context = {  "orders" : list_of_orderLists }
+       
+    context = { "orders": list_of_orderLists }
+       
     return render(request, 'user_account.html', context = context)
 
 
@@ -138,8 +105,6 @@ def user_login(request):
         if loginForm.is_valid():
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
-
-            
 
             if user:
                 auth.login(user=user, request=request)

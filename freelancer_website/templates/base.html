@@ -38,9 +38,11 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
                 {%if user.is_authenticated%}
+                {%if not user.is_superuser%}
                 <li class="nav-item">
                     <a href="{% url 'basket' %}" >basket &nbsp<i class="fas fa-shopping-cart"></i></a>&nbsp
                 </li>
+                {%endif%}
               <li class="nav-item">
                   <a href="{% url 'user_account' %}" >account &nbsp<i class="fas fa-user"></i></a>&nbsp
               </li>
@@ -57,16 +59,18 @@
               </li>
             {%endif%}
             </ul>
-            {%if user.is_authenticated%}
+            {%if not user.is_superuser%}
+               {%if user.is_authenticated%}
             <a href="{% url 'quote_logged' %}" id="quote">
                 <button class="btn btn-secondary btn-sm" >Instant Quote</button>
             </a>
     
-       {%else%}
+           {%else%}
           <a href="{% url 'quote' %}" id="quote">
-              <button class="btn btn-secondary btn-sm" name="nav-btn">Instant Quote</button>
+              <button class="general-btn" name="nav-btn">Instant Quote</button>
           </a>
-       {%endif%}
+          {%endif%}
+           {%endif%} 
     
             </nav>
   

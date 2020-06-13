@@ -16,6 +16,9 @@ body{
   text-decoration: none;
   font-weight: bold
 }
+#navbarNav{
+    text-align: right
+}
 
 .logo{
     font-family: 'Indie Flower', cursive; 
@@ -71,12 +74,7 @@ body{
 
 
 }
-.quote_btn{
-    text-align: center;
-    width: 80%;
-    margin: auto
-    
-}
+
 .get-quote-btn, .general-btn{
     background-color: #393D3F;
     color: white;
@@ -88,6 +86,11 @@ body{
     margin: auto;
     display: block;
 }
+
+.get-quote-btn:hover, .general-btn:hover{
+    background-color: rgb(94, 97, 98);
+    border-color:  rgb(94, 97, 98);
+}
 .upload-btn{
     border: solid 1px #dee2e6;
     width: 80%;
@@ -98,13 +101,15 @@ input{
     margin: 1em;
 }
 .hidden{
-    display: none
+    visibility: hidden
+
 }
 
 
 
 
-
+.inline{
+    display: inline}
 
 
  /*script enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
@@ -176,7 +181,21 @@ input{
     height: 2em;
 
 }
+.reupload-form{
+    display:inline
+}
+.form-reupload{
 
+    border: none;
+    background-color: transparent;
+    height: fit-content;
+    font-size: 1em;
+   
+}
+.reupload_file_input{
+    border: none;
+    background-color: transparent;
+}
 ::-webkit-input-placeholder { /* Edge */
     color: rgb(59, 55, 55);
   }
@@ -201,19 +220,8 @@ input{
   }
 
 
-#price{
 
-  animation-name: example;
-  animation-duration: 1s;
-  animation-fill-mode : forwards
-}
 
-@keyframes example {
-  0% {transform-origin: 0% 23%;}
-  25% {transform-origin: 0% 0%;}
-  50% {transform-origin: 0% 23%;}
-  100% {transform-origin: 0% 0%;}
-}
 
 
 /*fade in */
@@ -459,7 +467,14 @@ input{
 }
 
 #add_to_basket_btn{
-    visibility: hidden
+    visibility: hidden;
+    background-color: transparent;
+    border: solid 2px #393d3f;
+    color: #393d3f;
+    height: 3em;
+    border-radius: 3px;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 tr:nth-child(even) {background-color: #f2f2f2;}
 
@@ -478,3 +493,36 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         font-size: 2.6em;
     }
    }
+ .errorlist{
+     color: red
+ }
+
+ #quote_ref, #price{
+     visibility: hidden;
+ }
+#file_label{
+    width: 80%
+}
+
+#id_files{
+    visibility: hidden;
+    width:1px;
+}
+#custom_submit{
+    display: none;
+}
+#custom_ipload_name{
+
+}
+.chat_text{
+    height: 4em;
+    width:100%
+}
+
+.chat_box{
+    border:solid 1px #393d3f;
+    height: 60vh;
+}
+.chat_area{
+    height: 80%;
+}

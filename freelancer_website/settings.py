@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'basket',
     'checkout',
     'storages',
+    'chat',
 ]
 
 MIDDLEWARE = [

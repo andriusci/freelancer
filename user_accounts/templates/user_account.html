@@ -27,7 +27,7 @@
   
    <td> 
     {%for eachFile in eachOrder.3%}
-        {%if eachOrder.2 != "SUBMITTED"%}
+        {%if eachOrder.2 == "SUBMITTED"%}
           <a href="{{eachFile.1}}" download class="download">  {{eachFile.0}} <i class="fas fa-file-download"></i></a>
           <br>
         {%else%}
@@ -47,15 +47,18 @@
  
 
 
+
+
+<!--if user is superuser-->
  {%else%}
-superuser
+
 
 <table style="width:80%">
   <tr>
       <th>Quote #</th>
       <th>Title</th> 
       <th>Files</th>
-      <th>Status</th>
+ 
     </tr>
          {%for eachOrder in orders%}
 
@@ -63,34 +66,35 @@ superuser
  
  <td>{{eachOrder.0}}</a></td>
  <td>{{eachOrder.1}}</td>
-
- <td> 
-  {%for eachFile in eachOrder.3%}
-      {%if eachOrder.2 == "SUBMITTED"%}
-        <a href="{{eachFile.1}}" download class="download">  {{eachFile.0}} <i class="fas fa-file-download"></i></a>
-        <br>
-      {%else%}
-        <span id="crossed">{{eachFile.0}}</span> <span class="handwrite"><a href="{{eachFile.1}}" download class="download handwrite" title="download">{{eachFile.0}} <i class="fas fa-file-download"></i> </a></span>
-        <form action="" method="POST">
-
-        </form>
+ <td>
+               {%for eachFile in eachOrder.3%}
+                 
+      
+      
+      <a href="{{eachFile.1}}" download class="download" id="file_{{eachOrder.0}}{{eachFile.0}}">{{eachFile.0}} </a><i class="fas fa-file-download"></i>
+    
+     
+   
       <br>
-        {%endif%}
- {%endfor%}
+    
+   
+                  {%endfor%}
+ </td>
+ 
 
+ <td>
+
+  {%for eachFile in eachOrder.3%}
+
+  <a href="{% url 'reupload' eachOrder.0 eachFile.0 %}">go</a>
+  <br>
+  {%endfor%}
  </td>
 
- <td>  
-   <form action="" method="POST">
- <input type="file">
-  <input type="submit"   name="form" value="Upload" id="upload"> 
-
-</form>
-  </td>
 </tr>
 
  
-           {%endfor%}
+        {%endfor%}
 </table>
 
 
@@ -115,6 +119,9 @@ superuser
       </div>
     </div>
   </div>
+
+
+
 
      
 

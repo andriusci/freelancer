@@ -13,4 +13,5 @@ class LoginForm(forms.Form):
 
 
 
-
+class ReuploadForm(forms.Form):
+    name = forms.IntegerField(widget=forms.HiddenInput())

@@ -1,52 +1,28 @@
 {%extends 'base.html'%}
-
 {%block content%}
 
 
 {% if messages %}
-
     {% for message in messages %}
-    
-      {%if "login success" == message.message%}
-      <div class="message">
-       Welcome in {{user}}
-      </div>
-      {%endif%}
-       {%if "quote" in message.tags%}
-       <div id="quote_ref">
-          
+        {%if "login success" == message.message%}
+         <div class="message">
+           Welcome in {{user}}
+         </div>
+        {%endif%}
+        {%if "quote" in message.tags%}
+        <!--used in js to get quote reference and price for the basket-->
+         <div id="quote_ref">
           {{message.message}}
-
-       </div>
-      {%endif%}
+         </div>
+        {%endif%}
+        {%if "price" in message.tags%}
+         <div id="price">
+           {{message.message}}
+         </div>
+        {%endif%}
     {% endfor %}
 {%endif%}
 
-
-{% if messages %}
-
-    {% for message in messages %}
-    
-     
-       {%if "price" in message.tags%}
-       <div id="price">
-          {{ message.tags}}
-          {{message.message}}
-
-       </div>
-      {%endif%}
-    {% endfor %}
-{%endif%}
-
-  
-
-
-
-
-
-<div id="total">
- 
-</div>
 
    
    {%if user.is_authenticated%}
@@ -106,15 +82,10 @@
 
 <br>
 {% if messages %}
-
     {% for message in messages %}
-    
-     
        {%if "price" in message.tags%}
-       <div id="price">
-        {{message.tags}}
-            Was  <span id="crossed">€ {{message.message}} </span><span class="handwrite"> Now only € www</span><br>
-
+       <div id="total">
+            Was  <span id="crossed">€ {{message.message}} </span><span class="handwrite"> Now only € <span id="discount"></span></span><br>
        </div>
       {%endif%}
     {% endfor %}
@@ -124,7 +95,7 @@
    {%for message in messages%}
      {%if "added" == message.message%}
        <div class="message">
-           Your quote has been added to you basket!
+           Your quote has been added to your basket!
        </div>
      {%endif%}
    {%endfor%}
@@ -132,7 +103,6 @@
     <form action="/add_to_basket/" method="post"  enctype="multipart/form-data" id="add_to_basket_form" >
         {% csrf_token %}
         {{ add_to_basket_form}}
-       
    
         <input type="submit" value="Add to basket" name="form" id="add_to_basket_btn">
     
@@ -151,11 +121,15 @@ if (document.getElementById("quote_ref") ){
 quote_ref = document.getElementById("quote_ref").innerText;
 document.getElementById("id_quote_ref").value = quote_ref;
 document.getElementById("add_to_basket_btn").style.visibility = "visible";
+price = document.getElementById('price').innerText;
+discount = price * 0.9;
+document.getElementById('discount').innerText = Math.round(discount).toFixed(2);;
 window.scrollTo(0,document.body.scrollHeight);
+
 }
 /*--------------------------------------------------------------------------*/
 
-document.getElementById("total").innerHTML = "";
+
 
 
     /*script enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/

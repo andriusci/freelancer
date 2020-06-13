@@ -11,6 +11,7 @@ class QuoteUploadForm(forms.Form):
           description = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-input', 'placeholder': 'Description'}), label="")
 
 
-class OpenDocument(forms.Form):
+class UploadFileForm(forms.Form):
+    
+    files = forms.FileField(label="", widget = forms.FileInput(attrs = {'onchange' : "customUpload();"}))
 
-    quote_ref = forms.IntegerField(widget=forms.HiddenInput())
