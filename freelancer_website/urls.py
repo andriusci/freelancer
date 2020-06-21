@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from user_accounts.views import user_login, logout, user_account, signup
 from freelancer_website.views import index
-from quote.views import quote, quote_logged, reupload
+from quote.views import quote, quote_logged, reupload, accept, accept_quote
 from basket.views import basket, add_to_basket, remove_from_basket
 from checkout.views import checkout, payment
 from chat.views import chat
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -39,4 +40,7 @@ urlpatterns = [
     path('payment/', payment, name="payment"),
     path('reupload/<int:quote_ref>/<str:file_name>/', reupload, name="reupload"),
     path('chat/', chat, name="chat"),
+    path('accept/<int:quote_ref>/<str:file_name>', accept, name="accept"),
+    path('accept_quote/<int:quote_ref>', accept_quote, name="accept_quote"),
+   
 ]

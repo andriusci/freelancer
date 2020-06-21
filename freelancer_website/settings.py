@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   
 ]
 
 ROOT_URLCONF = 'freelancer_website.urls'
@@ -166,3 +167,4 @@ DEFAULT_FILE_STORAGE = 'freelancer_website.storage_backends.MediaStorage'
 AWS_S3_OBJECT_PARAMETERS =  Metadata={
         'ContentType': 'text/rtf'
     }
+

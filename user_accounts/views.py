@@ -60,7 +60,7 @@ def logout(request):
 def user_account(request):
 
     if request.user.is_superuser: 
-        orders = Quote.objects.all().filter(purchased = True, status= "SUBMITTED")
+        orders = Quote.objects.all().filter(purchased = True, status= "Pending")
     else: 
         current_user = request.user
         user = current_user.username
@@ -84,13 +84,15 @@ def user_account(request):
                 url_str = "media/documents/" + str(eachOrder.id) + "_" + eachFile.file_name
                 url = create_presigned_url('freelancer2020', url_str)
                 list_of_files.append(url)
+                
+                list_of_files.append(eachFile.status)
 
                 list_of_files_n_urls.append(list_of_files)
             orderList.append(list_of_files_n_urls)
 
             list_of_orderLists.append(orderList)
        
-    context = { "orders": list_of_orderLists }
+    context = { "orders": list_of_orderLists, "count" : len(orders) }
        
     return render(request, 'user_account.html', context = context)
 

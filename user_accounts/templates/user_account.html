@@ -9,14 +9,17 @@
 <div class="container">
   {%if not user.is_superuser%}
 
-  <h3>My orders</h3>
 
+  {%if count != 0%}
+  <h3>{{user}}'s' orders</h3>
   <table style="width:80%">
     <tr>
         <th>Quote #</th>
         <th>Title</th> 
         <th>Files</th>
         <th>Status</th>
+        <th>Action</th>
+       
       </tr>
            {%for eachOrder in orders%}
 
@@ -27,37 +30,80 @@
   
    <td> 
     {%for eachFile in eachOrder.3%}
-        {%if eachOrder.2 == "SUBMITTED"%}
+       
           <a href="{{eachFile.1}}" download class="download">  {{eachFile.0}} <i class="fas fa-file-download"></i></a>
           <br>
-        {%else%}
-          <span id="crossed">{{eachFile.0}}</span> <span class="handwrite"><a href="{{eachFile.1}}" download class="download handwrite">{{eachFile.0}} <i class="fas fa-file-download"></i> </a></span>
-        <br>
-          {%endif%}
+        
    {%endfor%}
 
    </td>
+   <td>
+     
 
-   <td>{%if eachOrder.2 == "SUBMITTED"%}Pending...{%endif%}</td>
+        {%for eachFile in eachOrder.3%}
+       
+        
+              <span>{{eachFile.2}}</span> 
+           
+           <br>
+         {%endfor%}
+     
+   </td>
+   <td>
+    {%for eachFile in eachOrder.3%}
+       
+    {%if eachFile.2 == "Accepted"%}
+    N/A <span class="tooltips">
+
+      <i class="fas fa-question-circle"></i>
+     <span class="tooltip-text">
+          Once you have accepted your document you no longer can take an action other than download your document.
+     </span>
+  </span>
+    <br>
+      
+    {%elif eachFile.2 == "Pending"%}
+    <a href="{% url 'reupload' eachOrder.0 eachFile.0 %}" >Message <i class="fas fa-envelope"></i></a>
+       <br>
+      {%else%}
+      <a href="{% url 'accept' eachOrder.0 eachFile.0 %}">Accept <i class="fas fa-check-square"></i></a>  <a href="{% url 'reupload' eachOrder.0 eachFile.0 %}" >Request change <i class="fas fa-retweet"></i></a>
+      <br>
+    {%endif%}
+     {%endfor%}
+      <br>
+     
+   </td>
+     <td>
+        
+      
+     </td>
  </tr>
 
    
              {%endfor%}
   </table>
+  {%else%}
+  <h3>{{user}} you have no orders!</h3>
+  <a href="{% url 'quote_logged' %}" id="quote">
+    <button class="btn btn-secondary btn-sm" >Instant Quote</button>
+</a> 
+  {%endif%}
+
+
+
  
-
-
-
-
 <!--if user is superuser-->
  {%else%}
-
+ {%if count != 0%}
 
 <table style="width:80%">
   <tr>
       <th>Quote #</th>
       <th>Title</th> 
       <th>Files</th>
+      <th>Status</th>
+      <th>Enter</th>
+      <th></th>
  
     </tr>
          {%for eachOrder in orders%}
@@ -80,17 +126,33 @@
    
                   {%endfor%}
  </td>
+ <td>
+     
+
+  {%for eachFile in eachOrder.3%}
  
+  
+        <span>{{eachFile.2}}</span> 
+     
+     <br>
+   {%endfor%}
+
+</td>
 
  <td>
 
   {%for eachFile in eachOrder.3%}
 
-  <a href="{% url 'reupload' eachOrder.0 eachFile.0 %}">go</a>
+  <a href="{% url 'reupload' eachOrder.0 eachFile.0 %}">Enter <i class="fas fa-sign-in-alt"></i></a>
   <br>
   {%endfor%}
  </td>
+ 
+<td> 
+    <a href="{% url 'accept_quote' eachOrder.0 %}">Mark as done <i class="fas fa-check-square"></i></a>
 
+
+</td>
 </tr>
 
  
@@ -98,32 +160,23 @@
 </table>
 
 
-
-
+{%else%}
+You have no orders
   {%endif%} 
        
          
      
       
 
-
+  {%endif%}
         
-        {%if count != 0%}
-         
        
-          
-        {%else%}
-          You have no orders
-        {%endif%}
         
       </div>
     </div>
   </div>
 
 
-
-
-     
 
 
 

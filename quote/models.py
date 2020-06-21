@@ -9,10 +9,10 @@ class Upload(models.Model):
 CATEGORY_CHOICES = [("ACADEMIC", 'Academic'),
                     ("GENERAL", 'General')]
 
-STATUS_CHOICES = [("SUBMITTED",  'Submitted'),
-                   ("ACTIVE", 'Active'),
-                   ("PENDING", 'Pending'),
-                   ( "DONE", 'Done')]
+STATUS_CHOICES = [ ("Deleted", 'Deleted'),
+                   ("Pending", 'Pending'),
+                   ( "Ready", 'Done'),
+                   ( "Accepted", 'Accepted')]
 
 class Quote(models.Model):
     #id = models.BigIntegerField(primary_key=True,default=0)
@@ -28,7 +28,7 @@ class Quote(models.Model):
     submitted_by = models.CharField(max_length=100,default="a")
     title = models.CharField(max_length=100,default="a")
     status = models.CharField(max_length=100,choices=STATUS_CHOICES,
-                                default="SUBMITTED")
+                                default="Pending")
     
 
 
@@ -36,5 +36,7 @@ class Quote(models.Model):
 class QuoteFiles(models.Model):
     file_name = models.CharField(default="",max_length=120)
     quote_ref = models.IntegerField(default=0)
-    status = models.BooleanField(default=False)
+    status = models.CharField(max_length=100,choices=STATUS_CHOICES,
+                                default="Pending")
+    user = models.CharField(max_length=100,default="a")
    

@@ -7,6 +7,7 @@
 <span id="original_name">
 {{file_name}}
 </span>
+{%if user.is_superuser%}
 <form action="/reupload/{{quote_ref}}/{{file_name}}/" method="post"  enctype="multipart/form-data">
       {%csrf_token %}
      
@@ -17,6 +18,7 @@
       </label>
       <input type="submit" id="custom_submit" >
 </form>
+{%endif%}
 <div class="message" id="name_match" style="display: none">
    Your chosen file name does not match the original file name.
 </div>
@@ -30,27 +32,53 @@
  {%endif%}
 
  <div class="chat_box">
-   <div class="chat_area">
+   <div class="chat_header">Please chat with us about what needs to be changed:</div>
+   <div class="chat_area" id="chat_area"   >
 
+
+
+   {%for each in chat%}
+   
+      <div class="date_time">{{each.time.date}}</div>
+     
+     
+    
+     {%if each.superuser == True%}
+       <div class="left"><span class="left_span">{{each.message}} <span class="time">{{each.time.time}}</span></span></div>
+     {%else%}
+       <div class="right"> <span class="right_span">{{each.message}} <span class="time">{{each.time.time}}</span></span></div>
+
+     {%endif%}
+     <br>
+   {%endfor%}
    </div>
    <div class="chat">
-     <form action="/chat/">
+     <form action="/chat/" method="POST">
        {%csrf_token %}
        {{chatForm}}
-       <input type="submit" value="send">
+       <input type="submit" value="Send request" id="send">
    </form>
   </div>
 </div>
 
 
 <script>
-  
+
+
+  document.addEventListener("DOMContentLoaded", function(){
+    show_date();
+    document.getElementById("id_quote_ref").value = '{{quote_ref}}';
+    document.getElementById("id_file_name").value = '{{file_name}}';
+    /*chat area scroll to the bottom on load*/
+    div = document.getElementById("chat_area")
+    div.scrollTop = div.scrollHeight
+});
  function customUpload() {
    document.getElementById('name_match').style.display = "None";
    original = document.getElementById('original_name').innerText;
    file_name = document.getElementById('id_files').value;
    file_name = file_name.split("\\").pop();
-
+    
 
    if(original == file_name){
       document.getElementById('custom_upload_name').innerText = file_name
@@ -59,8 +87,29 @@
     document.getElementById('name_match').style.display = "block";
    
     document.getElementById('custom_submit').style.display = "none"}
+    show_date();
    }
+   
+   function chatScroll(){
+      var element = document.getElementById("chat_area");
+      element.scrollTop = element.scrollHeight;
+}
  
+
+
+  function show_date() {
+    
+    var list= document.getElementsByClassName("date_time");
+    
+      for (var i = 0; i < list.length; i++) {
+      
+      if (i != 0){
+      
+        if (list[i].innerText == list[i-1].innerText){
+          list[i].style.display = "None"}
+        else { list[i].style.display = "inline-block" }}
+    }
+    }
 
 </script>
 

@@ -4,11 +4,7 @@
 
 {% if messages %}
     {% for message in messages %}
-        {%if "login success" == message.message%}
-         <div class="message">
-           Welcome in {{user}}
-         </div>
-        {%endif%}
+       
         {%if "quote" in message.tags%}
         <!--used in js to get quote reference and price for the basket-->
          <div id="quote_ref">
@@ -26,53 +22,64 @@
 
    
    {%if user.is_authenticated%}
+
+
+
 <br>
+
+
+
+
 <div class="quote_form">
         <h3>Get your <span class="handwrite">Quote:</span></h3>
         <hr>
 <form action="/quote_logged/" method="post"  enctype="multipart/form-data" class="form-inline" id="quoteForm" name="quoteForm"> 
     {% csrf_token %}
-
+ <div class="wrapper">
     <select id="category" class="form-input" required name="category">
             <option value="choose" disabled selected>Category</option>
             <option value="academic">Academic</option>
             <option value="general">General</option>
-        </select>
+    </select>
 
-        <div class="tooltips">
+     <span class="tooltips">
 
                 <i class="fas fa-question-circle"></i>
                <span class="tooltip-text">
-                    lorem ipsum
+                    Please choose category. Non-academic proofreading is 10% cheaaper.
                </span>
-           </div>
+            </span>
+</div>
+<div class="wrapper">
     {{ upload_form }}
-    <div class="tooltips">
+    <span class="tooltips">
 
             <i class="fas fa-question-circle"></i>
            <span class="tooltip-text">
-               lorem ipsum
+               Describe your document  (e.g. "{{user}}'s' CV".)
            </span>
-       </div>
+        </span>
+        </div>
     <br>
 
-  
-<div class="custom-upload ">
+  <div class="wrapper">
+
     <!-- custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/-->
     <label class="form-input" id="file_label" for="file">Choose a file</label>
     <input type="file" name="document" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+   
     <!----------------------------------------------------------------------------------------------------------------->
-    <div class="tooltips">
+    <span class="tooltips">
 
             <i class="fas fa-question-circle"></i>
            <span class="tooltip-text">
-               lorem ipsum
+                Upload a file for proofreading. Files with .rtf extentions are preferable.
            </span>
-       </div>
+        </span>
+
+   </div>
    
-    <br>
-    
-    
+ 
     <input type="submit"  class="hidden" name="form" value="Upload" id="upload">  
  
     
@@ -97,6 +104,9 @@
        <div class="message">
            Your quote has been added to your basket!
        </div>
+       <div >
+            Proceed to your <a href="{% url 'basket' %}" >basket &nbsp<i class="fas fa-shopping-cart"></i></a>
+        </div>
      {%endif%}
    {%endfor%}
 {%endif%}
@@ -107,7 +117,7 @@
         <input type="submit" value="Add to basket" name="form" id="add_to_basket_btn">
     
     </form>
-    
+   
 {%endif%}
 
 
@@ -121,7 +131,8 @@ if (document.getElementById("quote_ref") ){
 quote_ref = document.getElementById("quote_ref").innerText;
 document.getElementById("id_quote_ref").value = quote_ref;
 document.getElementById("add_to_basket_btn").style.visibility = "visible";
-price = document.getElementById('price').innerText;
+price = document.getElementById("price").innerText;
+price = price.toString()
 discount = price * 0.9;
 document.getElementById('discount').innerText = Math.round(discount).toFixed(2);;
 window.scrollTo(0,document.body.scrollHeight);

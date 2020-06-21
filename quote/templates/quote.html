@@ -4,11 +4,13 @@
 
 <br>
 <h3 >
-          Preliminary <span class="handwrite"> Quote:</span>
+      <span class="handwrite"> Preliminary </span> Quote:
 </h3>
 <div class="quote_form">
 <form class="form-inline">
   
+
+<div class="wrapper">
      
 <select id="category" class="form-input" required>
     <option value="choose" disabled selected>Choose category</option>
@@ -16,22 +18,25 @@
     <option value="general">General</option>
 </select>
 
-<div class="tooltips">
+<span class="tooltips">
 
      <i class="fas fa-question-circle"></i>
     <span class="tooltip-text">
          Please choose category. Non-academic proofreading is 10% cheaaper.
     </span>
+</span>
 </div>
 <br>
+<div class="wrapper">
 <input type="number" min="1" class="form-input" id="count" placeholder=" number of words" required>
-<div class="tooltips">
+<span class="tooltips">
 
           <i class="fas fa-question-circle"></i>
          <span class="tooltip-text">
              How many words your document contains?
          </span>
-     </div>
+</span>
+</div>
 </form>
 <button class="get-quote-btn" onclick="quote()">Get quote</button>
 </div>

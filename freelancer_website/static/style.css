@@ -430,9 +430,7 @@ input{
 /*tooltips from https://www.w3schools.com/css/css_tooltip.asp*/
 .tooltips {
     position: relative;
-    display: inline-block;
-    top:-10px
-    
+    left: 1em;
   }
   
   .tooltips .tooltip-text {
@@ -476,6 +474,10 @@ input{
     padding-left: 2em;
     padding-right: 2em;
 }
+#add_to_basket_btn:hover{
+    color:white;
+    background-color: #393d3f;
+}
 tr:nth-child(even) {background-color: #f2f2f2;}
 
 
@@ -498,15 +500,23 @@ tr:nth-child(even) {background-color: #f2f2f2;}
  }
 
  #quote_ref, #price{
-     visibility: hidden;
+    
+    color: transparent;
  }
 #file_label{
-    width: 80%
+    width: 80%;
+    text-align: left;
+    padding-left: 0.3em;
+    display:inline-block
 }
 
 #id_files{
     visibility: hidden;
     width:1px;
+}
+#id_message{
+    width: 80%;
+    float: left;
 }
 #custom_submit{
     display: none;
@@ -520,9 +530,57 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 }
 
 .chat_box{
-    border:solid 1px #393d3f;
+    
     height: 60vh;
+    max-width: 35em;
+    margin: auto;
 }
 .chat_area{
     height: 80%;
+    overflow: scroll;
+    background-color: #ebebeb;
+    
+}
+.left{
+    text-align: left;
+
+}
+.right{
+    text-align: right;
+   
+}
+.left, .right{
+    width:100%
+}
+
+.wrapper{
+    width:100%
+}
+a {
+    color: #393D3F;
+}
+a:hover{
+   font-weight: bolder;
+   color:  #393D3F;
+
+}
+.left_span, .right_span{
+    border: solid #adb5bd 1px;
+    border-radius: 0.4em;
+    color: #393d3f;
+    background-color: white;
+    padding: 0.4em 1em;
+    margin:1em;
+    font-weight: bolder;
+}
+#send{
+    display: inherit;
+    height: 4em;
+    width: 20%;
+    background-color:  #393d3f;
+    color: white;
+    border: none;
+}
+.time{
+    font-weight: normal
 }
