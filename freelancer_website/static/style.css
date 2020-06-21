@@ -75,7 +75,7 @@ body{
 
 }
 
-.get-quote-btn, .general-btn, .checkout-btn{
+.get-quote-btn, .general-btn, .checkout-btn, .pay-btn{
     background-color: #393D3F;
     color: white;
     border: solid #393D3F;
@@ -87,7 +87,7 @@ body{
     display: block;
 }
 
-.get-quote-btn:hover, .general-btn:hover, .checkout-btn:hover{
+.get-quote-btn:hover, .general-btn:hover, .checkout-btn:hover, .pay-btn:hover{
     background-color: rgb(94, 97, 98);
     border-color:  rgb(94, 97, 98);
 }
@@ -598,3 +598,5 @@ table{
     margin:auto;
     width: 100%
 }
+
+

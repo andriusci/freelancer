@@ -3,7 +3,7 @@
 
 
 {%block content%}
-<h1 style="margin-left: 40vw;margin-top: 50vh">checkout</h1>
+
 
 
 <h2>Buy for €{{total}}</h2>
@@ -23,6 +23,16 @@
             data-amount="{{total2}}"
             data-locale="auto"></script>
   </form>
-
+  <button class="pay-btn" onclick="pay()">
+    Pay with card
+  </button>
+  <script>
+      stripe_btn = document.getElementsByClassName("stripe-button-el");
+      stripe_btn[0].style.display = 'none';
+      function pay(){
+        stripe_btn[0].click();
+      }
+  
+  </script>
 
 {%endblock%}

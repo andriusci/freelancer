@@ -3,10 +3,13 @@
 
 
 {%block content%}
-<h1 style="margin-left: 40vw;margin-top: 50vh">checkout success</h1>
+<h3>Thank you!</h3>
+<p>You have succesfully paid for your order</p>
+<p>We will get back to you shorty, keep an eye on your order in your <a href="{% url 'user_account' %}" >account &nbsp<i class="fas fa-user"></i></a>&nbsp</p>
 
-{{token}}
 
-{{str_of_refs}}
+
+
+
 
 {%endblock%}

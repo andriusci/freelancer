@@ -5,7 +5,7 @@ from quote.models import Quote
 import os
 
 stripe.api_key = os.getenv('STRIPE_SECRET')
-#stripe.api_key = "sk_test_gaXrNd3ptwCYLK5NIGUU3ssU00wD4sYZob"
+
 
 def checkout(request):
     if request.method == 'POST':
@@ -19,7 +19,7 @@ def checkout(request):
         
         context = {"str_of_refs":str_of_refs, "total" : total, "total2": total2}
         return render(request, 'checkout.html',context = context)
-
+   
 def payment(request):
        if request.method == 'POST':
         current_user = request.user
