@@ -75,7 +75,7 @@ body{
 
 }
 
-.get-quote-btn, .general-btn{
+.get-quote-btn, .general-btn, .checkout-btn{
     background-color: #393D3F;
     color: white;
     border: solid #393D3F;
@@ -87,7 +87,7 @@ body{
     display: block;
 }
 
-.get-quote-btn:hover, .general-btn:hover{
+.get-quote-btn:hover, .general-btn:hover, .checkout-btn:hover{
     background-color: rgb(94, 97, 98);
     border-color:  rgb(94, 97, 98);
 }
@@ -281,8 +281,8 @@ input{
     padding-right: 2px;
 }
 .login:hover, .signup:hover{
-    border: solid 2px #393d3f;
-    color:white
+    background-color: rgb(94, 97, 98);
+    border-color:  rgb(94, 97, 98);
 }
 .login-signup{
     width:80%;
@@ -583,4 +583,18 @@ a:hover{
 }
 .time{
     font-weight: normal
+}
+.remove{
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+
+}
+.basket_table{
+    margin: auto;
+    max-width: 30%
+}
+table{
+    margin:auto;
+    width: 100%
 }

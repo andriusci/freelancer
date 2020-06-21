@@ -5,34 +5,53 @@
 
 
 <br>
-
-
-
-{%for eachItem in list%}
-
-   € {{eachItem.price}},
-   Quote number  {{eachItem.quote_ref}}
-
-   <form action="/remove_from_basket/" method="post"  enctype="multipart/form-data">
-    {% csrf_token %}
+<div class="basket_table">
+<table>
    
-    <input type="hidden" value={{eachItem.quote_ref}} name="quote_ref">
-    <input type="submit" value="remove" name="remove_form">
 
-</form>
-  
-{%endfor%}
+        {%for eachItem in list%}
+        <tr>
+            <td>
+                   # {{eachItem.quote_ref}} 
+            </td>
+            <td>
+                     € {{eachItem.price}} 
+            </td>
+            <td>
+                    <form action="/remove_from_basket/" method="post"  enctype="multipart/form-data">
+                        {% csrf_token %}
+                       
+                        <input type="hidden" value={{eachItem.quote_ref}} name="quote_ref">
+                        <button type="submit" class="remove">
+                            <i class="fas fa-trash-alt"></i> Remove
+                              </button>
+                       
+                    
+                    </form>
+            </td>
+        </tr>
+        {%endfor%}
 
+</table>
+</div>
+
+
+  <br>
+
+<div>
 {%if total != 0%}
-total: € {{total}}<br>
-
+<h3>total: € {{total}}</h3>
+<br>
+</div>
 
 <form action="/checkout/" method="post"  enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" value="{{str_of_refs}}" name="str_of_refs">
     <input type="hidden" value="{{total}}" name="total">
    
-    <input type="submit" value="Checkout">
+    <button type="submit" class="checkout-btn">
+            Checkout
+    </button>
 </form>
 {%else%}
  Your basket is empty
