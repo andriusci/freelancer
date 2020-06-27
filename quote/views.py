@@ -97,7 +97,7 @@ def quote_logged(request):
     else:
       return render(request, 'quote_logged.html', context)
 
-
+@login_required(login_url='/login/')
 def reupload(request, quote_ref, file_name):
     current_user = request.user
     user = current_user.username

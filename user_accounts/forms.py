@@ -15,3 +15,11 @@ class LoginForm(forms.Form):
 
 class ReuploadForm(forms.Form):
     name = forms.IntegerField(widget=forms.HiddenInput())
+
+class SignUpForm(UserCreationForm):
+    username = forms.CharField(max_length=30, required=True, help_text='O')
+    email = forms.EmailField(max_length=254, help_text='Email address.')
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2', )

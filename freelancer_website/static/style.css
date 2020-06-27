@@ -75,7 +75,7 @@ body{
 
 }
 
-.get-quote-btn, .general-btn, .checkout-btn, .pay-btn{
+.get-quote-btn, .general-btn, .checkout-btn, .pay-btn, #custom_submit{
     background-color: #393D3F;
     color: white;
     border: solid #393D3F;
@@ -86,8 +86,12 @@ body{
     margin: auto;
     display: block;
 }
-
-.get-quote-btn:hover, .general-btn:hover, .checkout-btn:hover, .pay-btn:hover{
+.go_back a:hover{
+   text-decoration: none;
+   font-weight: bolder
+}
+.get-quote-btn:hover, .general-btn:hover, .checkout-btn:hover, 
+.pay-btn:hover, #custom_submit:hover, #send:hover{
     background-color: rgb(94, 97, 98);
     border-color:  rgb(94, 97, 98);
 }
@@ -161,7 +165,7 @@ input{
 
 
   
-.quote_form{
+.quote_form, .reset-form{
     text-align: center;
     max-width: 20em;
     margin:auto;
@@ -474,7 +478,7 @@ input{
     padding-left: 2em;
     padding-right: 2em;
 }
-#add_to_basket_btn:hover{
+#add_to_basket_btn:hover, #custom_upload_name:hover{
     color:white;
     background-color: #393d3f;
 }
@@ -521,9 +525,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 #custom_submit{
     display: none;
 }
-#custom_ipload_name{
 
-}
 .chat_text{
     height: 4em;
     width:100%
@@ -538,9 +540,11 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 .chat_area{
     height: 80%;
     overflow: scroll;
+    overflow-x: hidden;
     background-color: #ebebeb;
-    
+    -ms-overflow-x: hidden; /*IE*/
 }
+
 .left{
     text-align: left;
 
@@ -600,3 +604,33 @@ table{
 }
 
 
+#custom_submit{
+    position: relative;
+    top: -79px;
+}
+.reupload_form{
+    max-height: 4em
+}
+.go_back{
+    float: left
+}
+#forgot{
+    position: relative;
+    top: -1em;
+}
+#id_email{
+    font-family: 'Rajdhani', sans-serif;
+    margin: auto;
+    font-size: 1.5em;
+    border: solid 1px #dee2e6;
+  
+    border-radius: 3px;
+    padding: 0.1em;
+    height: 2em;
+}
+ #whatever{
+    display: inline
+}
+label{
+    font-weight: bold
+}

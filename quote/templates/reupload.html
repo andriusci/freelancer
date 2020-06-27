@@ -2,22 +2,19 @@
 
 {% block content%}
 
-{{file}}
-{{quote_ref}}
-<span id="original_name">
-{{file_name}}
-</span>
-{%if user.is_superuser%}
-<form action="/reupload/{{quote_ref}}/{{file_name}}/" method="post"  enctype="multipart/form-data">
-      {%csrf_token %}
-     
 
+{%if user.is_superuser%}
+<div>
+<form action="/reupload/{{quote_ref}}/{{file_name}}/" method="post"  enctype="multipart/form-data" class="reupload_form">
+      {%csrf_token %}
+    
     <label>
         <span id="custom_upload_name" class="form-input">Select file</span>
         {{uploadForm}}
       </label>
       <input type="submit" id="custom_submit" >
 </form>
+</div>
 {%endif%}
 <div class="message" id="name_match" style="display: none">
    Your chosen file name does not match the original file name.
@@ -26,13 +23,19 @@
  {%if messages%}
    {%for message in messages%}
      {%if "upload" in message.tags%}
-       You have successfully uploaded {{file_name}}
+     <div class="message">
+        You have succesfully uploaded {{file_name}}
+     </div>
      {%endif%}
    {%endfor%}
  {%endif%}
-
+ 
  <div class="chat_box">
-   <div class="chat_header">Please chat with us about what needs to be changed:</div>
+   <div class="chat_header">
+     <h3> <span class="go_back"><i class="fas fa-chevron-left"></i><strong> <a href="{% url 'user_account' %}"> Go back</a> </strong></span>
+      Chat regarding <span id="original_name">{{file_name}}</span> :</h3>
+     
+   </div>
    <div class="chat_area" id="chat_area"   >
 
 
@@ -56,7 +59,11 @@
      <form action="/chat/" method="POST">
        {%csrf_token %}
        {{chatForm}}
-       <input type="submit" value="Send request" id="send">
+       {%if user.is_superuser%}
+       <input type="submit" value="Send" id="send">
+       {%else%}
+       <input type="submit" value="Request" id="send">
+       {%endif%}
    </form>
   </div>
 </div>

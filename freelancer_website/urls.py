@@ -22,6 +22,7 @@ from basket.views import basket, add_to_basket, remove_from_basket
 from checkout.views import checkout, payment
 from chat.views import chat
 from django.contrib.auth import views as auth_views
+from django.conf.urls import url, include
 
 
 urlpatterns = [
@@ -42,5 +43,17 @@ urlpatterns = [
     path('chat/', chat, name="chat"),
     path('accept/<int:quote_ref>/<str:file_name>', accept, name="accept"),
     path('accept_quote/<int:quote_ref>', accept_quote, name="accept_quote"),
-   
+    #thatks to https://stackoverflow.com/questions/11501837/resetting-password-in-django solution 0 
+    #just suitted me better......:)
+    path('password-reset/',auth_views.PasswordResetView.as_view(template_name='password_reset.html'),name='password_reset'),
+    path('password-reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/',
+           auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'),name='password_reset_confirm'),
+    path('password-reset-complete/',
+         auth_views.PasswordResetCompleteView.as_view(
+             template_name='password_reset_complete.html'
+         ),
+         name='password_reset_complete'),
+ 
+    
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from user_accounts.forms import LoginForm
-from django.contrib.auth.forms import UserCreationForm
+from user_accounts.forms import SignUpForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -13,7 +13,7 @@ from django.http import HttpResponseNotFound
 import logging
 import boto3
 from botocore.exceptions import ClientError
-import requests    # To install: pip install requests
+import requests  
 ################################################
 
 
@@ -111,7 +111,13 @@ def user_login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "login success")
-                return HttpResponseRedirect(request.GET['next'])
+                
+                try:
+                  return HttpResponseRedirect(request.GET['next'])
+                except:
+                  return render(request, 'user_account.html')
+       
+                   
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
                 
@@ -125,19 +131,20 @@ def user_login(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            messages.success(request, "signup success")
             return HttpResponseRedirect(request.GET['next'])
         else:
             form.add_error(None, "Your username or password is incorrect")
          
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'signup.html', {'form': form})  
 
 
