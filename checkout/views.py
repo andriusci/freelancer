@@ -8,10 +8,12 @@ stripe.api_key = os.getenv('STRIPE_SECRET')
 
 
 def checkout(request):
+    # returns the checkout page with the relevant information such as the amount to be paid#
+    # and the list of quote references (so after the paiment is made satus of the quote could be changed )
     if request.method == 'POST':
         str_of_refs = request.POST.get('str_of_refs')
         total = request.POST.get('total')
-        #convert total amount from currency format (€x.xx) to string (xxx) suitable for stripe.
+        #convert total amount from currency format (€x.xx) to string (xxx) suitable for Stripe.
         total2 = ""
         for elem in total:
             if elem != ".":

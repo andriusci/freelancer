@@ -1,51 +1,40 @@
 {%extends 'base.html'%}
 
-
-
 {%block content%}
 
 
 {% if messages %}
-
     {% for message in messages %}
-    
-      {%if "login success" != message.message%}
+      {%if "logout" == message.message%}
+      <!--informs user of succsessful log out -->
       <div class="message">
         Logged out!
       </div>
-       
     {%endif%}
     {% endfor %}
 {%endif%}
 
 
 
-
+<section>
+  <!--Homepage animation-->
 <div class="headline">
-   
-  <div class="typewriter">
-
+    <div class="typewriter">
     <div class="typewriter-text">
-        <strong><span>Professional</span>
-       <span class="strikethrough">Proofwriting</span></strong>
+          <strong><span>Professional</span>
+          <span class="strikethrough">Proofwriting</span></strong>
     </div>
+    </div>
+    <div>
+    <div class="handwrite fadein"><strong>Proofreading</strong></div>  
+    <div class="movein"></div>
   </div>
-  <div>
-  <div class="handwrite fadein"><strong>Proofreading</strong></div>  
-  <div class="movein"></div>
- </div>
-         
-
-        
-  
-
-  
-
 </div>
+
 <br>
+
 <div class="quote_btn" id="get-quote-btn">
     {%if user.is_authenticated%}
-    
         <a href="{% url 'quote_logged' %}">
             <button class="get-quote-btn" >Instant Quote</button>
         </a>
@@ -57,9 +46,6 @@
    {%endif%}
 </div>
 
-
-
-
-
+</section>
 
 {%endblock%}

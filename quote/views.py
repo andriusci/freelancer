@@ -23,10 +23,15 @@ from django.contrib import messages
 
 
 def quote(request):
+     #return quote page
       return render(request, 'quote.html')
 
 
 @login_required(login_url='/login/')
+#1.return quote page for logged-in users.
+#2.if quote form submitted, calculate the price depending on the number of words in the submitted documents.
+#and return a quote page with the quote information.
+#3. save the quote and the files in the database. (see section Features > Quote in the READ.ME for reasoning)
 def quote_logged(request):
     current_user = request.user
     user = current_user.username
@@ -40,8 +45,6 @@ def quote_logged(request):
     if request.method == "POST":
       time = datetime.now()
       
-
-     # if request.POST['form'] == "Upload":
       form = QuoteUploadForm(request.POST, request.FILES)
       if form.is_valid:
            files = request.FILES.getlist('document')
@@ -108,9 +111,7 @@ def reupload(request, quote_ref, file_name):
         user = quote.submitted_by
     chat = Chat.objects.all().filter(user = user, 
                                      quote_ref = quote_ref, 
-                                     file_name = file_name)
-
-                                  
+                                     file_name = file_name)                        
     context = {"quote_ref": quote_ref,"file_name": file_name, "file": "nothing", "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
     if request.method =="POST":
       if request.user.is_superuser:
@@ -128,11 +129,13 @@ def reupload(request, quote_ref, file_name):
        
        context = {"quote_ref": quote_ref,"file_name": file_name, "file": files, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
        messages.add_message(request, messages.INFO, "upload", extra_tags='upload')
-      return render(request, 'reupload.html', context = context)
+      
+   
 
-    else:
-       return render(request, 'reupload.html', context = context)
+    
+    return render(request, 'reupload.html', context = context)
 
+@login_required(login_url='/login/')
 def accept(request, quote_ref, file_name):
     current_user = request.user
     user = current_user.username
@@ -141,7 +144,6 @@ def accept(request, quote_ref, file_name):
     if user == quote_file.user:
        quote_file.status = "Accepted"
        quote_file.save()
-
 
        messages.add_message(request, messages.INFO, "accepted", extra_tags='accepted')
 
@@ -156,5 +158,5 @@ def accept_quote(request, quote_ref):
       messages.add_message(request, messages.INFO, "quote_accepted")
       return redirect(reverse('user_account'))
    else:
-      html = "<html><body><h1>Nothing here</h1></html>" % now
+      html = "<html><body><h1>Nothing here:)</h1></html>" % now
       return HttpResponse(html)

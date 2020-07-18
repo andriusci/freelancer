@@ -2,98 +2,60 @@
 
 {%block content%}
 
-<br>
-<h3 >
-      <span class="handwrite"> Preliminary </span> Quote:
-</h3>
+<section>
+<h3><span class="handwrite"> Preliminary </span> Quote:</h3>
+
+<!--preliminary quote form-->
 <div class="quote_form">
-<form class="form-inline">
-  
+    <form class="form-inline">
+      <div class="wrapper">
 
-<div class="wrapper">
-     
-<select id="category" class="form-input" required>
-    <option value="choose" disabled selected>Choose category</option>
-    <option value="academic">Academic</option>
-    <option value="general">General</option>
-</select>
-
-<span class="tooltips">
-
-     <i class="fas fa-question-circle"></i>
-    <span class="tooltip-text">
-         Please choose category. Non-academic proofreading is 10% cheaaper.
-    </span>
-</span>
-</div>
-<br>
-<div class="wrapper">
-<input type="number" min="1" class="form-input" id="count" placeholder=" number of words" required>
-<span class="tooltips">
-
+        <!--drop down menu for choosing the category -->
+        <select id="category" class="form-input" required>
+           <option value="choose" disabled selected>Choose category</option>
+           <option value="academic">Academic</option>
+           <option value="general">General</option>
+        </select>
+       
+       <!--tooltip explaining the purpose of the form select field-->
+       <span class="tooltips">
           <i class="fas fa-question-circle"></i>
-         <span class="tooltip-text">
+             <span class="tooltip-text">
+                Please choose category. Non-academic proofreading is 10% cheaaper.
+             </span>
+       </span>
+      </div>
+<br>
+      <div class="wrapper">
+         <input type="number" min="1" class="form-input" id="count" placeholder=" number of words">
+         <!--tooltip explaining the purpose of the form number input field-->
+        <span class="tooltips">
+            <i class="fas fa-question-circle"></i>
+            <span class="tooltip-text">
              How many words your document contains?
-         </span>
-</span>
+            </span>
+        </span>
+      </div>
+    </form>
+    <button class="get-quote-btn" onclick="quote()">Get quote</button>
 </div>
-</form>
-<button class="get-quote-btn" onclick="quote()">Get quote</button>
-</div>
+
+
 <br>
+
 <div id="total">
- 
 </div>
+</section>
 
-</div>
 <br>
 
+<section>
 <div class="login-signup">
-Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to upload your documents for a <span class="handwrite">real </span> quote<br><br>
+   <p>
+   Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to upload your documents for a <span class="handwrite">real </span> quote<br><br>
    Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/" class="signup">Sign up!</a> 
- <div>
-<script>
-    function quote(){
-      document.getElementById("total").innerHTML = "";
-
-      categoryValue = document.getElementById("category").value;
-      countValue = document.getElementById("count").value;
-
-      if (countValue > 1000) 
-           { price = countValue / 100}
-      else 
-           {price = 10}
-      if (categoryValue != "general") {price = price * 1.1}
-      price = Math.round(price).toFixed(2);
-      discount = (price / 100 * 80).toFixed(2);
-    
-      category = document.getElementById("category")
-      count = document.getElementById("count")
-      
-    
-
-      /*form validation */
-      if (countValue <= 0)
-           {count.style.borderColor= "red"; count.classList.add('fill-error');}
-      else
-           {count.style.borderColor = "rgb(59, 55, 55)"; }
-      
-      if (categoryValue == "choose")
-           {category.style.borderColor= "red"; category.classList.add('fill-error');}
-      else
-           {category.style.borderColor = "rgb(59, 55, 55)"};
-
-      setTimeout(function() {
-                count.classList.remove('fill-error');
-                category.classList.remove('fill-error')
-            }, 400);
-        if (countValue != 0 && categoryValue != "choose")  
-           {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> € " + price + " </span>" + "<span class=\"handwrite\">  &nbspNow only €" + discount + "</span>";}
-          
-    }
-
-      
-</script>
-
+   </p>
+</div>
+</section>
 
 {%endblock%}

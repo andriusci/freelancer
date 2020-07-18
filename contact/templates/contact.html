@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+        {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+     
+        {%if messages%}
+        {%for each in messages%}
+          {%if each.message == "contact succsess"%}
+           <div class="message">your message has been send </div>
+           {%elif each.message == "contact fail"%}
+           <div class="message">Something went wrong, please try again... </div>
+          {%endif%}
+        {%endfor%}
+     {%endif%}
+    <form action="/contact/" method="post"  enctype="multipart/form-data" class="form-inline">
+        {% csrf_token %}
+        {{contactForm.as_p}}
+        <button class="general-btn" type="submit">Send</button>
+    </form>
+</body>
+</html>

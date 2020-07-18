@@ -8,15 +8,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from quote.models import Quote, QuoteFiles, Upload
 from django.http import HttpResponseNotFound
-
+from quote.forms import  UploadFileForm
 #####################################################
+# as shown at https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html
 import logging
 import boto3
 from botocore.exceptions import ClientError
-import requests  
-################################################
-
-
+import requests 
 
 def create_presigned_url(bucket_name, object_name, expiration=3600):
     """Generate a presigned URL to share an S3 object
@@ -40,17 +38,12 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
 
     # The response contains the presigned URL
     return response
-    #############################################################################
+#############################################################################
 
-
-
-def index(request):
-    #Return the index.html file
-     return render(request, 'index.html')
 
 
 def logout(request):
-    #Logout
+    #Logs user out and returns index page
     auth.logout(request)
     messages.add_message(request, messages.INFO, 'logout')
     return render(request, 'index.html')
@@ -58,16 +51,21 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def user_account(request):
+    # Create the list of orders containing all order relevant information.
+    # Pass the list of orders to the user account template.
+    # Return user account page.
 
+    # for the data structure explanation refer to Documentation >> Data Structure >> User Accounts.
+    uploadForm = UploadFileForm
     if request.user.is_superuser: 
-        orders = Quote.objects.all().filter(purchased = True, status= "Pending")
+        orders = Quote.objects.all().filter(purchased = True, status= "Pending")#if user is freelancer get only pending orders.
     else: 
         current_user = request.user
         user = current_user.username
-        orders = Quote.objects.all().filter(purchased = True, submitted_by = user)
+        orders = Quote.objects.all().filter(purchased = True, submitted_by = user)# get orders purchased by the user.
 
+    # creates the list of order relevant data for easy manipulation .
     list_of_orderLists = []
-      
     for eachOrder in orders:
             orderList = []
             orderList.append(eachOrder.id)
@@ -91,19 +89,17 @@ def user_account(request):
             orderList.append(list_of_files_n_urls)
 
             list_of_orderLists.append(orderList)
-       
-    context = { "orders": list_of_orderLists, "count" : len(orders) }
-       
+    # return user account page with order information
+    context = { "orders": list_of_orderLists, "count" : len(orders), "uploadForm" : uploadForm }
     return render(request, 'user_account.html', context = context)
 
 
   
  
 def user_login(request):
-    #Return a log in page
+    # Logs user in or returns a log-in page.
     if request.method == "POST":
         loginForm = LoginForm(request.POST)
-
         if loginForm.is_valid():
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
@@ -111,17 +107,14 @@ def user_login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "login success")
-                
                 try:
                   return HttpResponseRedirect(request.GET['next'])
                 except:
-                  return render(request, 'user_account.html')
+                  return render(request, 'user_account.html')#if the destination is not defined return user account page
        
                    
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
-                
-
     else:
        loginForm = LoginForm()
     return render(request, 'login.html', {"loginForm": loginForm})
@@ -130,6 +123,7 @@ def user_login(request):
 
 
 def signup(request):
+    #Creates new user
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():

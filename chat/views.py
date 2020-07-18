@@ -5,17 +5,18 @@ from quote.models import Quote, QuoteFiles
 from django.shortcuts import render, redirect, reverse
 
 def chat(request):
+  #enables chat functionality
+  #takes user input and saves it together with associated data such as relevant file name.
   if request.method == "POST":
-     
       current_user = request.user
       user = current_user.username
-
       form = ChatForm(request.POST)
       if form.is_valid:
            message = request.POST.get('message')
            quote_ref = request.POST.get('quote_ref')
            file_name = request.POST.get('file_name')
            
+           #ckeck if user is freelancer (used in the chat to align messages to left or right)
           
            if request.user.is_superuser:
              superuser = True
@@ -24,17 +25,16 @@ def chat(request):
            else:
              superuser = False
              user = user
-             #change file status to pending
-          
+
            chat_instance = Chat(message = message,
                            quote_ref = quote_ref,
                            file_name = file_name,
                            user = user,
                            superuser = superuser )
                      
-      chat_instance.save()
-
-      quote_file = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)                              
-      quote_file.status = "Pending"
-      quote_file.save() 
+           chat_instance.save()
+      if not request.user.is_superuser:
+         quote_file = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)                              
+         quote_file.status = "Pending"
+         quote_file.save() 
       return redirect(reverse('reupload', args=(quote_ref, file_name)))

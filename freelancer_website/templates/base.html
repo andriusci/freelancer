@@ -28,9 +28,9 @@
 </head>
 <body>
   
-  <header>
+<header>
+      <!--Bootstrap navbar-->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      
           <a class="navbar-brand logo" href="{%url 'index'%}" >Proof<span class="handwrite">reading</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,21 +40,24 @@
                 {%if user.is_authenticated%}
                 {%if not user.is_superuser%}
                 <li class="nav-item">
-                    <a href="{% url 'basket' %}" >basket &nbsp<i class="fas fa-shopping-cart"></i></a>&nbsp
+                    <a href="{% url 'basket' %}" >Basket &nbsp<i class="fas fa-shopping-cart"></i></a>&nbsp
                 </li>
                 {%endif%}
               <li class="nav-item">
-                  <a href="{% url 'user_account' %}" >account &nbsp<i class="fas fa-user"></i></a>&nbsp
+                  <a href="{% url 'user_account' %}" >Account &nbsp<i class="fas fa-user"></i></a>&nbsp
               </li>
               <li class="nav-item">
-                  <a href="{% url 'logout' %}">log out &nbsp<i class="fas fa-sign-out-alt"></i></a>
+                  <a href="{% url 'logout' %}">Log out &nbsp<i class="fas fa-sign-out-alt"></i></a>
               </li>
+              <li class="nav-item">
+                    <a href="#bannerformmodal" data-toggle="modal" data-target="#contactFormModal">Contact <i class="fas fa-envelope"></i></a>
+                </li>
               {%else%}
               <li class="nav-item">
                   {%if request.build_absolute_uri == "http://127.0.0.1:8000/quote/"%}
-                  <a href="{% url 'quote_logged' %}"> log in <i class="fas fa-sign-in-alt"></i></a>
+                  <a href="{% url 'quote_logged' %}"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%else%}
-                  <a href="{% url 'user_account' %}"> log in <i class="fas fa-sign-in-alt"></i></a>
+                  <a href="{% url 'user_account' %}"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%endif%}
               </li>
             {%endif%}
@@ -63,34 +66,62 @@
             {%if not user.is_superuser%}
                {%if user.is_authenticated%}
             <a href="{% url 'quote_logged' %}" id="quote">
-                <button class="general-btn" >Instant Quote</button>
+                <button class="general-btn" id="quote-top-btn" >Instant Quote</button>
             </a>
     
            {%else%}
           <a href="{% url 'quote' %}" id="quote">
-              <button class="general-btn" name="nav-btn">Instant Quote</button>
+              <button class="general-btn" id="quote-top-btn" name="nav-btn">Instant Quote</button>
           </a>
           {%endif%}
+          
            {%endif%} 
     
-            </nav>
-  
-
+      </nav>
 </header>
+<section>
+     <!--Bootstrap Modal Pop Up (contact form)-->
+     <div class="modal fade" id="contactFormModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="contactFormHeader">
+                    <h4>Contact Us</h4>
+                  </div>
 
-<div class="container-fluid main-content">
+                  <button onclick="javascript:window.location.reload()" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="line"><div class="red"></div><div class="green"></div><div class="yellow"></div></div>
+                <div class="modal-body">
+                            <iframe class="contactFormiFrame" src="{% url 'contact' %}">
+                            </iframe>
+                </div>
+                <div class="modal-footer">
+                         <button type="button" onclick="javascript:window.location.reload()" class="btn-close btn btn-default btn-sm" data-dismiss="modal">
+                            Close
+                        </button>
+                </div>
+              </div>
+              
+            </div>
+            </div>
+</section>
+<main>
+  <div class="container-fluid main-content">
     {%block content%}
     {%endblock%}
-</div>
+  </div>
+</main>
 
 
-
-    {%if request.build_absolute_uri == "http://127.0.0.1:8000/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote_logged/" or request.build_absolute_uri == "http://127.0.0.1:8000/logout/"%}
+{%if request.build_absolute_uri == "http://127.0.0.1:8000/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote_logged/" or request.build_absolute_uri == "http://127.0.0.1:8000/logout/"%}
+    <!--script hides quote button in the navbar (to avoid haveing two get quote buttons ect...)-->
     <script>
         document.getElementById("quote").style.display = "none"
-      </script>
-
-    {%endif%}
+     </script>
+{%endif%}
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

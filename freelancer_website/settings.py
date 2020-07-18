@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'checkout',
     'storages',
     'chat',
-    
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -169,7 +169,7 @@ AWS_S3_OBJECT_PARAMETERS =  Metadata={
         'ContentType': 'text/rtf'
     }
 
-
+X_FRAME_OPTIONS = 'ALLOWALL'
 
 
 

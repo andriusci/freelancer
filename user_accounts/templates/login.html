@@ -6,9 +6,7 @@ User log in
 
 {%block content%}
 
-    <h1>user login</h1>
-
-
+<h1>user login</h1>
 <div class="quote_form">
     <form method="POST">
         {% csrf_token %}
@@ -19,16 +17,15 @@ User log in
     </form>
 </div>
 <br>
-    <div class="login-signup">
+
+<div class="login-signup">
           <p>  Don't have an account? 
             {%if request.build_absolute_uri == "http://127.0.0.1:8000/login/?next=/quote_logged/"%}
             <a href="{%url 'signup'%}?next=/quote_logged/"class="signup"> Sign up!</a>
-          
-
             {%else%}
             <a href="{%url 'signup'%}?next=/user_account/" class="signup">Sign up!</a>
             {%endif%}
             </p>
-    </div>
+</div>
 {%endblock%}
 

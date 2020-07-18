@@ -1,45 +1,43 @@
-function quote(){
-    document.getElementById("total").innerHTML = "";
-
-    categoryValue = document.getElementById("category").value;
-    countValue = document.getElementById("count").value;
-
-    if (countValue > 1000) 
-         { price = countValue / 100}
-    else 
-         {price = 10}
-    if (categoryValue != "general") {price = price * 1.1}
-    price = Math.round(price).toFixed(2);
-    discount = (price / 100 * 80).toFixed(2);
-
-
-  
-  
-    category = document.getElementById("category")
- 
-
-    count = document.getElementById("count")
+ /*if form is valid calculate and return a quote
+     else indicate an error*/
+     function quote(){
+          document.getElementById("total").innerHTML = "";
     
-  
-
-    /*form validation */
-    if (countValue <= 0)
-         {count.classList.add('fill-error');}
-    else
-         {count.style.borderColor = "rgb(59, 55, 55)"; }
+          categoryValue = document.getElementById("category").value;
+          countValue = document.getElementById("count").value;
     
-    if (categoryValue == "choose")
-         { category.classList.add('fill-error');}
-    else
-         {category.style.borderColor = "rgb(59, 55, 55)"};
-
-    setTimeout(function() {
-              count.classList.remove('fill-error');
-              category.classList.remove('fill-error')}, 400);
-      if (countValue != 0 && categoryValue != "choose")  
-         {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> €" + price + "</span>"+"<span class=\"handwrite\"> Now only €" + discount + "</span>";}
+          if (countValue > 1000) 
+               { price = countValue / 100}
+          else 
+               {price = 10}
+          if (categoryValue != "general") {price = price * 1.1}
+          price = Math.round(price).toFixed(2);
+          discount = (price / 100 * 80).toFixed(2);
         
-  }
+          category = document.getElementById("category")
+          count = document.getElementById("count")
+          
+        
+    
+          /*form validation */
+          if (countValue <= 0)
+               {count.style.borderColor= "red"; count.classList.add('fill-error');}
+          else
+               {count.style.borderColor = "rgb(59, 55, 55)"; }
+          
+          if (categoryValue == "choose")
+               {category.style.borderColor= "red"; category.classList.add('fill-error');}
+          else
+               {category.style.borderColor = "rgb(59, 55, 55)"};
+    
+          setTimeout(function() {
+                    count.classList.remove('fill-error');
+                    category.classList.remove('fill-error')
+                }, 400);
+            if (countValue != 0 && categoryValue != "choose")  
+               {document.getElementById("total").innerHTML = "Was" + "<span id=\"crossed\"> € " + price + " </span>" + "<span class=\"handwrite\">  &nbspNow only €" + discount + "</span>";}
+              
+        }
 
 
 

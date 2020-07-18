@@ -1,50 +1,46 @@
 {%extends 'base.html'%}
 
 {%block content%}
+
 <h2>{{user}}'s basket</h2>
-
-
-<br>
-<div class="basket_table">
-<table>
-   
-
+<section>
+ <div class="basket_table">
+   <table>  
+        <!--creates a table with basket items-->
         {%for eachItem in list%}
         <tr>
             <td>
-                   # {{eachItem.quote_ref}} 
+              # {{eachItem.quote_ref}} 
             </td>
             <td>
-                     € {{eachItem.price}} 
+              € {{eachItem.price}} 
             </td>
             <td>
-                    <form action="/remove_from_basket/" method="post"  enctype="multipart/form-data">
-                        {% csrf_token %}
+              <form action="/remove_from_basket/" method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
                        
-                        <input type="hidden" value={{eachItem.quote_ref}} name="quote_ref">
-                        <button type="submit" class="remove">
-                            <i class="fas fa-trash-alt"></i> Remove
-                              </button>
-                       
-                    
-                    </form>
+                <input type="hidden" value={{eachItem.quote_ref}} name="quote_ref">
+                <button type="submit" class="remove">
+                  <i class="fas fa-trash-alt"></i> Remove
+                </button>  
+              </form>
             </td>
         </tr>
         {%endfor%}
 
-</table>
-</div>
-
-
-  <br>
-
-<div>
-{%if total != 0%}
-<h3>total: € {{total}}</h3>
+   </table>
+ </div>
+</section>
 <br>
-</div>
-
-<form action="/checkout/" method="post"  enctype="multipart/form-data">
+<section>
+   <div>
+      <!--total price for all basket items (if not zero)-->
+      {%if total != 0%}
+      <h3>total: € {{total}}</h3>
+        <br>
+   </div>
+   <!--Checkout form. if submitted gets basket informatin and sends it to the checkout-->
+   <form action="/checkout/" method="post"  enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" value="{{str_of_refs}}" name="str_of_refs">
     <input type="hidden" value="{{total}}" name="total">
@@ -52,7 +48,8 @@
     <button type="submit" class="checkout-btn">
             Checkout
     </button>
-</form>
+   </form>
+</section>
 {%else%}
  Your basket is empty
 {%endif%}

@@ -4,13 +4,9 @@
 
 {%block content%}
 
-
-
 <h2>Buy for €{{total}}</h2>
 
-{{str_of_refs}}
-{{total}}
-{{total2}}
+<section>
 <form action="{% url 'payment' %}" method="post">
 
     {% csrf_token %}
@@ -21,18 +17,19 @@
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="pk_test_FcTy4xQKWoX1SICMgjWEu6VL00F2f4bL1f"
             data-amount="{{total2}}"
-            data-locale="auto"></script>
+            data-locale="auto">
+    </script>
   </form>
   <button class="pay-btn" onclick="pay()">
     Pay with card
   </button>
+  </section>
   <script>
       stripe_btn = document.getElementsByClassName("stripe-button-el");
       stripe_btn[0].style.display = 'none';
       function pay(){
         stripe_btn[0].click();
       }
-  
   </script>
 
 {%endblock%}
