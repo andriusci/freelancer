@@ -13,7 +13,7 @@ User Registration{% endblock %}
 
 <form method="POST" class="quote_form">
     {% csrf_token %}
-    {{form.as_p}}
+    {{form}}
     <button type="submit">Sign up</button>
 </form>
 

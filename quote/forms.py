@@ -5,7 +5,8 @@ categories  =[("Academic", "Academic"), ("General", "General")]
 
 
 class QuoteUploadForm(forms.Form):
-        #form used in addition to inline html quote form
+        #Form to be used to provide quote for logged users
+        # in addition to inline html quote form inputs
           description = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-input', 'placeholder': 'Description'}), label="")
 
 

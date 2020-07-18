@@ -15,7 +15,6 @@ STATUS_CHOICES = [ ("Deleted", 'Deleted'),
                    ( "Accepted", 'Accepted')]
 
 class Quote(models.Model):
-    #id = models.BigIntegerField(primary_key=True,default=0)
     category = models.CharField(max_length=8,
                                 choices=CATEGORY_CHOICES,
                                 default="ACADEMIC")

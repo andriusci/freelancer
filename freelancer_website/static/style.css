@@ -1,6 +1,10 @@
+
+/*General*/
 body{
     font-family: 'Rajdhani', sans-serif;
 }
+
+
 p > label{display: block}
 
 .contactFormiFrame{
@@ -12,22 +16,24 @@ p > label{display: block}
     font-size: 0.8em; 
     color: #52585b;
 }
-  .navbar{
+
+/*navigation bar*/
+.navbar{
    box-shadow:  0px -10px 50px grey;
    width:100%
   }
+
 .nav-item a{
   color: #393D3F;
   padding-left: 2em;
   padding-right: 1em
-  
 }
-
 
 .nav-item a:hover{
   text-decoration: none;
   font-weight: bold
 }
+
 #navbarNav{
     text-align: right
 }
@@ -55,13 +61,13 @@ p > label{display: block}
     }
   }
 
+/*main page*/
 .main-content{
     margin-top: 2em;
     text-align: center;
 }
-/*index page*/
+
 .headline{
-    
     margin: auto;
     margin-top: 30vh;
     text-align: center;
@@ -69,27 +75,33 @@ p > label{display: block}
     font-size: 1.5em;
 }
 
-
+@media only screen and (min-width: 500px) {
+    .headline{
+        font-size: 2em;
+    }
+    .login-signup{
+        font-size: 1.2em;
+    }
+   }
+ 
+   @media only screen and (min-width: 650px) {
+     .headline{
+         font-size: 2.6em;
+     }
+    }
 
 #crossed{
     text-decoration: line-through;
     text-decoration-color: #E3170A;
     display: inline;
-  
   }
   
-
-
-
 .handwrite{
     font-family: 'Indie Flower', cursive;
     font-size: 1.2em;
     color: #E3170A;
     display: inline-block;
 }
-
-
-
 
 .get-quote-btn, .general-btn, .checkout-btn, .pay-btn, #custom_submit{
     background-color: #393D3F;
@@ -124,15 +136,11 @@ input{
     visibility: hidden
 
 }
-
-
-
-
 .inline{
     display: inline}
 
 
- /*script enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
+ /*modified script enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
 
 .inputfile {
 	width: 0.1px;
@@ -168,7 +176,7 @@ input{
 .inputfile + label * {
 	pointer-events: none;
 }
-/***********************************************************/
+/***********************end of borowed code************************************/
 .custom-upload{
     width:100%
 }
@@ -212,6 +220,7 @@ input{
     font-size: 1em;
    
 }
+
 .reupload_file_input{
     border: none;
     background-color: transparent;
@@ -248,7 +257,6 @@ input{
 .fadein{
     transform: rotate(-5deg);
     display: inline-block;
-    
     animation: fadein ;
     -moz-animation: fadein; /* Firefox */
     -webkit-animation: fadein ; /* Safari and Chrome */
@@ -267,30 +275,8 @@ input{
         opacity:1;
     }
 }
-@-moz-keyframes fadein { /* Firefox */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-o-keyframes fadein { /* Opera */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity: 1;
-    }
-}
+
+
 /*quote page*/
 .login, .signup{
     background-color: #393d3f;
@@ -390,20 +376,7 @@ input{
 }
 /*typewrite end*/
 
-
-
-@keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-
-
-
-
+/*quote error*/
 .fill-error {
     position: relative;
     animation: error .1s linear;
@@ -416,6 +389,7 @@ input{
     100% { left: -6px; }
 }
 
+/*messages*/
 .message{
     text-align: center;
     margin:auto;
@@ -431,19 +405,6 @@ input{
     100% {opacity: 0}
 }
 
-#get-quote-btn{
-    position: relative;
-    top:-70px;
-    animation-name: quote_btn;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards; 
-    animation-delay: 4.3s
-}
-
-@keyframes quote_btn{
-    0%   { top:-70px;}
-    100% {top:-10px;}
-}
 
 
 /*tooltips from https://www.w3schools.com/css/css_tooltip.asp*/
@@ -483,6 +444,23 @@ input{
     100% {opacity: 1;}
 }
 
+/*buttons*/
+#get-quote-btn{
+    position: relative;
+    top:-70px;
+    animation-name: quote_btn;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards; 
+    animation-delay: 4.3s
+}
+
+@keyframes quote_btn{
+    0%   { top:-70px;}
+    100% {top:-10px;}
+}
+
+
+
 #add_to_basket_btn{
     visibility: hidden;
     background-color: transparent;
@@ -500,23 +478,7 @@ input{
 tr:nth-child(even) {background-color: #f2f2f2;}
 
 
-@media only screen and (min-width: 500px) {
-   .headline{
-       font-size: 2em;
-   }
-   .login-signup{
-       font-size: 1.2em;
-   }
-  }
 
-  @media only screen and (min-width: 650px) {
-    .headline{
-        font-size: 2.6em;
-    }
-   }
- .errorlist{
-     color: red
- }
 
  #quote_ref, #price{
     

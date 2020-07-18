@@ -9,7 +9,10 @@ from django.contrib import messages
 from quote.models import Quote, QuoteFiles, Upload
 from django.http import HttpResponseNotFound
 from quote.forms import  UploadFileForm
-#####################################################
+
+
+#-------------------------------------------------------------------------------------------------#
+# create presigned url to be passed to user_account page
 # as shown at https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html
 import logging
 import boto3
@@ -38,7 +41,7 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
 
     # The response contains the presigned URL
     return response
-#############################################################################
+#-----------------------------------------------------------------------------------#
 
 
 
@@ -51,20 +54,21 @@ def logout(request):
 
 @login_required(login_url='/login/')
 def user_account(request):
-    # Create the list of orders containing all order relevant information.
+    # Create the list of orders containing all relevant information.
     # Pass the list of orders to the user account template.
     # Return user account page.
 
-    # for the data structure explanation refer to Documentation >> Data Structure >> User Accounts.
+    # the data structure produced by the code bellow 
+    # explaned at Documentation >> Data Structure >> User Accounts.
     uploadForm = UploadFileForm
     if request.user.is_superuser: 
-        orders = Quote.objects.all().filter(purchased = True, status= "Pending")#if user is freelancer get only pending orders.
+        orders = Quote.objects.all().filter(purchased = True, status= "Pending")#if user is freelancer get pending orders only.
     else: 
         current_user = request.user
         user = current_user.username
-        orders = Quote.objects.all().filter(purchased = True, submitted_by = user)# get orders purchased by the user.
+        orders = Quote.objects.all().filter(purchased = True, submitted_by = user)# if user is not freelaner get orders purchased by the user.
 
-    # creates the list of order relevant data for easy manipulation .
+    # creates the list_of_orderLists that contains all the relevant order information .
     list_of_orderLists = []
     for eachOrder in orders:
             orderList = []
@@ -89,7 +93,7 @@ def user_account(request):
             orderList.append(list_of_files_n_urls)
 
             list_of_orderLists.append(orderList)
-    # return user account page with order information
+    # pass the list_of_orderList to the user_account & return user account page.
     context = { "orders": list_of_orderLists, "count" : len(orders), "uploadForm" : uploadForm }
     return render(request, 'user_account.html', context = context)
 
@@ -111,8 +115,6 @@ def user_login(request):
                   return HttpResponseRedirect(request.GET['next'])
                 except:
                   return render(request, 'user_account.html')#if the destination is not defined return user account page
-       
-                   
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
     else:
@@ -133,10 +135,12 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             messages.success(request, "signup success")
-            return HttpResponseRedirect(request.GET['next'])
+            try:
+                  return HttpResponseRedirect(request.GET['next'])
+            except:
+                  return render(request, 'user_account.html')#if the destination is not defined return user account page
         else:
             form.add_error(None, "Your username or password is incorrect")
-         
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})  
