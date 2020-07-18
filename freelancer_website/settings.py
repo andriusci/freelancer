@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'freelancer_website.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+DATABASES = {'default': dj_database_url.parse("postgres://wqhzdmovofztpf:a674f1243ea73863d9a315639cc634409c8f91353fc794a2268374c602888860@ec2-184-72-235-159.compute-1.amazonaws.com:5432/d4cb8gnavdl0lq")}
 
 #if "DATABASE_URL" in os.environ:
    # DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
