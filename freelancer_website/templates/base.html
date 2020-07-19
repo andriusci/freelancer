@@ -57,13 +57,13 @@
                 <a href="#bannerformmodal" data-toggle="modal" data-target="#contactFormModal">Contact <i class="fas fa-envelope"></i></a>
               </li>
               <li class="nav-item">
-                {%if request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/login/?next=/user_account/" or request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/login/?next=/quote_logged/"%}
+                
                   {%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote/"%}
-                  <a href="{% url 'quote_logged' %}"> Log in <i class="fas fa-sign-in-alt"></i></a>
+                  <a href="{% url 'quote_logged' %}" id="login"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%else%}
-                  <a href="{% url 'user_account' %}"> Log in <i class="fas fa-sign-in-alt"></i></a>
+                  <a href="{% url 'user_account' %}" id="login"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%endif%}
-                {%endif%}
+    
               </li>
             {%endif%}
             </ul>
@@ -122,10 +122,17 @@
 
 
 {%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote_logged/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/logout/"%}
-    <!--script hides quote button in the navbar (to avoid haveing two get quote buttons ect...)-->
+    <!--script hides quote button in the navbar (to avoid having two get quote buttons ect...)-->
     <script>
         document.getElementById("quote").style.display = "none"
      </script>
+{%endif%}
+{%if request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/login/?next=/user_account/" or request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/login/?next=/quote_logged/"%}
+<!--script hides log-in button in the nav bar if current page is login page)-->
+<script>
+  
+    document.getElementById("login").style.display = "none"
+ </script>
 {%endif%}
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
