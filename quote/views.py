@@ -28,7 +28,8 @@ def quote(request):
         return render(request, 'quote.html')
      else:
         return render(request, 'quote_logged.html')
-
+   
+   
 
 @login_required(login_url='/login/')
 #1.return quote page for logged-in users.
