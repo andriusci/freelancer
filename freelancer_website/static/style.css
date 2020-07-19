@@ -88,6 +88,7 @@ p > label{display: block}
      .headline{
          font-size: 2.6em;
      }
+     .basket_table{max-width: 90%;}
     }
 
 #crossed{
