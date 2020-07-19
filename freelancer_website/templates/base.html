@@ -54,6 +54,9 @@
                 </li>
               {%else%}
               <li class="nav-item">
+                <a href="#bannerformmodal" data-toggle="modal" data-target="#contactFormModal">Contact <i class="fas fa-envelope"></i></a>
+            </li>
+              <li class="nav-item">
                   {%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote/"%}
                   <a href="{% url 'quote_logged' %}"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%else%}
