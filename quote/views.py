@@ -24,7 +24,10 @@ from django.contrib import messages
 
 def quote(request):
      #return quote page
-      return redirect(reverse('quote'))
+     if not user.is_authenticated:
+        return render(request, 'quote.html')
+     else:
+        return render(request, 'quote_logged.html')
 
 
 @login_required(login_url='/login/')
