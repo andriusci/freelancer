@@ -115,6 +115,9 @@
 </section>
 <main>
   <div class="container-fluid main-content">
+      {% block page_heading %}
+      {%endblock%}
+      
     {%block content%}
     {%endblock%}
   </div>
