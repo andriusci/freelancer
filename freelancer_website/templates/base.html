@@ -54,7 +54,7 @@
                 </li>
               {%else%}
               <li class="nav-item">
-                  {%if request.build_absolute_uri == "http://127.0.0.1:8000/quote/"%}
+                  {%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote/"%}
                   <a href="{% url 'quote_logged' %}"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%else%}
                   <a href="{% url 'user_account' %}"> Log in <i class="fas fa-sign-in-alt"></i></a>
@@ -116,7 +116,7 @@
 </main>
 
 
-{%if request.build_absolute_uri == "http://127.0.0.1:8000/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote/" or request.build_absolute_uri == "http://127.0.0.1:8000/quote_logged/" or request.build_absolute_uri == "http://127.0.0.1:8000/logout/"%}
+{%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote_logged/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/logout/"%}
     <!--script hides quote button in the navbar (to avoid haveing two get quote buttons ect...)-->
     <script>
         document.getElementById("quote").style.display = "none"

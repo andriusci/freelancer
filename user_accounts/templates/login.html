@@ -20,7 +20,7 @@ User log in
 
 <div class="login-signup">
           <p>  Don't have an account? 
-            {%if request.build_absolute_uri == "http://127.0.0.1:8000/login/?next=/quote_logged/"%}
+            {%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com//login/?next=/quote_logged/"%}
             <a href="{%url 'signup'%}?next=/quote_logged/"class="signup"> Sign up!</a>
             {%else%}
             <a href="{%url 'signup'%}?next=/user_account/" class="signup">Sign up!</a>

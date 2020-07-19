@@ -5,7 +5,7 @@ User Registration{% endblock %}
 {% block content %}
 <p>If you already have an account, you can 
 
-        {%if request.build_absolute_uri != "http://127.0.0.1:8000/registration/?next=/quote_logged/"%}
+        {%if request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/registration/?next=/quote_logged/"%}
         <a href="{%url 'login'%}?next=/user_account/" class="login">Log in!</a>
         {%else%}
         <a href="{%url 'login'%}?next=/quote_logged/" class="login">Log-in!</a>
