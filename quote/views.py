@@ -27,7 +27,10 @@ def quote(request):
      if not request.user.is_authenticated:
         return render(request, 'quote.html')
      else:
-        return render(request, 'quote_logged.html')
+         context = { "price": "",
+                "upload_form": upload_form, 
+                "add_to_basket_form": AddToBasketForm,
+         return render(request, 'quote_logged.html', context)
    
 
 
