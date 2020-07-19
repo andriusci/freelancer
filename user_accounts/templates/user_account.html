@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {% block page_title %}Account Page{% endblock %} 
 {% block page_heading %}
-User account{% endblock %}
+<h3>User account<h3>{% endblock %}
 {% block content%}
 {%if messages%}
    {%for each in messages%}
@@ -14,7 +14,7 @@ User account{% endblock %}
 
 <section>
 <div class="container">
-  <h3>Account page</h3>
+ 
   {%if not user.is_superuser%}
 
 
