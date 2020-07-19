@@ -24,7 +24,7 @@ from django.contrib import messages
 
 def quote(request):
      #return quote page
-      return render(request, 'quote.html')
+      return redirect(reverse('quote'))
 
 
 @login_required(login_url='/login/')
