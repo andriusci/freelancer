@@ -127,7 +127,7 @@
         document.getElementById("quote").style.display = "none"
      </script>
 {%endif%}
-{%if request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/login/?next=/user_account/" or request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/login/?next=/quote_logged/"%}
+{%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/login/?next=/user_account/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/login/?next=/quote_logged/"%}
 <!--script hides log-in button in the nav bar if current page is login page)-->
 <script>
   
