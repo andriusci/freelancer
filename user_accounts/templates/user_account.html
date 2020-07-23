@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {% block page_title %}Account Page{% endblock %} 
 {% block page_heading %}
-<h3>User account<h3>{% endblock %}
+<h3>User account<h3>page{% endblock %}
 {% block content%}
 {%if messages%}
    {%for each in messages%}
@@ -20,15 +20,16 @@
 
   {%if count != 0%}
   <h3>{{user}}'s' orders</h3>
+  {{orders.0.3.1.2}}
   <table >
     <tr>
         <th>Quote #</th>
         <th>Title</th> 
-        <th>Files</th>
+        <th>Dawnload Files</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
-           {%for eachOrder in orders%}
+{%for eachOrder in orders%}
 
  <tr>
    <td>{{eachOrder.0}}</a></td>
@@ -134,7 +135,6 @@
   </tr>
   {%endfor%}
 </table>
-sss{{orders.0.3.1.2}}
    {%else%}
   <h3>You have no orders</h3>
    {%endif%} 

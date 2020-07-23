@@ -49,7 +49,7 @@ def add_to_basket(request):
            quote_ref = data.get('quote_ref')#get quote reference
 
            
-           quote = Quote.objects.get(id=quote_ref)#get the quote instance, for the actions bellow:
+           quote = Quote.objects.get(id=quote_ref)#get quote instance, for the actions bellow:
            
     
            if quote.added_to_basket != True: #check if the quote is not already in the basket.
