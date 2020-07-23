@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% block page_title %}Account Page{% endblock %} 
-
+{% block page_heading %}
+<h3>User account<h3>{% endblock %}
 {% block content%}
 {%if messages%}
    {%for each in messages%}
@@ -18,8 +19,8 @@
 
 
   {%if count != 0%}
-  <h3>{{user}}'s' orders</h3>
-  {{orders.0.3.1.2}}
+  <h3>{{user}}'s' account</h3>
+  sss{{orders.0.3.1.1}}
   <table >
     <tr>
         <th>Quote #</th>
