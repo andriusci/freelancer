@@ -94,7 +94,7 @@ def user_account(request):
 
             list_of_orderLists.append(orderList)
     # pass the list_of_orderList to the user_account & return user account page.
-    context = { "orders": list_of_orderLists, "count" : len(orders), "uploadForm" : uploadForm }
+    context = { "list_of_orderLists": list_of_orderLists, "count" : len(orders), "uploadForm" : uploadForm }
     return render(request, 'user_account.html', context = context)
 
 
