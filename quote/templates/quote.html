@@ -2,7 +2,7 @@
 
 {%block content%}
 
-<section>
+
 <h3><span class="handwrite"> Preliminary </span> Quote:</h3>
 
 <!--preliminary quote form-->
@@ -12,7 +12,7 @@
 
         <!--drop down menu for choosing the category -->
         <select id="category" class="form-input" required>
-           <option value="choose" disabled selected>Choose category</option>
+           <option disabled selected>Choose category</option>
            <option value="academic">Academic</option>
            <option value="general">General</option>
         </select>
@@ -45,17 +45,17 @@
 
 <div id="total">
 </div>
-</section>
+
 
 <br>
 
-<section>
+
 <div class="login-signup">
    <p>
    Please <a href="{% url 'quote_logged' %}" class="login">Login</a> in order to upload your documents for a <span class="handwrite">real </span> quote<br><br>
    Don't have an account? <a href="{%url 'signup'%}?next=/quote_logged/" class="signup">Sign up!</a> 
    </p>
 </div>
-</section>
+
 
 {%endblock%}
