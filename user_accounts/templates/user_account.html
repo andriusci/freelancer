@@ -14,9 +14,9 @@
 
 <div class="container">
 {%if not user.is_superuser%}
-
-{%if count != 0%}
 <h3>{{user}}'s account</h3>
+{%if count != 0%}
+
 
   <table >
     <tr>
@@ -82,6 +82,7 @@
  
 <!--if user is superuser-->
  {%else%}
+ <h3>{{user}}'s account</h3>
  {%if count != 0%}
 <table>
   <tr>
