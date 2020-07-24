@@ -103,8 +103,8 @@ p > label{display: block}
     background-color: #393D3F;
     color: white;
     border: solid #393D3F;
-    height: 3em;
-    width: 8em;
+    max-width: 10em;
+    padding: 0.5em;
     border-radius: 3px;
     padding-left: 2em;
     padding-right: 2em;
