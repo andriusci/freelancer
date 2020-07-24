@@ -20,8 +20,8 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Rajdhani&display=swap" rel="stylesheet">
 
-
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+ <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  <!---link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"-->
   <script src="{% static 'js/js.js' %}"></script>
 
   <title>{%block title%}{%endblock%}</title>
@@ -73,12 +73,11 @@
             <a href="{% url 'quote_logged' %}" id="quote" class="general-btn">
                 Instant Quote
             </a>
-           {%else%}
-          <a href="{% url 'quote' %}" id="quote" class="general-btn"></a> 
-          {%endif%}
-          
+             {%else%}
+          <a href="{% url 'quote' %}" id="quote" class="general-btn">Instant Quote</a> 
+            {%endif%}
            {%endif%} 
-    
+          </div>
       </nav>
 </header>
 

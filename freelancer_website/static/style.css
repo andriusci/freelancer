@@ -108,7 +108,6 @@ p > label{display: block}
     border-radius: 3px;
     padding-left: 2em;
     padding-right: 2em;
-    margin: auto;
     display: block;
 }
 .go_back a:hover{
