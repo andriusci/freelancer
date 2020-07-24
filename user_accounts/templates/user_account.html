@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% block page_title %}Account Page{% endblock %} 
+{% block title %}Account Page{% endblock %} 
 
 {% block content%}
 {%if messages%}
@@ -14,7 +14,6 @@
 <section>
 <div class="container">
 {%if not user.is_superuser%}
-
 
 {%if count != 0%}
 <h3>{{user}}'s account</h3>
