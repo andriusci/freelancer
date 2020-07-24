@@ -29,7 +29,7 @@
          <div class="wrapper">
              <!--drop down menu for choosing the category -->
              <select id="category" class="form-input" required name="category">
-               <option value="choose" disabled selected>Category</option>
+               <option value="" disabled selected>Category</option>
                <option value="academic">Academic</option>
                <option value="general">General</option>
              </select>
@@ -120,10 +120,10 @@
     </form>
    
 {%endif%}
-
+</div>
 
 <script>
-/*if quote reference and price is given by django in <div id="price"> and <div id="price"> 
+/*if quote reference and price is given by django in <div id="price">
 then get values and enable addToBasket button  */
 if (document.getElementById("quote_ref") ){
 
