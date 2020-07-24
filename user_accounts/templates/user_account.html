@@ -11,7 +11,7 @@
 {%endif%}
    
 
-<section>
+
 <div class="container">
 {%if not user.is_superuser%}
 
@@ -66,9 +66,7 @@
     {%endif%}
      {%endfor%}
    </td>
-     <td>
-        
-     </td>
+  
  </tr>
    {%endfor%}
   </table>
@@ -91,7 +89,6 @@
       <th>Title</th> 
       <th>Files</th>
       <th>Status</th>
-      <th></th>
       <th></th>
   </tr>
  {%for eachOrder in list_of_orderLists%}
@@ -136,5 +133,5 @@
    {%endif%} 
 {%endif%}
 </div>
-</section>
+
 {%endblock%}

@@ -6,7 +6,7 @@
 
 <h2>Buy for €{{total}}</h2>
 
-<section>
+
 <form action="{% url 'payment' %}" method="post">
 
     {% csrf_token %}
@@ -23,7 +23,7 @@
   <button class="pay-btn" onclick="pay()">
     Pay with card
   </button>
-  </section>
+  
   <script>
       stripe_btn = document.getElementsByClassName("stripe-button-el");
       stripe_btn[0].style.display = 'none';
