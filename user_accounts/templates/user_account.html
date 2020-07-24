@@ -13,13 +13,12 @@
 
 <section>
 <div class="container">
- 
-  {%if not user.is_superuser%}
+{%if not user.is_superuser%}
 
 
-  {%if count != 0%}
-  <h3>{{user}}'s account</h3>
-  sss{{list_of_orderLists.0.3.0.1}}
+{%if count != 0%}
+<h3>{{user}}'s account</h3>
+
   <table >
     <tr>
         <th>Quote #</th>
@@ -86,8 +85,7 @@
  
 <!--if user is superuser-->
  {%else%}
-    {%if count != 0%}
-
+ {%if count != 0%}
 <table>
   <tr>
       <th>Quote #</th>
@@ -139,10 +137,5 @@
    {%endif%} 
 {%endif%}
 </div>
-  
 </section>
-
-
-
-
 {%endblock%}
