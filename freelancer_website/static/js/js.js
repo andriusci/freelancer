@@ -25,7 +25,7 @@
           else
                {count.style.borderColor = "rgb(59, 55, 55)"; }
           
-          if (categoryValue == "choose")
+          if (categoryValue == "")
                {category.style.borderColor= "red"; category.classList.add('fill-error');}
           else
                {category.style.borderColor = "rgb(59, 55, 55)"};
@@ -39,10 +39,7 @@
               
         }
 
-
-
-
-  
+  /*if form is valid submit the form*/ 
   function quote2(){
        category = document.getElementById("category");
        description = document.getElementById("id_description");
@@ -73,8 +70,14 @@
           file.classList.remove('fill-error')}, 400);
 
 
-       if (categoryValue != "choose" && descriptionValue != "" && fileValue != ""){
+       if (categoryValue != "" && descriptionValue != "" && fileValue != ""){
           document.getElementById("upload").click();
           
        };
   };
+
+  stripe_btn = document.getElementsByClassName("stripe-button-el");
+  stripe_btn[0].style.display = 'none';
+  function pay(){
+    stripe_btn[0].click();
+  }

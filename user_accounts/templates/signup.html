@@ -1,8 +1,8 @@
 {% extends 'base.html' %} 
 {% block title %}Registration Page{% endblock %} 
-{% block page_heading %}
-User Registration{% endblock %} 
+
 {% block content %}
+<h3>User Registration</h3>
 <p>If you already have an account, you can 
 
         {%if request.build_absolute_uri != "https://freelancer-ci.herokuapp.com/registration/?next=/quote_logged/"%}
@@ -10,11 +10,12 @@ User Registration{% endblock %}
         {%else%}
         <a href="{%url 'login'%}?next=/quote_logged/" class="login">Log-in!</a>
         {%endif%}  
+</p>
 
 <form method="POST" class="quote_form">
     {% csrf_token %}
     {{form}}
-    <button type="submit">Sign up</button>
+    <button type="submit" class="general-btn">Sign up</button>
 </form>
 
 

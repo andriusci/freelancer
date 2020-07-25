@@ -30,8 +30,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['freelancer-ci.herokuapp.com',
                 '127.0.0.1' ]
 
-#'freelancer-ci.herokuapp.com'
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -82,19 +80,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'freelancer_website.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-#DATABASES['default'] = dj_database_url.config(default='postgres://wqhzdmovofztpf:a674f1243ea73863d9a315639cc634409c8f91353fc794a2268374c602888860@ec2-184-72-235-159.compute-1.amazonaws.com:5432/d4cb8gnavdl0lq'}
-#if "DATABASE_URL" in os.environ:
+
 DATABASES = {'default': dj_database_url.parse('postgres://wqhzdmovofztpf:a674f1243ea73863d9a315639cc634409c8f91353fc794a2268374c602888860@ec2-184-72-235-159.compute-1.amazonaws.com:5432/d4cb8gnavdl0lq')}
-#else:
-    #print("Database URL not found. Using SQLite instead")
-   # DATABASES = {
-       # 'default': {
-        #    'ENGINE': 'django.db.backends.sqlite3',
-       #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-       # }
-   #  }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -113,8 +101,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -134,7 +124,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 
-
+#Amazon bucket stuff
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
@@ -146,7 +136,7 @@ AWS_LOCATION = 'static'
 
 
 STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-#STATIC_URL = '/static/'
+
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_DEFAULT_ACL = None
@@ -159,16 +149,7 @@ AWS_S3_OBJECT_PARAMETERS =  Metadata={
 
 X_FRAME_OPTIONS = 'ALLOWALL'
 
-
-
-
-
-
-
-
-
-
-
+#enables sending of emails from the website.
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

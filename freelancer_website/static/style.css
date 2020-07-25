@@ -136,7 +136,7 @@ input{
     display: inline}
 
 
- /*modified script enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
+ /*modified css enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
 
 .inputfile {
 	width: 0.1px;
@@ -173,6 +173,7 @@ input{
 	pointer-events: none;
 }
 /***********************end of borowed code************************************/
+
 .custom-upload{
     width:100%
 }
@@ -191,8 +192,8 @@ input{
     margin:auto;
 }
 
-.form-input, .myfieldclass{
-    display: inline-block;
+
+.form-input, #id_email, #id_username, #id_password1,#id_password2 {
     background-color: white;
     font-family: 'Rajdhani', sans-serif;
     width: 80%;
@@ -204,6 +205,12 @@ input{
     padding: 0.1em;
     height: 2em;
 
+}
+.form-input{
+    display: inline-block
+}
+#id_email, #id_username, #id_password1,#id_password2 {
+display:block
 }
 .reupload-form{
     display:inline
@@ -456,7 +463,6 @@ input{
 }
 
 
-
 #add_to_basket_btn{
     visibility: hidden;
     background-color: transparent;
@@ -473,18 +479,16 @@ input{
 }
 tr:nth-child(even) {background-color: #f2f2f2;}
 
-
-
-
  #quote_ref, #price{
-    
     color: transparent;
-  
  }
+
 #quote{
     margin:unset;
     text-align: center;
+    margin-left:2em;
 }
+
 #file_label{
     width: 80%;
     text-align: left;
@@ -508,6 +512,9 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 .chat_text{
     height: 4em;
     width:100%
+}
+#id_message{
+    max-width:77%
 }
 
 .chat_box{

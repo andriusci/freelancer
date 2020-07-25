@@ -68,7 +68,8 @@ def user_account(request):
         user = current_user.username
         orders = Quote.objects.all().filter(purchased = True, submitted_by = user)# if user is not freelaner get orders purchased by the user.
 
-    # creates the list_of_orderLists that contains all the relevant order information .
+    # creates the list_of_orderLists that contains all the relevant order information.
+    # the logic is explained in the documentation. please refer to the Features > Order page section
     list_of_orderLists = []
     for eachOrder in orders:
             orderList = []
