@@ -48,6 +48,9 @@ p > label{display: block}
     text-decoration: none;
     font-weight: bolder
 }
+
+
+
 .fa-shopping-basket{
     font-size: 2em;
     color: #6c757d;
@@ -98,6 +101,22 @@ p > label{display: block}
     color: #E3170A;
     display: inline-block;
 }
+/*    buttons     */
+#add_to_basket_btn{
+    visibility: hidden;
+    background-color: transparent;
+    border: solid 2px #393d3f;
+    color: #393d3f;
+    height: 3em;
+    border-radius: 3px;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+#add_to_basket_btn:hover, #custom_upload_name:hover{
+    color:white;
+    background-color: #393d3f;
+}
+
 
 .get-quote-btn, .general-btn, .checkout-btn, .pay-btn, #custom_submit{
     background-color: #393D3F;
@@ -110,6 +129,7 @@ p > label{display: block}
     display: block;
     margin: auto;
 }
+
 .go_back a:hover{
    text-decoration: none;
    font-weight: bolder
@@ -125,6 +145,8 @@ p > label{display: block}
     margin: auto;
 
 }
+
+
 input{
     margin: 1em;
 }
@@ -136,7 +158,7 @@ input{
     display: inline}
 
 
- /*modified css enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
+ /*modified cs, enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
 
 .inputfile {
 	width: 0.1px;
@@ -163,8 +185,6 @@ input{
 .inputfile + label {
 	cursor: pointer; /* "hand" cursor */
 }
-
-
 .inputfile:focus + label {
 	outline: 1px dotted #000;
 	outline: -webkit-focus-ring-color auto 5px;
@@ -172,7 +192,7 @@ input{
 .inputfile + label * {
 	pointer-events: none;
 }
-/***********************end of borowed code************************************/
+/***********************end of borrowed code************************************/
 
 .custom-upload{
     width:100%
@@ -185,7 +205,7 @@ input{
 }
 
 
-  
+  /*forms*/
 .quote_form, .reset-form{
     text-align: center;
     max-width: 20em;
@@ -216,12 +236,10 @@ display:block
     display:inline
 }
 .form-reupload{
-
     border: none;
     background-color: transparent;
     height: fit-content;
     font-size: 1em;
-   
 }
 
 .reupload_file_input{
@@ -250,10 +268,6 @@ display:block
     font-family: 'Rajdhani', sans-serif;
     font-weight: bold;
   }
-
-
-
-
 
 
 /*fade in */
@@ -447,7 +461,7 @@ display:block
     100% {opacity: 1;}
 }
 
-/*buttons*/
+/*quote button animation*/
 #get-quote-btn{
     position: relative;
     top:-70px;
@@ -463,21 +477,9 @@ display:block
 }
 
 
-#add_to_basket_btn{
-    visibility: hidden;
-    background-color: transparent;
-    border: solid 2px #393d3f;
-    color: #393d3f;
-    height: 3em;
-    border-radius: 3px;
-    padding-left: 2em;
-    padding-right: 2em;
-}
-#add_to_basket_btn:hover, #custom_upload_name:hover{
-    color:white;
-    background-color: #393d3f;
-}
-tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;}
 
  #quote_ref, #price{
     color: transparent;
@@ -501,20 +503,21 @@ tr:nth-child(even) {background-color: #f2f2f2;}
     visibility: hidden;
     width:1px;
 }
+
+/*chat*/
 #id_message{
-    width: 80%;
+    width: 77%;
     float: left;
 }
 #custom_submit{
     display: none;
+    position: relative;
+    top: -79px;
 }
 
 .chat_text{
     height: 4em;
     width:100%
-}
-#id_message{
-    max-width:77%
 }
 
 .chat_box{
@@ -542,6 +545,15 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 .left, .right{
     width:100%
 }
+#send{
+    display: inherit;
+    height: 4em;
+    width: 20%;
+    background-color:  #393d3f;
+    color: white;
+    border: none;
+}
+
 
 .wrapper{
     width:100%
@@ -563,17 +575,12 @@ a:hover{
     margin:1em;
     font-weight: bolder;
 }
-#send{
-    display: inherit;
-    height: 4em;
-    width: 20%;
-    background-color:  #393d3f;
-    color: white;
-    border: none;
-}
+
 .time{
     font-weight: normal
 }
+
+/*basket*/
 .remove{
     background-color: transparent;
     border: none;
@@ -584,18 +591,12 @@ a:hover{
     margin: auto;
     max-width: 30%
 }
-
-
 table{
     margin:auto;
     width: 100%
 }
+ 
 
-
-#custom_submit{
-    position: relative;
-    top: -79px;
-}
 .reupload_form{
     max-height: 4em
 }
@@ -611,14 +612,11 @@ table{
     margin: auto;
     font-size: 1.5em;
     border: solid 1px #dee2e6;
-  
     border-radius: 3px;
     padding: 0.1em;
     height: 2em;
 }
- #whatever{
-    display: inline
-}
+
 label{
     font-weight: bold
 }
