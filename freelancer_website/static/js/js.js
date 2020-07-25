@@ -76,8 +76,5 @@
        };
   };
 
-  stripe_btn = document.getElementsByClassName("stripe-button-el");
-  stripe_btn[0].style.display = 'none';
-  function pay(){
-    stripe_btn[0].click();
-  }
+
+  
