@@ -52,7 +52,7 @@
        descriptionValue = document.getElementById("id_description").value;
        fileValue = document.getElementById("file").value;
 
-       if (categoryValue == "choose")
+       if (categoryValue == "")
             { category.classList.add('fill-error'); category.style.borderColor = "red"}
           else
             {category.style.borderColor = "rgb(59, 55, 55)"};
