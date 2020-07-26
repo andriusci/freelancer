@@ -115,7 +115,7 @@ def user_login(request):
                 try:
                   return HttpResponseRedirect(request.GET['next'])
                 except:
-                  return render(request, 'user_account.html')#if the destination is not defined return user account page
+                  return redirect(reverse('user_account'))#if the destination is not defined return user account page
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
     else:
