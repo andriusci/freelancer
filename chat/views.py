@@ -68,9 +68,9 @@ def chat_send(request):
          quote_file.save() 
 
 
-       chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
-       context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
-       return render(request, 'chat.html', context = context)
+      chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
+      context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
+      return render(request, 'chat.html', context = context)
 
   else:
     html = "<html><body><h1>Nothing here:)</h1></html>" 
