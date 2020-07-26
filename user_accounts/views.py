@@ -39,7 +39,7 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
         logging.error(e)
         return None
 
-    # The response contains the presigned URL
+    # The response contains a presigned URL
     return response
 #-----------------------------------------------------------------------------------#
 
@@ -119,7 +119,7 @@ def user_login(request):
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
     else:
-       if request.user.is_authenticated():
+       if request.user.is_authenticated:
           return render(request, 'index.html')
        else:
           loginForm = LoginForm()
