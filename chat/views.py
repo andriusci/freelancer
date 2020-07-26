@@ -8,8 +8,7 @@ from quote.forms import  QuoteUploadForm, UploadFileForm
 
 @login_required(login_url='/login/')
 def chat(request, quote_ref, file_name):
-  #enables chat functionality
-  #takes user input and saves it together with associated data such as relevant file name.
+
   current_user = request.user
   user = current_user.username
 
@@ -56,10 +55,10 @@ def chat(request, quote_ref, file_name):
   else:
      try:
         quote_file = QuoteFiles.objects.get(file_name = file_name, quote_ref = quote_ref, user = user)
-    except:
+     except:
         html = "<html><body> Nice try .</body></html>" 
         return HttpResponse(html)
-    else:
+     else:
         chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
         context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
         return render(request, 'chat.html', context = context)
