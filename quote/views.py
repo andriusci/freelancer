@@ -126,14 +126,17 @@ def reupload(request, quote_ref, file_name):
 
  
     quote = Quote.objects.get(id = quote_ref) 
-    if quote.submitted_by == user:
-            chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name) 
-            context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }   
-    else:
-              html = "<html><body> The page you are trying to access does not exist.</body></html>" 
-              return HttpResponse(html)
+    quote_file = QuoteFiles.objects.get(file_name = file_name, quote_ref = quote_ref, user = user)
+    if quote_file:
+        context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
+    #if quote.submitted_by == user:
+      #   chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name) 
+       #  context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }   
+    #else:
+      #   html = "<html><body> The page you are trying to access does not exist.</body></html>" 
+       #  return HttpResponse(html)
    
-   # context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
+    context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
     if request.method =="POST":
       if request.user.is_superuser:
        form = UploadFileForm(request.POST, request.FILES)

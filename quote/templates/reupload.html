@@ -85,6 +85,8 @@
 <script>
   document.addEventListener("DOMContentLoaded", function(){
     show_date();
+    /*input information into the hidden chat fields 
+    to be submitted by the chat() function in the back end code*/
     document.getElementById("id_quote_ref").value = '{{quote_ref}}';
     document.getElementById("id_file_name").value = '{{file_name}}';
     /*chat area scroll to the bottom on load*/
@@ -116,7 +118,7 @@
 }
  
 
-/*if the chat message is sent the same day do not show the date*/
+/*if the chat message is sent the same day do not show the date between the messages*/
   function show_date() {
     var list = document.getElementsByClassName("date_time");
       for (var i = 0; i < list.length; i++) {
