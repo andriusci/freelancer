@@ -3,6 +3,7 @@ from chat.models import Chat
 from chat.forms import ChatForm
 from quote.models import Quote, QuoteFiles
 from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponse
 
 def chat(request):
   #enables chat functionality
@@ -38,3 +39,7 @@ def chat(request):
          quote_file.status = "Pending"
          quote_file.save() 
       return redirect(reverse('reupload', args=(quote_ref, file_name)))
+
+  else:
+     html = "<html><body> The page you are trying to access does not exist.</body></html>" 
+     return HttpResponse(html)

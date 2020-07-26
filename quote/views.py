@@ -112,15 +112,18 @@ def quote_logged(request):
 def reupload(request, quote_ref, file_name):
     current_user = request.user
     user = current_user.username
+
     uploadForm = UploadFileForm
     chatForm = ChatForm
+
     if request.user.is_superuser:
         quote = Quote.objects.get(id = quote_ref)
         user = quote.submitted_by
-    chat = Chat.objects.all().filter(user = user, 
-                                     quote_ref = quote_ref, 
-                                     file_name = file_name)                        
-    context = {"quote_ref": quote_ref,"file_name": file_name, "file": "nothing", "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
+    #get the chat related to the file that belongs to the right user.
+    #so that any user could not get other users chat messages by entering url with values manually
+    chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)                        
+   
+    context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
     if request.method =="POST":
       if request.user.is_superuser:
        form = UploadFileForm(request.POST, request.FILES)
@@ -138,8 +141,6 @@ def reupload(request, quote_ref, file_name):
        context = {"quote_ref": quote_ref,"file_name": file_name, "file": files, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
        messages.add_message(request, messages.INFO, "upload", extra_tags='upload')
       
-   
-
     
     return render(request, 'reupload.html', context = context)
 
@@ -152,10 +153,8 @@ def accept(request, quote_ref, file_name):
     if user == quote_file.user:
        quote_file.status = "Accepted"
        quote_file.save()
-
        messages.add_message(request, messages.INFO, "accepted", extra_tags='accepted')
 
-        
     return redirect(reverse('user_account'))
 
 def accept_quote(request, quote_ref):
