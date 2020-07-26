@@ -35,6 +35,8 @@ def chat(request, quote_ref, file_name):
 
 def chat_send(request):
   if request.method == "POST":
+      current_user = request.user
+      user = current_user.username
       form = ChatForm(request.POST)
       if form.is_valid:
            message = request.POST.get('message')
