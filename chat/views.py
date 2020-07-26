@@ -69,7 +69,9 @@ def chat_send(request):
          quote_file = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)                              
          quote_file.status = "Pending"
          quote_file.save() 
-
+      else:
+         quote = Quote.objects.get(id = quote_ref)
+         user = quote.submitted_by
 
       chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
       context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
