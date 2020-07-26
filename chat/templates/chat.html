@@ -68,7 +68,7 @@
    {%endfor%}
    </div>
    <div class="chat">
-     <form action="/chat/{{quote_ref}}/{{file_name}}" method="POST">
+     <form action="/chat/" method="POST">
        {%csrf_token %}
        {{chatForm}}
        {%if user.is_superuser%}
