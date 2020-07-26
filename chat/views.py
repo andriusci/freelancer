@@ -35,6 +35,9 @@ def chat(request, quote_ref, file_name):
 
 def chat_send(request):
   if request.method == "POST":
+      uploadForm = UploadFileForm
+      chatForm = ChatForm
+
       current_user = request.user
       user = current_user.username
       form = ChatForm(request.POST)
