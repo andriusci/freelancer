@@ -119,11 +119,8 @@ def user_login(request):
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
     else:
-       if request.user.is_authenticated:
-          return render(request, 'index.html')
-       else:
-          loginForm = LoginForm()
-          return render(request, 'login.html', {"loginForm": loginForm})
+          return redirect(reverse('user_account'))
+       
 
 
 
