@@ -127,6 +127,7 @@ def reupload(request, quote_ref, file_name):
         return HttpResponse(html)
     else:
         chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
+        
         context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
   
     if request.method =="POST":
@@ -143,11 +144,13 @@ def reupload(request, quote_ref, file_name):
        
        chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
        
-       context = {"quote_ref": quote_ref,"file_name": file_name, "file": files, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
+       context = {"quote_ref": quote_ref,"file_name": file_name, 
+                  "file": files, "uploadForm": uploadForm, 
+                  "chatForm": chatForm, "chat":chat }
        messages.add_message(request, messages.INFO, "upload", extra_tags='upload')
       
     
-    return render(request, 'reupload.html', context = context)
+    return render(request, 'chat.html', context = context)
 
 @login_required(login_url='/login/')
 def accept(request, quote_ref, file_name):
