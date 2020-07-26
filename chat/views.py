@@ -4,13 +4,24 @@ from chat.forms import ChatForm
 from quote.models import Quote, QuoteFiles
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
+from quote.forms import  QuoteUploadForm, UploadFileForm
 
+@login_required(login_url='/login/')
 def chat(request, quote_ref, file_name):
   #enables chat functionality
   #takes user input and saves it together with associated data such as relevant file name.
+  current_user = request.user
+  user = current_user.username
+
+  uploadForm = UploadFileForm
+  chatForm = ChatForm
+
+  if request.user.is_superuser:
+        quote = Quote.objects.get(id = quote_ref)
+        user = quote.submitted_by
+
   if request.method == "POST":
-      current_user = request.user
-      user = current_user.username
+      
       form = ChatForm(request.POST)
       if form.is_valid:
            message = request.POST.get('message')
@@ -34,6 +45,8 @@ def chat(request, quote_ref, file_name):
                            superuser = superuser )
                      
            chat_instance.save()
+
+
       if not request.user.is_superuser:
          quote_file = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)                              
          quote_file.status = "Pending"
@@ -41,5 +54,12 @@ def chat(request, quote_ref, file_name):
       return redirect(reverse('chat', args=(quote_ref, file_name)))
 
   else:
-     html = "<html><body> The page you are trying to access does not exist.</body></html>" 
-     return HttpResponse(html)
+     try:
+        quote_file = QuoteFiles.objects.get(file_name = file_name, quote_ref = quote_ref, user = user)
+    except:
+        html = "<html><body> Nice try .</body></html>" 
+        return HttpResponse(html)
+    else:
+        chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
+        context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
+        return render(request, 'chat.html', context = context)
