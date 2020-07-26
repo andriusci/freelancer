@@ -5,7 +5,7 @@ from quote.models import Quote, QuoteFiles
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 
-def chat(request):
+def chat(request, quote_ref, file_name):
   #enables chat functionality
   #takes user input and saves it together with associated data such as relevant file name.
   if request.method == "POST":
