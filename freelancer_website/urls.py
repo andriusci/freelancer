@@ -21,7 +21,7 @@ from contact.views import contact
 from quote.views import quote, quote_logged, reupload, accept, accept_quote
 from basket.views import basket, add_to_basket, remove_from_basket
 from checkout.views import checkout, payment
-from chat.views import chat
+from chat.views import chat, chat_send
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url, include
 
@@ -41,7 +41,7 @@ urlpatterns = [
     path('checkout/', checkout, name="checkout"),
     path('payment/', payment, name="payment"),
     path('reupload/<int:quote_ref>/<str:file_name>/', reupload, name="reupload"),
-    path('chat_send/', chat, name="chat"),
+    path('chat_send/', chat_send, name="chat_end"),
     path('chat/<int:quote_ref>/<str:file_name>/', chat, name="chat"),
     path('accept/<int:quote_ref>/<str:file_name>', accept, name="accept"),
     path('accept_quote/<int:quote_ref>', accept_quote, name="accept_quote"),
