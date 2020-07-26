@@ -63,3 +63,6 @@ def payment(request):
           
         context = {"token" : total, "str_of_refs": str_of_refs}
         return render(request, 'checkout_success.html', context = context)
+       else:
+        html = "<html><body> The page you are trying to access does not exist.</body></html>" 
+        return HttpResponse(html)
