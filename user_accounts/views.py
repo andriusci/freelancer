@@ -12,7 +12,7 @@ from quote.forms import  UploadFileForm
 
 
 #-------------------------------------------------------------------------------------------------#
-# create presigned url to be passed to user_account page
+# creates a presigned url to be passed to user_account page
 # as shown at https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html
 import logging
 import boto3

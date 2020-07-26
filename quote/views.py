@@ -166,5 +166,5 @@ def accept_quote(request, quote_ref):
       messages.add_message(request, messages.INFO, "quote_accepted")
       return redirect(reverse('user_account'))
    else:
-      html = "<html><body><h1>Nothing here:)</h1></html>" % now
+      html = "<html><body><h1>Nothing here:)</h1></html>" 
       return HttpResponse(html)

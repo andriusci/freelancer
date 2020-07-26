@@ -1,4 +1,12 @@
-{% extends 'base.html'%}{%block title%} Document upload{%endblock%}
+{% extends 'base.html'%}
+
+{%block title%}
+   {%if user.is_superuser%}
+     Chat & Document upload
+     {%else%}
+     Chat & request a change
+    {%endif%}
+     {%endblock%}
 
 {% block content%}
 
@@ -75,8 +83,6 @@
 
 
 <script>
-
-
   document.addEventListener("DOMContentLoaded", function(){
     show_date();
     document.getElementById("id_quote_ref").value = '{{quote_ref}}';
@@ -85,6 +91,8 @@
     div = document.getElementById("chat_area")
     div.scrollTop = div.scrollHeight
 });
+
+/*chech if the file to be uploaded matches the original file name if not show error*/
  function customUpload() {
    document.getElementById('name_match').style.display = "None";
    original = document.getElementById('original_name').innerText;
@@ -97,26 +105,22 @@
       document.getElementById('custom_submit').style.display = "inline-block"}
    else{
     document.getElementById('name_match').style.display = "block";
-   
     document.getElementById('custom_submit').style.display = "none"}
-    show_date();
+    
    }
    
-   function chatScroll(){
+   /*keep the chat scrolled tothe bottom*/
+ function chatScroll(){
       var element = document.getElementById("chat_area");
       element.scrollTop = element.scrollHeight;
 }
  
 
-
+/*if the chat message is sent the same day do not show the date*/
   function show_date() {
-    
-    var list= document.getElementsByClassName("date_time");
-    
+    var list = document.getElementsByClassName("date_time");
       for (var i = 0; i < list.length; i++) {
-      
       if (i != 0){
-      
         if (list[i].innerText == list[i-1].innerText){
           list[i].style.display = "None"}
         else { list[i].style.display = "inline-block" }}
