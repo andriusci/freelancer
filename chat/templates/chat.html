@@ -68,7 +68,7 @@
    {%endfor%}
    </div>
    <div class="chat">
-     <form action="/chat/" method="POST">
+     <form action="/chat_send/" method="POST">
        {%csrf_token %}
        {{chatForm}}
        {%if user.is_superuser%}
