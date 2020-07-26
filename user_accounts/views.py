@@ -119,7 +119,7 @@ def user_login(request):
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
     else:
-          return redirect(reverse('user_account'))
+          return render(request, 'user_account.html')
        
 
 
