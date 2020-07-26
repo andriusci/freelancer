@@ -120,17 +120,13 @@ def reupload(request, quote_ref, file_name):
         quote = Quote.objects.get(id = quote_ref)
         user = quote.submitted_by
     
-    
-    chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)                        
-   
-
- 
     try:
         quote_file = QuoteFiles.objects.get(file_name = file_name, quote_ref = quote_ref, user = user)
     except:
-        html = "<html><body> The page you are trying to access does not exist.</body></html>" 
+        html = "<html><body> Nice try .</body></html>" 
         return HttpResponse(html)
     else:
+        chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
         context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
   
     if request.method =="POST":

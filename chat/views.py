@@ -38,7 +38,7 @@ def chat(request):
          quote_file = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)                              
          quote_file.status = "Pending"
          quote_file.save() 
-      return redirect(reverse('reupload', args=(quote_ref, file_name)))
+      return redirect(reverse('chat', args=(quote_ref, file_name)))
 
   else:
      html = "<html><body> The page you are trying to access does not exist.</body></html>" 

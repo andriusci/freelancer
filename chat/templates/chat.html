@@ -1,0 +1,133 @@
+{% extends 'base.html'%}
+
+{%block title%}
+   {%if user.is_superuser%}
+     Chat & Document upload
+     {%else%}
+     Chat & request a change
+    {%endif%}
+     {%endblock%}
+
+{% block content%}
+
+
+{%if user.is_superuser%}
+<div>
+<form action="/reupload/{{quote_ref}}/{{file_name}}/" method="post"  enctype="multipart/form-data" class="reupload_form">
+      {%csrf_token %}
+    
+    <label>
+        <span id="custom_upload_name" class="form-input">Select file</span>
+        {{uploadForm}}
+      </label>
+      <input type="submit" id="custom_submit" >
+</form>
+</div>
+{%endif%}
+
+<div class="message" id="name_match" style="display: none">
+   Your chosen file name does not match the original file name.
+</div>
+
+ {%if messages%}
+   {%for message in messages%}
+     {%if "upload" in message.tags%}
+     <div class="message">
+        You have succesfully uploaded {{file_name}}
+     </div>
+     {%endif%}
+   {%endfor%}
+ {%endif%}
+ 
+ <div class="chat_box">
+   <div class="chat_header">
+     <h3> <span class="go_back">
+             <a class="handwrite" href="{% url 'user_account' %}"> << Go back</a> 
+        </span>
+      Chat regarding <span id="original_name">{{file_name}}</span> :
+    </h3>
+     
+   </div>
+   <div class="chat_area" id="chat_area">
+
+
+
+   {%for each in chat%}
+   
+      <div class="date_time">{{each.time.date}}</div>
+     
+     
+    
+     {%if each.superuser == True%}
+       <div class="left"><span class="left_span">{{each.message}} <span class="time">{{each.time.time}}</span></span></div>
+     {%else%}
+       <div class="right"> <span class="right_span">{{each.message}} <span class="time">{{each.time.time}}</span></span></div>
+
+     {%endif%}
+     <br>
+   {%endfor%}
+   </div>
+   <div class="chat">
+     <form action="/chat/" method="POST">
+       {%csrf_token %}
+       {{chatForm}}
+       {%if user.is_superuser%}
+       <input type="submit" value="Send" id="send">
+       {%else%}
+       <input type="submit" value="Request" id="send">
+       {%endif%}
+   </form>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    show_date();
+    /*input information into the hidden chat fields 
+    to be submitted by the chat() function in the back end code*/
+    document.getElementById("id_quote_ref").value = '{{quote_ref}}';
+    document.getElementById("id_file_name").value = '{{file_name}}';
+    /*chat area scroll to the bottom on load*/
+    div = document.getElementById("chat_area")
+    div.scrollTop = div.scrollHeight
+});
+
+/*chech if the file to be uploaded matches the original file name if not show error*/
+ function customUpload() {
+   document.getElementById('name_match').style.display = "None";
+   original = document.getElementById('original_name').innerText;
+   file_name = document.getElementById('id_files').value;
+   file_name = file_name.split("\\").pop();
+    
+
+   if(original == file_name){
+      document.getElementById('custom_upload_name').innerText = file_name
+      document.getElementById('custom_submit').style.display = "inline-block"}
+   else{
+    document.getElementById('name_match').style.display = "block";
+    document.getElementById('custom_submit').style.display = "none"}
+    
+   }
+   
+   /*keep the chat scrolled tothe bottom*/
+ function chatScroll(){
+      var element = document.getElementById("chat_area");
+      element.scrollTop = element.scrollHeight;
+}
+ 
+
+/*if the chat message is sent the same day do not show the date between the messages*/
+  function show_date() {
+    var list = document.getElementsByClassName("date_time");
+      for (var i = 0; i < list.length; i++) {
+      if (i != 0){
+        if (list[i].innerText == list[i-1].innerText){
+          list[i].style.display = "None"}
+        else { list[i].style.display = "inline-block" }}
+    }
+    }
+
+</script>
+
+{%endblock%}
