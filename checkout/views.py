@@ -3,7 +3,7 @@ from basket.models import AddToBasket
 import stripe
 from quote.models import Quote
 import os
-
+from django.http import HttpResponse
 stripe.api_key = os.getenv('STRIPE_SECRET')
 
 
