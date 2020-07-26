@@ -12,7 +12,6 @@ from quote.models import Upload, QuoteFiles, Quote
 from basket.forms import AddToBasketForm
 from django.core.files import File 
 from datetime import datetime
-
 from django.contrib import messages
 
 
@@ -110,6 +109,7 @@ def quote_logged(request):
 
 @login_required(login_url='/login/')
 def reupload(request, quote_ref, file_name):
+   #returns the chat page
     current_user = request.user
     user = current_user.username
 
@@ -119,11 +119,21 @@ def reupload(request, quote_ref, file_name):
     if request.user.is_superuser:
         quote = Quote.objects.get(id = quote_ref)
         user = quote.submitted_by
-    #get the chat related to the file that belongs to the right user.
-    #so that any user could not get other users chat messages by entering url with values manually
+    
+    
     chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)                        
    
-    context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
+
+ 
+    quote = Quote.objects.get(id = quote_ref) 
+         if quote.submitted_by == user:
+            chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name) 
+            context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }   
+         else:
+              html = "<html><body> The page you are trying to access does not exist.</body></html>" 
+              return HttpResponse(html)
+   
+   # context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
     if request.method =="POST":
       if request.user.is_superuser:
        form = UploadFileForm(request.POST, request.FILES)
