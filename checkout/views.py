@@ -21,6 +21,9 @@ def checkout(request):
         
         context = {"str_of_refs":str_of_refs, "total" : total, "total2": total2}
         return render(request, 'checkout.html',context = context)
+    else:
+        html = "<html><body> The page you are trying to access does not exist.</body></html>" 
+        return HttpResponse(html)
    
 def payment(request):
        if request.method == 'POST':
