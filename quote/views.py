@@ -109,33 +109,19 @@ def quote_logged(request):
 
 @login_required(login_url='/login/')
 def reupload(request, quote_ref, file_name):
-   #returns the chat page
-    current_user = request.user
-    user = current_user.username
 
-    uploadForm = UploadFileForm
-    chatForm = ChatForm
-
-    if request.user.is_superuser:
-        quote = Quote.objects.get(id = quote_ref)
-        user = quote.submitted_by
-    
-    try:
-        quote_file = QuoteFiles.objects.get(file_name = file_name, quote_ref = quote_ref, user = user)
-    except:
-        html = "<html><body> Nice try .</body></html>" 
-        return HttpResponse(html)
-    else:
-        chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name)
-        
-        context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }
-  
     if request.method =="POST":
       if request.user.is_superuser:
+
+       quote = Quote.objects.get(id = quote_ref)
+       user = quote.submitted_by
+       uploadForm = UploadFileForm
+       chatForm = ChatForm
+
        form = UploadFileForm(request.POST, request.FILES)
        files = request.FILES.get('files')
-       status = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)
-       status.status = "Ready"
+       document = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)
+       document.status = "Ready"
        status.save()
        fileName = str(quote_ref) +"_"+ files.name
        files.name = fileName
@@ -150,22 +136,27 @@ def reupload(request, quote_ref, file_name):
        messages.add_message(request, messages.INFO, "upload", extra_tags='upload')
       
     
-    return render(request, 'chat.html', context = context)
+       return render(request, 'chat.html', context = context)
+    else:
+      html = "<html><body><h1>The page does not exist</h1></html>" 
+      return HttpResponse(html)
 
 @login_required(login_url='/login/')
 def accept(request, quote_ref, file_name):
+   #enables the users to accept file
     current_user = request.user
     user = current_user.username
     quote_file = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)
-    #check if request is from authorised user
+    #check if request is from authorised user and then change the file status to accepted.
     if user == quote_file.user:
        quote_file.status = "Accepted"
        quote_file.save()
        messages.add_message(request, messages.INFO, "accepted", extra_tags='accepted')
-
     return redirect(reverse('user_account'))
 
 def accept_quote(request, quote_ref):
+   #Allows the freelancer to change status of a quote to "accepted" (mark the job done) 
+   # and in turn remove the item from the list of job. 
    if request.user.is_superuser:
       quote = Quote.objects.get(id = quote_ref)
       quote.status = "Accepted"
@@ -173,5 +164,5 @@ def accept_quote(request, quote_ref):
       messages.add_message(request, messages.INFO, "quote_accepted")
       return redirect(reverse('user_account'))
    else:
-      html = "<html><body><h1>Nothing here:)</h1></html>" 
+      html = "<html><body><h1>The page you are looking for does not exist</h1></html>" 
       return HttpResponse(html)
