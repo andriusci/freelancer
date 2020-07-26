@@ -126,10 +126,10 @@ def reupload(request, quote_ref, file_name):
 
  
     quote = Quote.objects.get(id = quote_ref) 
-         if quote.submitted_by == user:
+    if quote.submitted_by == user:
             chat = Chat.objects.all().filter(user = user, quote_ref = quote_ref, file_name = file_name) 
             context = {"quote_ref": quote_ref,"file_name": file_name, "uploadForm": uploadForm, "chatForm": chatForm, "chat":chat }   
-         else:
+    else:
               html = "<html><body> The page you are trying to access does not exist.</body></html>" 
               return HttpResponse(html)
    
