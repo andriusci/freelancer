@@ -96,6 +96,7 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
  
  If a change is requested, the customer is redirected to the chat page where a request can be made by sending a message. 
  
+ 
 * **Chat page.** While a file is pending the chat page enables communication between the freelancer and a client. There is also an upload form available to the freelancer, that if submitted, not only uploads a document but also changes the file status from Pending to Ready. Once the file status turns to Ready the chat also acts as a request change tool. If a message is sent by a customer it is considered as a request, the file status is changed back to Pending and the freelancer gets notified.
 
 * **Contact form**. Allows users to contact the freelancer by having them fill out three compulsory fields, namely, Name, Email and Message. For the ease of access the form is embedded in the Bootstrap pop-up dialog. If submitted the form sends an email to the freelancer.
@@ -128,6 +129,11 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
    
 **Amazon Web Services** Used for static files, documents and posgres database.
 
-#### Database stucture
+#### Data stuctures.
 
-[Figure 6](freelancer_website/static/img/databasee.png){:target="_blank" rel="noopener"} shows the application's underlying database structure.
+
+* [Figure 7](freelancer_website/static/img/databasee.png)The application's underlying database structure is shown in [Figure 6](freelancer_website/static/img/databasee.png)
+
+* The diagram in ![Figure 7](freelancer_website/static/img/datadiagram.png) shows the  structure of [ list_of_orderLists ], that is created by the user_account() function and then passed to the user_account template.
+
+
