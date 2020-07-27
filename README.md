@@ -125,3 +125,9 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
   
  #### Libraries:
    * **JQuery**. Enables Bootstrap functionality.
+   
+**Amazon Web Services** Used for static files, documents and posgres database.
+
+#### Database stucture
+
+![Database](freelancer_website/static/img/databasee.png)
