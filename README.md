@@ -86,6 +86,6 @@ This section describes features that satisfy the requirements for the current ve
 
 * **My account**. The hearth of the project where all the magic happens.
 
-The documents, if paid for, are assigned the status of Pending and become available for download to both, the freelancer and the customer, as shown in [Figure 3](freelancer_website/static/img/Screenshot from 2020-07-27 13-37-09.png.png).
+The documents, if paid for, are assigned the status of Pending and become available for download to both, the freelancer and the customer, as shown in [Figure 3](freelancer_website/static/img/1.png).
         
        
