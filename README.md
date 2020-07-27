@@ -16,8 +16,12 @@ https://freelancer-ci.herokuapp.com/
     - [Business Goals](#Business-goals)
     - [User need](#User-needs)
 - [Features](#Features)
- 
 - [Features Left to Implement](#Features-Left-to-Implement)
+- [Technologies used](#Technolies-used)
+- [Testing](#Testing)
+     - [Validation](#Validation)
+     - [Responsiveness](#Responsiveness)
+     - [Manual testing](#Manual-testting)
     
     ## Description
     
@@ -153,9 +157,9 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 * **Frefox 68**
 * **Microsoft Edge 42**
 
-##### 
-* **iPhone 5 (Safari, Chrome)
-* **iPad (Safari, Crome)
-* **Nokia 6.1 (Chrome)
+##### Mobile
+* **iPhone 5** (Safari, Chrome)
+* **iPad** (Safari, Crome)
+* **Nokia** 6.1 (Chrome)
 
-
+### Mannual testing
