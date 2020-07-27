@@ -127,7 +127,7 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
  #### Libraries:
    * **JQuery**. Enables Bootstrap functionality.
    
-**Amazon Web Services** Used for static files, documents and posgres database.
+**Amazon Web Services** Used for static files,uploaded documents and posgres database.
 
 #### Data stuctures.
 
@@ -147,5 +147,15 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
  The website adjusts to different screen sizes from 320px wide. Testing was done with Google Chrome developer tools and manually on different browsers and mobile devices.
  
  ##### Brawser used:
- * ** fff**
+ * **Chrome Version** 67.0.3396.62
+* **Cromium Version** 76.0.3809.87
+* **Opera 62**
+* **Frefox 68**
+* **Microsoft Edge 42**
+
+##### 
+* **iPhone 5 (Safari, Chrome)
+* **iPad (Safari, Crome)
+* **Nokia 6.1 (Chrome)
+
 
