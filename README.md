@@ -87,5 +87,41 @@ This section describes features that satisfy the requirements for the current ve
 * **My account**. The hearth of the project where all the magic happens.
 
 The documents, if paid for, are assigned the status of Pending and become available for download to both, the freelancer and the customer, as shown in [Figure 3](freelancer_website/static/img/1.png).
-        
-       
+
+The freelancer is also allowed to enter the chat page in order to upload a file or to chat with a customer. The customer is given an option to access the chat page as shown in [Figure 4](freelancer_website/static/img/2.png).
+
+ If the freelancer uploads a file the document status is changed to Ready and the customer is given a choice of either to accept the document or to request a change as shown in [Figure 4](freelancer_website/static/img/2.png).
+ 
+ If accepted the document status is changed to Accepted and the customer is no longer able to take actions other than to download the document as shown in [Figure 5](freelancer_website/static/img/3.png).. Throughout entire transaction the "Mark as done" button is available to the freelancer. If clicked the button removes a quote from the freelancer's order list.
+ 
+ If a change is requested, the customer is redirected to the chat page where a request can be made by sending a message. 
+ 
+* **Chat page.** While a file is pending the chat page enables communication between the freelancer and a client. There is also an upload form available to the freelancer, that if submitted, not only uploads a document but also changes the file status from Pending to Ready. Once the file status turns to Ready the chat also acts as a request change tool. If a message is sent by a customer it is considered as a request, the file status is changed back to Pending and the freelancer gets notified.
+
+* **Contact form**. Allows users to contact the freelancer by having them fill out three compulsory fields, namely, Name, Email and Message. For the ease of access the form is embedded in the Bootstrap pop-up dialog. If submitted the form sends an email to the freelancer.
+
+* **Collapsible navigation bar**. Enables cross-devise responsiveness.
+
+## Features left to implement:
+
+* **Notifications.** Both, the freelancer and the user should be notified about the changes regarding their orders. This could be achieved by automatically sending an email whenever the changes occur.
+
+* **Statistics.** The quotation in this project was designed with statistics in mind. Every time a quote is requested or added to the basket etc, the information is collected and stored in the database. This data if analysed, could provide an insight into the customers behavior and might reveal additional user needs, hens would allow for continuous improvement. Such data analysis could be implemented through visualisation by using dynamic charts JavaScript library known as dc.js
+
+* **Payments.** Current version release provides very limited payment options. Customers can only pay with their credit or debit cards which for some, might not be a suitable choice. Therefore, addition option such as PayPal would be an advantage. Moreover, as the user stories reveled, there should be an option to proceed to the checkout without having to add an item to the basket first.
+
+## Technologies used
+
+####  Languages:
+
+ * **HTML5**
+ * **CSS3** 
+ * **JavaScript**. Used for the front end functionality such as price calculation or to indicate the quote form errors etc.
+ * **Python.** Used in the django framework for the back end code.
+ 
+#### Frameworks
+ * **Bootstrap** (4.3.1). Enables collapsible navigation bar.
+  * **Django**. The project is build using django web framework.
+  
+ #### Libraries:
+   * **JQuery**. Enables Bootstrap functionality.
