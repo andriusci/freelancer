@@ -162,4 +162,4 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 * **iPad** (Safari, Crome)
 * **Nokia** 6.1 (Chrome)
 
-### Mannual testing
+##### Mannual testing
