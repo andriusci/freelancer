@@ -4,7 +4,7 @@
 
 
  # Proofread - Code Institute. Milestone 4
- ![alt text](freelancer_website/static/img/main.png)
+ ![Main picture](freelancer_website/static/img/main.png)
 
 https://freelancer-ci.herokuapp.com/
 
@@ -21,7 +21,7 @@ https://freelancer-ci.herokuapp.com/
     
     ## Description
     
-The Proofread project is focused on the freelance proofreader whose goal is to increase business value by closing the deals via the Internet. The project not only aims to create a hassle-free environment that would satisfy user needs, but also attempts to automate business processes, hence strives to improve business efficiency. Therefore, it takes shape of a complex website that consist of advanced features such as instant quotation, communication via the on-line chat and e-commerce functionality which concludes with the secure payments provided by Stripe.
+The Proofread project is focused on the freelance proofreader whose goal is to increase business value by closing the deals via the Internet. The project not only aims to create a hassle-free environment that would satisfy user needs, but also attempts to automate business processes, hence strives to improve business efficiency. Therefore, it takes shape of a complex website that consist of advanced features such as instant quotation, communication via the on-line chat and e-commerce functionality which concludes with the secure payments provided by Stripe. 
        
 ## UX
 
@@ -34,7 +34,9 @@ In order to build good UX it is necessary to identify business goals and to dete
 * Provide e-commerce functionality.
 * Enable communication via the on-line chat and email.
 
-### user needs
+### User needs
+
+As a freelancer, I would like to:
 
 * get notified about the new orders.
 * be able to download documents for proofreading.
@@ -69,3 +71,12 @@ As a user who has paid for the quote, I want to:
 * request a change, if needed.
 * communicate regarding the quote.
 * get notified when the document is ready for download.
+
+## Features
+
+This section describes features that satisfy the requirements for the current version release. Also the section briefly outlines additional features for the subsequent versions of this project.
+
+* **Quote:**
+        **Preliminary quote** (logged-out users) is a web form that consists of two fields, namely Category and Word Count. If submitted, the form shows the price based on the information provided by the user, as shown in Figure 1. Tool-tips, are also provided next to each form field, which on mouse-over displays an explanation.  Preliminary quote is enabled by JavaScript at the front-end.
+        
+         ![Main picture](freelancer_website/static/img/quote.png)
