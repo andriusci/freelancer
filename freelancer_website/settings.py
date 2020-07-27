@@ -28,6 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['freelancer-ci.herokuapp.com',
+                  'whateverci.herokuapp.com',
                 '127.0.0.1' ]
 
 

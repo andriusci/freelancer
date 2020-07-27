@@ -22,7 +22,7 @@ from django.contrib import messages
 
 
 def quote(request):
-     #return quote page
+     #return quote page 
      if not request.user.is_authenticated:
         return render(request, 'quote.html')
      else:
@@ -109,7 +109,9 @@ def quote_logged(request):
 
 @login_required(login_url='/login/')
 def reupload(request, quote_ref, file_name):
-
+    #Allows the freelancer to upload a file.
+    #The file then replace the original file
+    #File status is changed to ready so a user can accept or to request a change.
     if request.method =="POST":
       if request.user.is_superuser:
 
@@ -138,7 +140,7 @@ def reupload(request, quote_ref, file_name):
     
        return render(request, 'chat.html', context = context)
     else:
-      html = "<html><body><h1>The page does not exist</h1></html>" 
+      html = "<html><body><h1>The page you are looking for does not exist</h1></html>" 
       return HttpResponse(html)
 
 @login_required(login_url='/login/')
