@@ -130,4 +130,4 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 #### Database stucture
 
-![Database](freelancer_website/static/img/databasee.png)
+[Figure 6](freelancer_website/static/img/databasee.png) shows the application's underlying database structure.
