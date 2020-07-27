@@ -132,8 +132,8 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 #### Data stuctures.
 
 
-* [Figure 7](freelancer_website/static/img/databasee.png)The application's underlying database structure is shown in [Figure 6](freelancer_website/static/img/databasee.png)
+* [Figure 6](freelancer_website/static/img/databasee.png)The application's underlying database structure is shown in [Figure 6](freelancer_website/static/img/databasee.png)
 
-* The diagram in ![Figure 7](freelancer_website/static/img/datadiagram.png) shows the  structure of [ list_of_orderLists ], that is created by the user_account() function and then passed to the user_account template.
+* The diagram in ![Figure 7](freelancer_website/static/img/data.png) shows the structure of [ list_of_orderLists ], that is created by the user_account() function and then passed to the user_account template. The list contains all relevant order information to be displayed in the user account page.
 
 
