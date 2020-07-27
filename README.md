@@ -138,6 +138,14 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 ## Testing
  #### Validation:
- 
+ * **HTML.** The website has passed 3w.org markup validation.
+* **CSS.** The website has passed w3c css validation.
+* **JavaScript.** Chrome developer tools have showed no errors.
+* **Broken links.** No broken links found. Testing was done manually.
 
+#### Responsiveness
+ The website adjusts to different screen sizes from 320px wide. Testing was done with Google Chrome developer tools and manually on different browsers and mobile devices.
+ 
+ ##### Brawser used:
+ * ** fff**
 
