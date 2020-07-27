@@ -20,6 +20,7 @@ https://freelancer-ci.herokuapp.com/
 - [Features Left to Implement](#Features-Left-to-Implement)
     
     ## Description
+    
        The Proofread project is focused on the freelance proofreader whose goal is to increase business value by closing the deals via the Internet. The project not only aims to create a hassle-free environment that would satisfy user needs, but also attempts to automate business processes, hence strives to improve business efficiency. Therefore, it takes shape of a complex website that consist of advanced features such as instant quotation, communication via the on-line chat and e-commerce functionality which concludes with the secure payments provided by Stripe. 
        
     ## UX
