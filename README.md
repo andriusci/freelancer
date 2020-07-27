@@ -79,4 +79,4 @@ This section describes features that satisfy the requirements for the current ve
 * **Quote:**
         **Preliminary quote** (logged-out users) is a web form that consists of two fields, namely Category and Word Count. If submitted, the form shows the price based on the information provided by the user, as shown in Figure 1. Tool-tips, are also provided next to each form field, which on mouse-over displays an explanation.  Preliminary quote is enabled by JavaScript at the front-end.
         
- ![Figure 1. Quote](freelancer_website/static/img/quote.png | width=48)
+ ![Figure 1. Quote](freelancer_website/static/img/quote.png =24x48)
