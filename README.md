@@ -4,4 +4,4 @@
 
 
  # Proofread - Code Institute. Milestone 4
- 
+ ![alt text](statis/img/main.png)
