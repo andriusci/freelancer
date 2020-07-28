@@ -170,11 +170,11 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 * **Home Page.**
 
- - [x] Navigation bar displays all the relevant links, namely Logo, Contact and Login.
+ - [x] The navigation bar displays all the relevant links, namely Logo, Contact and Login.
 
-    - [x] Logo. If clicked restarts the index page and in turn restarts the animation.
-    - [x] Contact. If clicked brings up the modal with the contact form.
-    - [x] Log-in. If clicked redirects to the log-in page:
+    - [x] Logo. If clicked, restarts the index page and in turn restarts the animation.
+    - [x] Contact. If clicked, brings up the modal with the contact form.
+    - [x] Log-in. If clicked, redirects to the log-in page:
 
  - [x] The animation works as intended and the Instant Quote button, if clicked, redirects to the preliminary quote page.
 
@@ -188,57 +188,43 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 * **Preliminary quote page**
 
 - [x] Instant quote form is displayed. 
-- [x] If submitted empty, form fields turn red and shakes as intended to indicate error.
-- [x] If valid values submitted, shows quote price.
+- [x] If submitted empty, form fields turn red and shakes as intended to indicate an error.
+- [x] If the valid values submitted shows quote price.
 - [x] Tool-tips, on mouse-over, display help text. 
 
-* **Log-in page.**
+* **Log-in page**
 
-- [x]  The navigation bar displays the log-in form and all the relevant links, namely Logo, Contact and Instant Quote button.
-
-- [x] Logo. Redirects to the index page.
-- [x] Contact. Brings up the modal with the contact form.
-- [x] Instant Quote button. Redirect to the preliminary quote page.
-
-* **Log-in form**
-
-- [x] rRequired field message appears on the attempt to submit empty fields.
-- [x] Error message appears if user name or password is incorrect.
-- [x] Forgot password link is displayed and if clicked redirects to request password page
-- [x] Sign up link is displayed and if clicked redirects to sign up page
-- [x] if username and password are correct, logs user in and redirects to user account page or to instant quote page depending on the initial user intend. 
-  	 
+- [x] An error appears on the attempt to submit empty fields.
+- [x] An error appears if the name or password is incorrect.
+- [x] Forgot password link is displayed and if clicked redirects to the request_password page.
+- [x] Sign up link is displayed and if clicked redirects to the sign-up page.
+- [x] If username and password are correct, logs user in and redirects to the user account page or to instant quote page depending on the initial user intend. 
 
 
-Sign up page
+(Logged-in)
+
+* **Homepage**
+
+- [x] The navigation bar displays all the relevant links, namely Logo, Basket, Account, Contact, Logout and Instant Quote button. 
 
 
+   - [x] Logo. Restarts the index page and animation.
+   - [x] Basket. Redirects to the basket page.
+   - [x] Account. Redirects to the user account page.
+   - [x] Contact. Brings up the modal with the contact form.
+   - [x] Logout. Logs user out and redirects to the homepage.
+   - [x] Instant Quote button. Redirects to the quote page.
 
 
+* **Quote page**
 
+- [x] Quote form is displayed. 
+- [x] Get Quote button in the navbar is hidden.
 
-
-Logged in.
-
-homepage
-
-Navigation bar displays all the relevant links, namely Logo, Basket, Account, Contact, Logout and Instant Quote button. 
-
-Logo. Restarts the index page and animation.
-Basket. Redirects to the basket page.
-Account. Redirects to the user account page.
-Contact. Brings up the modal with the contact form.
-Logout. Logs user out and Redirects to the homepage.
-Instant Quote button. Redirects to the quote page.
-
-
-Quote page
-
-Quote form is displayed. Get Quote button in the navbar is hidden.
-Quote form
-If submitted empty, form fields turn red and shakes as intended to indicate error.
-If valid values submitted and file(s) chosen, shows quote price and displays add to basket button.
-Tool-tips, on mouse-over, display help text. 
+ - **Quote form**
+    - [x] If submitted empty, form fields turn red and shakes as intended to indicate error.
+    - [x] If valid values submitted and file(s) chosen, shows quote price and displays add to basket button.
+    - [x] Tool-tips, on mouse-over, display help text. 
 
 Add to basket button.
 If clicked:
