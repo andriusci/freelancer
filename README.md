@@ -90,7 +90,7 @@ This section describes features that satisfy the requirements for the current ve
      
 * **Basket**. Once a quote is added to the basket it appears in the customer’s basket page. Then the customer is given the options to remove the quote from the basket or to proceed to the checkout. The total price is also displayed as shown in [Figure 3](freelancer_website/static/img/basket.png).
 
-* **My account**. The hearth of the project where all the magic happens.
+* ###### Myaccount. The hearth of the project where all the magic happens.
 
 The documents, if paid for, are assigned the status of Pending and become available for download to both, the freelancer and the customer, as shown in [Figure 3](freelancer_website/static/img/1.png).
 
