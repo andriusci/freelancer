@@ -172,19 +172,19 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 ## Credits
 
-* **Custom upload.**
+* Custom upload
     - [https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/](https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/)
 * Text strikethrough effect 
-   -[//codepen.io/EdenSG/pen/jPENoE](//codepen.io/EdenSG/pen/jPENoE)
+   - [//codepen.io/EdenSG/pen/jPENoE](//codepen.io/EdenSG/pen/jPENoE)
 * Typewriter effect 
-   -[https://codepen.io/geoffgraham/pen/jrWwWM](https://codepen.io/geoffgraham/pen/jrWwWM)
+   - [https://codepen.io/geoffgraham/pen/jrWwWM](https://codepen.io/geoffgraham/pen/jrWwWM)
 * Tooltips  
-   -[https://www.w3schools.com/css/css_tooltip.asp](https://www.w3schools.com/css/css_tooltip.asp)
+   - [https://www.w3schools.com/css/css_tooltip.asp](https://www.w3schools.com/css/css_tooltip.asp)
 * Tutorial on how to use Visual Studio with Django 
-   -[https://code.visualstudio.com/docs/python/tutorial-django](codehttps://code.visualstudio.com/docs/python/tutorial-django)
+   - [https://code.visualstudio.com/docs/python/tutorial-django](codehttps://code.visualstudio.com/docs/python/tutorial-django)
 
 * Django Stripe tutorial 
-   -[https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout](https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout)
+   - [https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout](https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout)
 https://simpleisbetterthancomplex.com/
 
 Special thanks to Vitor Freitas at -[https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) for the tutorials such as file uploads, authentication etc. And last but not least -[https://stackoverflow.com/](https://stackoverflow.com/) for countless advices and tips. 
