@@ -16,8 +16,14 @@ https://freelancer-ci.herokuapp.com/
     - [Business Goals](#Business-goals)
     - [User need](#User-needs)
 - [Features](#Features)
- 
 - [Features Left to Implement](#Features-Left-to-Implement)
+- [Technologies used](#Technolies-used)
+- [Testing](#Testing)
+     - [Validation](#Validation)
+     - [Responsiveness](#Responsiveness)
+     - [Manual testing](#Manual-testting)
+- [Bugs](#Bugs)
+- [Credits](#Credits)
     
     ## Description
     
@@ -127,13 +133,112 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
  #### Libraries:
    * **JQuery**. Enables Bootstrap functionality.
    
-**Amazon Web Services** Used for static files, documents and posgres database.
+**Amazon Web Services** Used for static files,uploaded documents and posgres database.
 
 #### Data stuctures.
 
 
-* [Figure 6](freelancer_website/static/img/databasee.png)The application's underlying database structure is shown in [Figure 6](freelancer_website/static/img/databasee.png)
+*  The application's underlying database structure is shown in [Figure 6](freelancer_website/static/img/databasee.png)
 
-* The diagram in ![Figure 7](freelancer_website/static/img/data.png) shows the structure of [ list_of_orderLists ], that is created by the user_account() function and then passed to the user_account template. The list contains all relevant order information to be displayed in the user account page.
+* The diagram in [Figure 7](freelancer_website/static/img/data.png) shows the structure of [ list_of_orderLists ], that is created by the user_account() function and then passed to the user_account template. The list contains all relevant order information to be displayed in the user account page.
 
+## Testing
+ #### Validation:
+ * **HTML.** The website has passed 3w.org markup validation.
+* **CSS.** The website has passed w3c css validation.
+* **JavaScript.** Chrome developer tools have showed no errors.
+* **Broken links.** No broken links found. Testing was done manually.
+
+#### Responsiveness
+ The website adjusts to different screen sizes from 320px wide. Testing was done with Google Chrome developer tools and manually on different browsers and mobile devices.
+ 
+ ##### Brawser used:
+ * **Chrome Version** 67.0.3396.62
+* **Cromium Version** 76.0.3809.87
+* **Opera 62**
+* **Frefox 68**
+* **Microsoft Edge 42**
+
+##### Mobile devices:
+* **iPhone 5** (Safari, Chrome)
+* **iPad** (Safari, Crome)
+* **Nokia** 6.1 (Chrome)
+
+#### Mannual testing
+
+The following subdirectories were manually entered in the address bar:
+
+Login/
+  - [x] redirects the logged-in users to the account page
+  - [x] redirectes the logged out users to the log-in page
+logout/
+  - [x] logs a user out.
+user_account/
+  - [x] redirects the logged-in users to the  to the user_account page
+  - [x] redirectes the logged out users to the log-in page.
+   
+registration/
+  - [x] redirects to the sign-up page regardless of whether the user is logged-in or not.
+   
+quote/
+  - [x] redirects the logged-out users to the preliminary quote page
+  - [x] redirects the logged-in users to the quote page.
+   
+quote_logged/
+  - [x] redirects the logged-in users to the quote page
+  - [x] redirects the logged-out users toto the log-in page.
+   
+basket/
+  - [x] redirects the logged-in users to the basket page
+  - [x] redirects the logged-out users to the log-in page.
+   
+add_to_basket/ and remove_from_basket/
+ - [x]  redirects the logged-in users to the basket page
+ - [x]  redirects the logged-out users to the log-in page.
+   
+checkout/ and payment/
+ - [x] displays the message saying that the page does not exist. Should be accessed by submting a form with necessary values.
+
+reupload/<int:quote_ref>/<str:file_name>/
+ - [x] displays page does not exists. Should be accessed by submting a form with a file.
+     
+chat/<int:quote_ref>/<str:file_name>
+  - [x] if valid values provided returns the chat page with relevant chat.
+  - [x] If values are not valid displays an error. 
+
+chat_send/
+  - [x] displays error. Should be accessed by submting the chat form.
+    
+accept/<int:quote_ref>/<str:file_name>/
+  - [x] accepts a file only if the file status is ready and only if a user is an owner of the file.
+  - [x] returns an error otherwise
+    
+accept_quote/<int:quote_ref>/
+   - [x] if the quote exists and the url enterd by the freelancer, removes the quote from the freelancers account
+   - [x] returns "The page does not exist"
+
+contact/
+  - [x] displays the contact form. However, not as intended. See the - [Bugs](Bugs) section bellow:
+
+
+## Bugs
+
+## Credits
+
+* Custom upload
+    - [https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/](https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/)
+* Text strikethrough effect 
+   - [//codepen.io/EdenSG/pen/jPENoE](//codepen.io/EdenSG/pen/jPENoE)
+* Typewriter effect 
+   - [https://codepen.io/geoffgraham/pen/jrWwWM](https://codepen.io/geoffgraham/pen/jrWwWM)
+* Tooltips  
+   - [https://www.w3schools.com/css/css_tooltip.asp](https://www.w3schools.com/css/css_tooltip.asp)
+* Tutorial on how to use Visual Studio with Django 
+   - [https://code.visualstudio.com/docs/python/tutorial-django](codehttps://code.visualstudio.com/docs/python/tutorial-django)
+
+* Django Stripe tutorial 
+   - [https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout](https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout)
+https://simpleisbetterthancomplex.com/
+
+Special thanks to Vitor Freitas at - [https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) for the tutorials such as file uploads, authentication etc. And last but not least - [https://stackoverflow.com/](https://stackoverflow.com/) for countless advices and tips. 
 
