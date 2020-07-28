@@ -221,30 +221,32 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 - [x] Quote form is displayed. 
 - [x] Get Quote button in the navbar is hidden.
 
- - **Quote form**
+ * **Quote form**
     - [x] If submitted empty, form fields turn red and shakes as intended to indicate error.
-    - [x] If valid values submitted and file(s) chosen, shows quote price and displays add to basket button.
+    - [x] If valid values submitted and file(s) chosen, shows quote price and displays the "add to basket" button.
     - [x] Tool-tips, on mouse-over, display help text. 
 
-Add to basket button.
-If clicked:
+ * **Add to basket button.**
+ 
+- [x] If clicked:
 
-Informs that item was added to the basket by temporary displaying a massage.
-Displays the link to the basket that if clicked, redirects to the basket page.
+     - informs that item was added to the basket, by temporary displaying a massage.
+     - displays the link to the basket that if clicked, redirects to the basket page.
 
-Basket page
-Displays the list of basket items. If there is no items, shows the message saying  “your basket is empty”. 
-Displays the remove button for each item. The button if clicked, removes an item from the list.
-Shows the total price.
-Displays the checkout button. The button if clicked, redirects to the checkout page.
+* **Basket page**
 
-Checkout page
+- [x] Displays the list of basket items. If there is no items, shows the message saying  “your basket is empty”. 
+- [x] Displays the remove button for each item. The button if clicked, removes an item from the list.
+- [x] Shows the total price.
+- [x] Displays the checkout button. The button if clicked, redirects to the checkout page.
 
-   Displays the total price and the pay button. The button if clicked, brings up the Stripe test payment pop-up.
+* **Checkout page**
 
-Account page
+ - [x] Displays the total price and the pay button. The button if clicked, brings up the Stripe test payment pop-up.
 
-Testing was done while defining the feature, please refer to Features > My account detailed explanation with pictures.
+* **Account page**
+
+- [x] Works as shown in [Features > My account](#My-account).
 
 Chat page
 
