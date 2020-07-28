@@ -22,7 +22,7 @@ https://freelancer-ci.herokuapp.com/
      - [Validation](#Validation)
      - [Responsiveness](#Responsiveness)
      - [Manual testing](#Manual-testting)
-     
+- [Bugs](#Bugs)
 - [Credits(#Credits)
     
     ## Description
@@ -218,10 +218,10 @@ accept_quote/<int:quote_ref>/
    - [x] returns "The page does not exist"
 
 contact/
-  - [x] displays the contact form. However, not as intended. See the - [Bugs](Bugs) section
+  - [x] displays the contact form. However, not as intended. See the - [Bugs](Bugs) section bellow:
 
 
-
+## Bugs
 
 ## Credits
 
