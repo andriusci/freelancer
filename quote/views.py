@@ -124,7 +124,7 @@ def reupload(request, quote_ref, file_name):
        files = request.FILES.get('files')
        document = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)
        document.status = "Ready"
-       status.save()
+       document.save()
        fileName = str(quote_ref) +"_"+ files.name
        files.name = fileName
        upload_file = Upload( document = files)
