@@ -60,7 +60,7 @@
     <a href="{% url 'chat' eachOrder.0 eachFile.0 %}" class="download">Chat &nbsp <i class="fas fa-comments"></i></a>
        <br>
       {%else%}
-      <a href="{% url 'accept' eachOrder.0 eachFile.0 %}">Accept <i class="fas fa-check-square"></i></a>  <a href="{% url 'reupload' eachOrder.0 eachFile.0 %}" >Request change <i class="fas fa-retweet"></i></a>
+      <a href="{% url 'accept' eachOrder.0 eachFile.0 %}">Accept <i class="fas fa-check-square"></i></a>  <a href="{% url 'chat' eachOrder.0 eachFile.0 %}" >Request change <i class="fas fa-retweet"></i></a>
       <br>
       </span>
     {%endif%}

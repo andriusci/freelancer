@@ -150,7 +150,7 @@ def accept(request, quote_ref, file_name):
     user = current_user.username
     quote_file = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)
     #check if request is from authorised user and then change the file status to accepted.
-    if user == quote_file.user:
+    if user == quote_file.user and quote_file.status != "Accepted":
        quote_file.status = "Accepted"
        quote_file.save()
        messages.add_message(request, messages.INFO, "accepted", extra_tags='accepted')
