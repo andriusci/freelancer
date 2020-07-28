@@ -90,7 +90,7 @@ This section describes features that satisfy the requirements for the current ve
      
 * **Basket**. Once a quote is added to the basket it appears in the customer’s basket page. Then the customer is given the options to remove the quote from the basket or to proceed to the checkout. The total price is also displayed as shown in [Figure 3](freelancer_website/static/img/basket.png).
 
-* **My account**. The hearth of the project where all the magic happens.
+* **My account.** The hearth of the project where all the magic happens.
 
 The documents, if paid for, are assigned the status of Pending and become available for download to both, the freelancer and the customer, as shown in [Figure 3](freelancer_website/static/img/1.png).
 
@@ -166,13 +166,110 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 #### Mannual testing
 
+(Logged out)
+
+* **Home Page.**
+
+ - [x] The navigation bar displays all the relevant links, namely Logo, Contact and Login.
+
+    - [x] Logo. If clicked, restarts the index page and in turn restarts the animation.
+    - [x] Contact. If clicked, brings up the modal with the contact form.
+    - [x] Log-in. If clicked, redirects to the log-in page:
+
+ - [x] The animation works as intended and the Instant Quote button, if clicked, redirects to the preliminary quote page.
+
+* **Contact form.**
+
+- [x] Error message appears on the attempt to submit empty fields.
+- [x] Error message appears on the attempt to submit invalid email address.
+- [x] Feedback is shown on successful submission.
+- [x] An email is sent to the freelancer.
+
+* **Preliminary quote page**
+
+- [x] Instant quote form is displayed. 
+- [x] If submitted empty, form fields turn red and shakes as intended to indicate an error.
+- [x] If the valid values submitted shows quote price.
+- [x] Tool-tips, on mouse-over, display help text. 
+
+* **Log-in page**
+
+- [x] An error appears on the attempt to submit empty fields.
+- [x] An error appears if the name or password is incorrect.
+- [x] Forgot password link is displayed and if clicked redirects to the request_password page.
+- [x] Sign up link is displayed and if clicked redirects to the sign-up page.
+- [x] If username and password are correct, logs user in and redirects to the user account page or to instant quote page depending on the initial user intend. 
+
+
+(Logged-in)
+
+* **Homepage**
+
+- [x] The navigation bar displays all the relevant links, namely Logo, Basket, Account, Contact, Logout and Instant Quote button. 
+
+
+   - [x] Logo. Restarts the index page and animation.
+   - [x] Basket. Redirects to the basket page.
+   - [x] Account. Redirects to the user account page.
+   - [x] Contact. Brings up the modal with the contact form.
+   - [x] Logout. Logs user out and redirects to the homepage.
+   - [x] Instant Quote button. Redirects to the quote page.
+
+
+* **Quote page**
+
+- [x] Quote form is displayed. 
+- [x] Get Quote button in the navbar is hidden.
+
+ * **Quote form**
+ 
+    - [x] If submitted empty, form fields turn red and shakes as intended to indicate error.
+    - [x] If valid values submitted and file(s) chosen, shows quote price and displays the "add to basket" button.
+    - [x] Tool-tips, on mouse-over, display help text. 
+
+ * **Add to basket button.**
+ 
+- [x] If clicked:
+
+     - informs that item was added to the basket, by temporary displaying a massage.
+     - displays the link to the basket that if clicked, redirects to the basket page.
+
+* **Basket page**
+
+- [x] Displays the list of basket items. If there is no items, shows the message saying  “your basket is empty”. 
+- [x] Displays the remove button for each item. The button if clicked, removes an item from the list.
+- [x] Shows the total price.
+- [x] Displays the checkout button. The button if clicked, redirects to the checkout page.
+
+* **Checkout page**
+
+ - [x] Displays the total price and the pay button. The button if clicked, brings up the Stripe test payment pop-up.
+
+* **Account page**
+
+- [x] Works as shown in Features > My account.
+
+* **Chat page**
+
+- [x] If submitted, the message appears in the chat area.
+- [x] The messages are aligned either to the left or to the right, depending on sender.
+- [x] The messages sent on the same date are not separated by the date indicator.
+- [x] The Go back button redirects to the user account.
+- [x] If the user is freelancer, the file upload form is shown.
+- [x] If a file name chosen for the upload does not match the original file name the error is shown, otherwise shows the submit button. 
+- [x] If submitted, uploads the file and shows a success message.
+
+#### URLs
+
 The following subdirectories were manually entered in the address bar:
 
 Login/
   - [x] redirects the logged-in users to the account page
   - [x] redirectes the logged out users to the log-in page
+  
 logout/
   - [x] logs a user out.
+  
 user_account/
   - [x] redirects the logged-in users to the  to the user_account page
   - [x] redirectes the logged out users to the log-in page.
@@ -200,14 +297,14 @@ checkout/ and payment/
  - [x] displays the message saying that the page does not exist. Should be accessed by submting a form with necessary values.
 
 reupload/<int:quote_ref>/<str:file_name>/
- - [x] displays page does not exists. Should be accessed by submting a form with a file.
+ - [x] displays the message saying that the page does not exists. Should be accessed by submting a form with a file.
      
 chat/<int:quote_ref>/<str:file_name>
   - [x] if valid values provided returns the chat page with relevant chat.
   - [x] If values are not valid displays an error. 
 
 chat_send/
-  - [x] displays error. Should be accessed by submting the chat form.
+  - [x] displays an error. Should be accessed by submting the chat form.
     
 accept/<int:quote_ref>/<str:file_name>/
   - [x] accepts a file only if the file status is ready and only if a user is an owner of the file.
@@ -218,10 +315,13 @@ accept_quote/<int:quote_ref>/
    - [x] returns "The page does not exist"
 
 contact/
-  - [x] displays the contact form. However, not as intended. See the - [Bugs](Bugs) section bellow:
+  - [] displays the contact form. However, not as intended. See the - [Bugs](#Bugs) section bellow:
 
 
 ## Bugs
+* **Contact form** The form was designed to fit an iFrame, therefore if accesed directly takes all the screen width.
+* ****
+
 
 ## Credits
 
@@ -240,5 +340,5 @@ contact/
    - [https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout](https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout)
 https://simpleisbetterthancomplex.com/
 
-Special thanks to Vitor Freitas at - [https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) for the tutorials such as file uploads, authentication etc. And last but not least - [https://stackoverflow.com/](https://stackoverflow.com/) for countless advices and tips. 
+Special thanks to Vitor Freitas at - [https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) for the tutorials such as file uploads, authentication etc. And last but not least - [https://stackoverflow.com/](https://stackoverflow.com/) for the countless advices and tips. 
 
