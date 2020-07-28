@@ -157,9 +157,26 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 * **Frefox 68**
 * **Microsoft Edge 42**
 
-##### Mobile
+##### Mobile devices:
 * **iPhone 5** (Safari, Chrome)
 * **iPad** (Safari, Crome)
 * **Nokia** 6.1 (Chrome)
 
-##### Mannual testing
+#### Mannual testing
+
+
+
+
+
+
+
+## Credits
+
+* Custom upload.
+    - [https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/](https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/)
+* The text strikethrough effect is enabled by the modified code from //codepen.io/EdenSG/pen/jPENoE
+Typewriter modified code from https://codepen.io/geoffgraham/pen/jrWwWM*/
+tooltips from https://www.w3schools.com/css/css_tooltip.asp*/
+https://code.visualstudio.com/docs/python/tutorial-django
+https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout
+https://simpleisbetterthancomplex.com/
