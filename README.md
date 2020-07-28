@@ -90,7 +90,7 @@ This section describes features that satisfy the requirements for the current ve
      
 * **Basket**. Once a quote is added to the basket it appears in the customer’s basket page. Then the customer is given the options to remove the quote from the basket or to proceed to the checkout. The total price is also displayed as shown in [Figure 3](freelancer_website/static/img/basket.png).
 
-* ###### Myaccount. The hearth of the project where all the magic happens.
+* **My account.** The hearth of the project where all the magic happens.
 
 The documents, if paid for, are assigned the status of Pending and become available for download to both, the freelancer and the customer, as shown in [Figure 3](freelancer_website/static/img/1.png).
 
@@ -222,6 +222,7 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 - [x] Get Quote button in the navbar is hidden.
 
  * **Quote form**
+ 
     - [x] If submitted empty, form fields turn red and shakes as intended to indicate error.
     - [x] If valid values submitted and file(s) chosen, shows quote price and displays the "add to basket" button.
     - [x] Tool-tips, on mouse-over, display help text. 
@@ -246,18 +247,20 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 * **Account page**
 
-- [x] Works as shown in [Features > My account](#My-account).
+- [x] Works as shown in Features > My account.
 
-Chat page
+* **Chat page**
 
+- [x] If submitted, the message appears in the chat area.
+- [x] The messages are aligned either to the left or to the right, depending on sender.
+- [x] The messages sent on the same date are not separated by the date indicator.
+- [x] The Go back button redirects to the user account.
+- [x] If the user is freelancer, the file upload form is shown.
+- [x] If a file name chosen for the upload does not match the original file name the error is shown, otherwise shows the submit button. 
+- [x] If submitted, uploads the file and shows a success message.
 
-If submitted, the message appears in the chat area.
-The messages are aligned either to the left or to the right, depending on sender.
-The messages sent on the same date are not separated by the date indicator.
-Go back button redirects to the user account.
-If logged in as freelancer, file upload form is shown.
-If a file name chosen for the upload does not match the original file name the error is shown, otherwise shows the submit button. 
-If submitted uploads the file and shows a success message.
+#### URLs
+
 The following subdirectories were manually entered in the address bar:
 
 Login/
@@ -318,7 +321,7 @@ contact/
 ## Bugs
 * **Contact form** The form was designed to fit an iFrame, therefore if accesed directly takes all the screen width.
 * ****
-If the website is accessed with not secure connection 
+
 
 ## Credits
 
