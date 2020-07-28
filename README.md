@@ -22,6 +22,8 @@ https://freelancer-ci.herokuapp.com/
      - [Validation](#Validation)
      - [Responsiveness](#Responsiveness)
      - [Manual testing](#Manual-testting)
+     
+- [Credits(#Credits)
     
     ## Description
     
@@ -164,8 +166,59 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 #### Mannual testing
 
+The following subdirectories were manually entered in the address bar:
 
+Login/
+   [x] redirects the logged-in users to the account page
+   [x] redirectes the logged out users to the log-in page
+logout/
+   [x] logs a user out.
+user_account/
+   [x] redirects the logged-in users to the  to the user_account page
+   [x] redirectes the logged out users to the log-in page.
+   
+registration/
+   [x] redirects to the sign-up page regardless of whether the user is logged-in or not.
+   
+quote/
+   [x] redirects the logged-out users to the preliminary quote page
+   [x] redirects the logged-in users to the quote page.
+   
+quote_logged/
+   [x] redirects the logged-in users to the quote page
+   [x] redirects the logged-out users toto the log-in page.
+   
+basket/
+   [x] redirects the logged-in users to the basket page
+   [x] redirects the logged-out users to the log-in page.
+   
+add_to_basket/ and remove_from_basket/
+   [x]  redirects the logged-in users to the basket page
+   [x]  redirects the logged-out users to the log-in page.
+   
+checkout/ and payment/
+   [x] displays the message saying that the page does not exist. Should be accessed by submting a form with necessary values.
 
+reupload/<int:quote_ref>/<str:file_name>/
+   [x] displays page does not exists. Should be accessed by submting a form with a file.
+     
+chat/<int:quote_ref>/<str:file_name>
+   [x] if valid values provided returns the chat page with relevant chat.
+   [x] If values are not valid displays an error. 
+
+chat_send/
+   [x] displays error. Should be accessed by submting the chat form.
+    
+accept/<int:quote_ref>/<str:file_name>/
+    [x] accepts a file only if the file status is ready and only if a user is an owner of the file.
+    [x] returns an error otherwise
+    
+accept_quote/<int:quote_ref>/
+    [x] if the quote exists and the url enterd by the freelancer, removes the quote from the freelancers account
+    [x] returns "The page does not exist"
+
+contact/
+   [x] displays the contact form. However, not as intended. See the - [Bugs](Bugs) section
 
 
 
