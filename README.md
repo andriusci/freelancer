@@ -23,7 +23,7 @@ https://freelancer-ci.herokuapp.com/
      - [Responsiveness](#Responsiveness)
      - [Manual testing](#Manual-testting)
 - [Bugs](#Bugs)
-- [Credits(#Credits)
+- [Credits](#Credits)
     
     ## Description
     
