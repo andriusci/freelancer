@@ -187,5 +187,5 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
    - [https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout](https://testdriven.io/blog/django-stripe-tutorial/#stripe-checkout)
 https://simpleisbetterthancomplex.com/
 
-Special thanks to Vitor Freitas at -[https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) for the tutorials such as file uploads, authentication etc. And last but not least -[https://stackoverflow.com/](https://stackoverflow.com/) for countless advices and tips. 
+Special thanks to Vitor Freitas at - [https://simpleisbetterthancomplex.com/](https://simpleisbetterthancomplex.com/) for the tutorials such as file uploads, authentication etc. And last but not least - [https://stackoverflow.com/](https://stackoverflow.com/) for countless advices and tips. 
 
