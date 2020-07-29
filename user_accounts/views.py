@@ -146,7 +146,7 @@ def user_login(request):
             else:
                 loginform.add_error(None, "Your username or password are incorrect")
     else:
-        loginform = LoginForm()
+        loginForm = LoginForm()
         return render(request, 'login.html', {"loginForm": loginForm})
 
 def signup(request):
