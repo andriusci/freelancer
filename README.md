@@ -320,7 +320,7 @@ contact/
 
 ## Bugs
 * **Contact form** The form was designed to fit an iFrame, therefore if accesed directly takes all the screen width.
-* **Mozilla Firefox custom upload** For the unknown reason the custom upload doesn not functioning in the Mozilla browser. This could be fixed by detecting the browser using JS and providing alternative upload.
+* **Mozilla Firefox custom upload** For the unknown reason the custom upload does not work in the Mozilla browser. This could be fixed by detecting the browser using JS and providing alternative upload.
 
 
 ## Credits
