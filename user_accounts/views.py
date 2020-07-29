@@ -129,8 +129,8 @@ def user_account(request):
 def user_login(request):
     """A view that manages the login form"""
     if request.method == 'POST':
-        user_form = LoginForm(request.POST)
-        if user_form.is_valid():
+        loginform = LoginForm(request.POST)
+        if loginform.is_valid():
             user = auth.authenticate(request.POST['username_or_email'],
                                      password=request.POST['password'])
 
@@ -144,9 +144,9 @@ def user_login(request):
                 else:
                     return redirect(reverse('index'))
             else:
-                user_form.add_error(None, "Your username or password are incorrect")
+                loginform.add_error(None, "Your username or password are incorrect")
     else:
-        user_form = LoginForm()
+        loginform = LoginForm()
         return render(request, 'login.html', {"loginForm": loginForm})
 
 def signup(request):
