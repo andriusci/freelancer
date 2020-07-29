@@ -156,7 +156,7 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
  * **Chrome Version** 67.0.3396.62
 * **Cromium Version** 76.0.3809.87
 * **Opera 62**
-* **Frefox 68**
+* **Frefox 68** 
 * **Microsoft Edge 42**
 
 ##### Mobile devices:
@@ -226,7 +226,7 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
     - [x] If submitted empty, form fields turn red and shakes as intended to indicate error.
     - [x] If valid values submitted and file(s) chosen, shows quote price and displays the "add to basket" button.
     - [x] Tool-tips, on mouse-over, display help text. 
-
+    - [ ] Mozilla Firefox does not support custom upload used in this project, please refer to the - [Bugs](#Bugs) section.
  * **Add to basket button.**
  
 - [x] If clicked:
@@ -315,12 +315,12 @@ accept_quote/<int:quote_ref>/
    - [x] returns "The page does not exist"
 
 contact/
-  - [] displays the contact form. However, not as intended. See the - [Bugs](#Bugs) section bellow:
+  - [ ] displays the contact form. However, not as intended. See the - [Bugs](#Bugs) section bellow:
 
 
 ## Bugs
 * **Contact form** The form was designed to fit an iFrame, therefore if accesed directly takes all the screen width.
-* ****
+* **Mozilla Firefox custom upload** For the unknown reason the custom upload doesn not functioning in the Mozilla browser. This could be fixed by detecting the browser using JS and providing alternative upload.
 
 
 ## Credits
