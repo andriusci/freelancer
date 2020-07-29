@@ -158,7 +158,7 @@ input{
     display: inline}
 
 
- /*modified cs, enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
+ /*modified css, enables custom upload button from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/*/
 
 .inputfile {
 	width: 0.1px;
@@ -623,3 +623,4 @@ label{
 #id_email_body{
    min-height: 5em
 }
+.errorlist{color: red}

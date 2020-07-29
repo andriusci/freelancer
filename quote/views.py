@@ -119,7 +119,9 @@ def reupload(request, quote_ref, file_name):
        user = quote.submitted_by
        uploadForm = UploadFileForm
        chatForm = ChatForm
-
+       #get the files, 
+       # rename them by adding the quote reference to the file name in order to make the names unique.
+       # upload the files
        form = UploadFileForm(request.POST, request.FILES)
        files = request.FILES.get('files')
        document = QuoteFiles.objects.get(quote_ref = quote_ref, file_name = file_name)
