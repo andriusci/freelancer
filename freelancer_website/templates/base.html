@@ -58,12 +58,12 @@
               </li>
               <li class="nav-item">
                 
-                  {%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote/"%}
+                  {%if  request.get_full_path == "/quote/"%}
                   <a href="{% url 'quote_logged' %}" id="login"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%else%}
                   <a href="{% url 'user_account' %}" id="login"> Log in <i class="fas fa-sign-in-alt"></i></a>
                   {%endif%}
-    
+                  
               </li>
             {%endif%}
             </ul>
@@ -120,13 +120,13 @@
 </main>
 
 
-{%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/quote_logged/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/logout/"%}
+{%if  request.get_full_path == "/" or  request.get_full_path == "/quote/" or  request.get_full_path == "/quote_logged/" or  request.get_full_path == "/logout/"%}
     <!--script hides quote button in the navbar (to avoid having two get quote buttons ect...)-->
     <script>
         document.getElementById("quote").style.display = "none"
      </script>
 {%endif%}
-{%if request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/login/?next=/user_account/" or request.build_absolute_uri == "https://freelancer-ci.herokuapp.com/login/?next=/quote_logged/"%}
+{%if  request.get_full_path == "/login/?next=/user_account/" or  request.get_full_path == "/login/?next=/quote_logged/"%}
 <!--script hides log-in button in the nav bar if current page is login page)-->
 <script>
   
