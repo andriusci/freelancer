@@ -106,10 +106,10 @@ def user_login(request):
     if request.method == "POST":
         loginForm = LoginForm(request.POST)
         if loginForm.is_valid():
-            user = auth.authenticate(username=request.POST['username'],
+            user = authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
-            if user:
+            if user is not None:
                 auth.login(user=user, request=request)
                 messages.success(request, "login success")
                 try:
