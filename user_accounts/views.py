@@ -106,7 +106,7 @@ def user_login(request):
     if request.method == "POST":
         loginForm = LoginForm(request.POST)
         if loginForm.is_valid():
-            user = authenticate(username=request.POST['username'],
+            user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
             if user:
