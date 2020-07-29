@@ -118,7 +118,7 @@ def user_login(request):
                   return redirect(reverse('user_account'))#if the destination is not defined return user account page
             else:
                 loginForm.add_error(None, "Your username or password is incorrect")
-                return render(request, 'login.html' "loginForm" : loginForm)
+                return render(request, 'login.html', {"loginForm" : loginForm})
     else:
        if request.user.is_authenticated:
           return redirect(reverse('user_account'))
