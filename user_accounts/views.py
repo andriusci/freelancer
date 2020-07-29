@@ -101,53 +101,31 @@ def user_account(request):
 
   
  
-#def user_login(request):
-    # Logs user in or returns a log-in page.
-  #  if request.method == "POST":
-     #   loginForm = LoginForm(request.POST)
-     #   if loginForm.is_valid():
-      #      user = authenticate(username=request.POST['username'],
-      #                               password=request.POST['password'])
-
-     #       if user:
-    #            auth.login(user=user, request=request)
-     #           messages.success(request, "login success")
-     #           try:
-      #            return HttpResponseRedirect(request.GET['next'])
-     #           except:
-     #             return redirect(reverse('user_account'))#if the destination is not defined return user account page
-      #      else:
-      #          loginForm.add_error(None, "Your username or password is incorrect")
-     ##           return render(request, 'login.html', {"loginForm": loginForm})
-   # else:
-    #   if request.user.is_authenticated:
-    #      return redirect(reverse('user_account'))
-    #   else:
-    #      loginForm = LoginForm()
-     #     return render(request, 'login.html', {"loginForm": loginForm})
-
 def user_login(request):
-    """A view that manages the login form"""
-    if request.method == 'POST':
-        loginform = LoginForm(request.POST)
-        if loginform.is_valid():
-            user = auth.authenticate(request.POST['username_or_email'],
+     Logs user in or returns a log-in page.
+    if request.method == "POST":
+        loginForm = LoginForm(request.POST)
+        if loginForm.is_valid():
+            user = authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
 
             if user:
-                auth.login(request, user)
-                messages.error(request, "You have successfully logged in")
-
-                if request.GET and request.GET['next'] !='':
-                    next = request.GET['next']
-                    return HttpResponseRedirect(next)
-                else:
-                    return redirect(reverse('index'))
+                auth.login(user=user, request=request)
+                messages.success(request, "login success")
+                try:
+                  return HttpResponseRedirect(request.GET['next'])
+                except:
+                  return redirect(reverse('user_account'))#if the destination is not defined return user account page
             else:
-                loginform.add_error(None, "Your username or password are incorrect")
+                loginForm.add_error(None, "Your username or password is incorrect")
+                return render(request, 'login.html', {"loginForm": loginForm, "user": user})
     else:
-        loginForm = LoginForm()
-        return render(request, 'login.html', {"loginForm": loginForm})
+       if request.user.is_authenticated:
+          return redirect(reverse('user_account'))
+       else:
+          loginForm = LoginForm()
+          return render(request, 'login.html', {"loginForm": loginForm})
+
 
 def signup(request):
     #Creates new user
