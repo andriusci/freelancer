@@ -101,7 +101,7 @@ def user_account(request):
 
   
  
-def user_login(request):
+#def user_login(request):
     # Logs user in or returns a log-in page.
   #  if request.method == "POST":
      #   loginForm = LoginForm(request.POST)
