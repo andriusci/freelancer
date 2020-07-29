@@ -129,7 +129,7 @@ def user_account(request):
 def user_login(request):
     """A view that manages the login form"""
     if request.method == 'POST':
-        user_form = UserLoginForm(request.POST)
+        user_form = LoginForm(request.POST)
         if user_form.is_valid():
             user = auth.authenticate(request.POST['username_or_email'],
                                      password=request.POST['password'])
