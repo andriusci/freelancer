@@ -52,7 +52,7 @@ As a freelancer, I would like to:
 
 As a user who is looking to hire a proofreader, I want to:
 
-* be able to obtain an instant quote, so I could get the price in immediately.
+* be able to obtain an instant quote, so I could get the price immediately.
 * contact someone, so I could ask questions such as turnaround times.
 * get immediate answers to FAQ without having to contact anyone.
 * know what others think about the service.
@@ -320,7 +320,7 @@ contact/
 
 ## Bugs
 * **Contact form** The form was designed to fit an iFrame, therefore if accesed directly takes all the screen width.
-* **Mozilla Firefox custom upload** For the unknown reason the custom upload doesn not functioning in the Mozilla browser. This could be fixed by detecting the browser using JS and providing alternative upload.
+* **Mozilla Firefox custom upload** For the unknown reason the custom upload does not work in the Mozilla browser. This could be fixed by detecting the browser using JS and providing alternative upload.
 
 
 ## Credits
