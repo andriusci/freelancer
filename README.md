@@ -52,7 +52,7 @@ As a freelancer, I would like to:
 
 As a user who is looking to hire a proofreader, I want to:
 
-* be able to obtain an instant quote, so I could get the price in immediately.
+* be able to obtain an instant quote, so I could get the price immediately.
 * contact someone, so I could ask questions such as turnaround times.
 * get immediate answers to FAQ without having to contact anyone.
 * know what others think about the service.
