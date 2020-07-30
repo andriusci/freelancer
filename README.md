@@ -17,7 +17,9 @@ https://freelancer-ci.herokuapp.com/
     - [User need](#User-needs)
 - [Features](#Features)
 - [Features Left to Implement](#Features-Left-to-Implement)
+- [Mockups](#Mockups)
 - [Technologies used](#Technolies-used)
+- [Data structure](#Data-structure)
 - [Testing](#Testing)
      - [Validation](#Validation)
      - [Responsiveness](#Responsiveness)
@@ -117,6 +119,12 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 
 * **Payments.** Current version release provides very limited payment options. Customers can only pay with their credit or debit cards which for some, might not be a suitable choice. Therefore, addition option such as PayPal would be an advantage. Moreover, as the user stories reveled, there should be an option to proceed to the checkout without having to add an item to the basket first.
 
+# Mockups
+- [Homepage](freelancer_website/static/homepage/main.png)
+- [Quote](freelancer_website/static/img/quotepage.png)
+- [Account](freelancer_website/static/img/accountpage.png)
+- [Chat](freelancer_website/static/img/chat.png)
+
 ## Technologies used
 
 ####  Languages:
@@ -135,10 +143,9 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
    
 **Amazon Web Services** Used for static files,uploaded documents and posgres database.
 
-#### Data stuctures.
+## Data stuctures.
 
-
-*  The application's underlying database structure is shown in [Figure 6](freelancer_website/static/img/databasee.png)
+*  The underlying database structure for the aolication is shown in [Figure 6](freelancer_website/static/img/databasee.png)
 
 * The diagram in [Figure 7](freelancer_website/static/img/data.png) shows the structure of [ list_of_orderLists ], that is created by the user_account() function and then passed to the user_account template. The list contains all relevant order information to be displayed in the user account page.
 
