@@ -61,7 +61,7 @@ def quote_logged(request):
            for eachFile in files: 
                raw = eachFile.read()
                count = count + len(raw.split())
-              
+      #determine the price based on the number of words and category
       if count > 1000:
          price = count / 100
          discount = price * 0.9
@@ -71,9 +71,7 @@ def quote_logged(request):
          price = price * 1.1
       price = round(price)
      
-                   
-    
-     
+                  
       quote_instance = Quote(
                              category = category,
                              word_count = count,
@@ -91,9 +89,9 @@ def quote_logged(request):
       for eachFile in files:
             quote_file_instance = QuoteFiles(file_name = eachFile.name, quote_ref = quote_ref, user = user)
             quote_file_instance.save()
-
-            file_name = str(quote_ref) +"_"+ eachFile.name
-             
+            #rename each file by adding quote reference to the front of the filename
+            #just to make it unique so its easy to find.
+            file_name = str(quote_ref) +"_"+ eachFile.name 
             eachFile.name = file_name          
             upload_file = Upload( document = eachFile )
             upload_file.save()
