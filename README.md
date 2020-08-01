@@ -164,12 +164,11 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 * **Cromium Version** 76.0.3809.87
 * **Opera 62**
 * **Frefox 68** 
-* **Microsoft Edge 42**
 
 ##### Mobile devices:
-* **iPhone 5** (Safari, Chrome)
+* **iPhone 6** (Safari, Chrome)
 * **iPad** (Safari, Crome)
-* **Nokia** 6.1 (Chrome)
+* **Nokia** 3.2 (Chrome)
 
 #### Mannual testing
 
