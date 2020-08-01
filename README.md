@@ -120,7 +120,7 @@ The freelancer is also allowed to enter the chat page in order to upload a file 
 * **Payments.** Current version release provides very limited payment options. Customers can only pay with their credit or debit cards which for some, might not be a suitable choice. Therefore, addition option such as PayPal would be an advantage. Moreover, as the user stories reveled, there should be an option to proceed to the checkout without having to add an item to the basket first.
 
 # Mockups
-- [Homepage](freelancer_website/static/homepage.png)
+- [Homepage](freelancer_website/static/img/homepage.png)
 - [Quote](freelancer_website/static/img/quotepage.png)
 - [Account](freelancer_website/static/img/accountpage.png)
 - [Chat](freelancer_website/static/img/chat.png)
