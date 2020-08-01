@@ -25,6 +25,7 @@ https://freelancer-ci.herokuapp.com/
      - [Responsiveness](#Responsiveness)
      - [Manual testing](#Manual-testting)
 - [Bugs](#Bugs)
+- [Deployment](#Deployment)
 - [Credits](#Credits)
     
     ## Description
@@ -328,6 +329,12 @@ contact/
 * **Contact form** The form was designed to fit an iFrame, therefore if accesed directly takes all the screen width.
 * **Mozilla Firefox custom upload** For the unknown reason the custom upload does not work in the Mozilla browser. This could be fixed by detecting the browser using JS and providing alternative upload.
 
+## Deployment
+
+The app is deployed on Heroku apps. 
+
+**Deployment procedure:**
+* From the main Heroku page click ![new](freelancer_website/static/img/new.png)
 
 ## Credits
 
