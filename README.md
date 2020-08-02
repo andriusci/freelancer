@@ -339,13 +339,23 @@ Deployment procedure:
 
 ![new](freelancer_website/static/img/new.png)
 
-* Choose a name:
+* Choose a name and click create app button:
 
 ![name](freelancer_website/static/img/name.png)
 
 * Chose a deployment method (GitHub in this case):
 
 ![method](freelancer_website/static/img/method.png)
+
+* In the settings tab provide the configuration variables:
+
+![config](freelancer_website/static/img/config.png)
+
+* In the deploy tab choose a branch and click Deploy branch:
+
+![deploy](freelancer_website/static/img/deploy.png)
+
+
 
 ## Credits
 
