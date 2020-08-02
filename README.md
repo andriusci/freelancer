@@ -334,13 +334,18 @@ contact/
 The app is deployed on Heroku apps. 
 
 Deployment procedure:
-* From the main Heroku page click new
+
+* From the main Heroku page click create new app:
 
 ![new](freelancer_website/static/img/new.png)
 
-* Choose a name
+* Choose a name:
 
-![new](freelancer_website/static/img/name.png)
+![name](freelancer_website/static/img/name.png)
+
+* Chose a deployment method (GitHub in this case):
+
+![method](freelancer_website/static/img/method.png)
 
 ## Credits
 
