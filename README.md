@@ -356,7 +356,6 @@ Deployment procedure:
 ![deploy](freelancer_website/static/img/deploy.png)
 
 
-
 ## Credits
 
 * Custom upload
